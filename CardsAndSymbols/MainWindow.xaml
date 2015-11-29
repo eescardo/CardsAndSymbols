@@ -22,7 +22,7 @@
 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <local:CardViewer CardData="{Binding }" Margin="5" BorderBrush="Black" BorderThickness="1" Width="256" Height="256"/>
+                        <local:CardViewer CardData="{Binding }" Margin="5" Width="256" Height="256"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

@@ -7,17 +7,23 @@
              mc:Ignorable="d" 
              Background="White"
              d:DesignHeight="500" d:DesignWidth="500">
-    <ItemsControl ItemsSource="{Binding Path=Symbols}">
-        <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-                <UniformGrid Columns="{Binding Columns}"/>
-            </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
+    <Grid>
+        <Ellipse Fill="{x:Null}" StrokeThickness="2" Stroke="Black"/>
+        <ItemsControl ItemsSource="{Binding Path=Symbols}" RenderTransformOrigin="0.5,0.5" Background="{x:Null}">
+            <ItemsControl.RenderTransform>
+                <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
+            </ItemsControl.RenderTransform>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="{Binding Columns}"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
         
-        <ItemsControl.ItemTemplate>
-            <DataTemplate>
-                <local:SymbolViewer SymbolData="{Binding }"/>
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-    </ItemsControl>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:SymbolViewer SymbolData="{Binding }"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
 </UserControl>
