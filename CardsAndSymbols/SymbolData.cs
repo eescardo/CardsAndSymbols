@@ -9,11 +9,28 @@ namespace CardsAndSymbols
 {
     public class SymbolData : BindableBase, IComparable<SymbolData>, IEquatable<SymbolData>
     {
+        public SymbolData()
+        {
+        }
+
+        public SymbolData(SymbolData data)
+        {
+            this.imageFile = data.imageFile;
+            this.size = data.size;
+        }
+
         private string imageFile;
         public string ImageFile
         {
             get { return this.imageFile; }
             set { this.SetProperty(ref this.imageFile, value); }
+        }
+
+        private SymbolSize size = SymbolSize.Medium;
+        public SymbolSize Size
+        {
+            get { return this.size; }
+            set { this.SetProperty(ref this.size, value); }
         }
 
         public override string ToString()

@@ -15,7 +15,7 @@ namespace CardsAndSymbols
 
         public CardData(ICollection<SymbolData> symbols)
         {
-            this.Symbols = new List<SymbolData>(symbols);
+            this.Symbols = symbols.Select(x => new SymbolData(x)).ToList();
         }
 
         private ICollection<SymbolData> symbols;

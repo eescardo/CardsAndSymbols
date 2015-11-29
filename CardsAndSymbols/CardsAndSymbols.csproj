@@ -60,7 +60,10 @@
     <Compile Include="CardViewer.xaml.cs">
       <DependentUpon>CardViewer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions.cs" />
     <Compile Include="SymbolData.cs" />
+    <Compile Include="SymbolSize.cs" />
+    <Compile Include="SymbolSizeToScaleConverter.cs" />
     <Compile Include="SymbolViewer.xaml.cs">
       <DependentUpon>SymbolViewer.xaml</DependentUpon>
     </Compile>

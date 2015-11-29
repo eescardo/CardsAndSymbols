@@ -43,5 +43,41 @@ namespace CardsAndSymbols
                 this.SetValue(SymbolDataProperty, value);
             }
         }
+
+        private void HandleMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (!this.IsEnabled)
+            {
+                return;
+            }
+
+            e.Handled = true;
+
+            var el = (UIElement)sender;
+            if (el.IsMouseCaptured)
+            {
+                if (this.SymbolData != null)
+                {
+                    this.SymbolData.Size = this.SymbolData.Size.NextSize();
+                }
+
+                el.ReleaseMouseCapture();
+            }
+        }
+
+        private void HandleMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!this.IsEnabled)
+            {
+                return;
+            }
+
+            e.Handled = true;
+            var el = (UIElement)sender;
+            if (!el.CaptureMouse())
+            {
+                throw new InvalidOperationException();
+            }
+        }
     }
 }

@@ -3,9 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CardsAndSymbols"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <local:SymbolSizeToScaleConverter x:Key="ScaleConverter"/>
+    </UserControl.Resources>
     <Grid>
-        <Image Source="{Binding Path=ImageFile}" Stretch="Uniform"/>
+        <Image Source="{Binding Path=ImageFile}" RenderTransformOrigin="0.5,0.5" Stretch="Uniform"
+               MouseLeftButtonUp="HandleMouseLeftButtonUp" MouseLeftButtonDown="HandleMouseLeftButtonDown">
+            <Image.RenderTransform>
+                <ScaleTransform ScaleX="{Binding Converter={StaticResource ScaleConverter}, Path=Size}"
+                                ScaleY="{Binding Converter={StaticResource ScaleConverter}, Path=Size}"/>
+            </Image.RenderTransform>
+        </Image>
     </Grid>
 </UserControl>
