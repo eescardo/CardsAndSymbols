@@ -1,6 +1,7 @@
 ﻿
 namespace CardsAndSymbols
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -64,6 +65,25 @@ namespace CardsAndSymbols
             }
 
             return dirInfo.EnumerateFiles().Select(f => new SymbolData { ImageFile = f.FullName }).ToList();
+        }
+
+        private void HandleSaveClick(object sender, RoutedEventArgs e)
+        {
+            var json = JsonConvert.SerializeObject(this.Cards, Formatting.Indented);
+            using (var writer = new StreamWriter("cards.json"))
+            {
+                writer.Write(json);
+            }
+        }
+
+        private void HandleLoadClick(object sender, RoutedEventArgs e)
+        {
+            using (var reader = new StreamReader("cards.json"))
+            {
+                var json = reader.ReadToEnd();
+                var cards = JsonConvert.DeserializeObject<List<CardData>>(json);
+                this.Cards = cards;
+            }
         }
     }
 }
