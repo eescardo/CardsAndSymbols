@@ -8,8 +8,10 @@ namespace CardsAndSymbols
 {
     public enum SymbolSize
     {
-        Small,
-        Medium,
-        Large
+        XS,
+        S,
+        M,
+        L,
+        XL
     }
 }

@@ -26,11 +26,25 @@ namespace CardsAndSymbols
             set { this.SetProperty(ref this.imageFile, value); }
         }
 
-        private SymbolSize size = SymbolSize.Medium;
+        private SymbolSize size = SymbolSize.M;
         public SymbolSize Size
         {
             get { return this.size; }
             set { this.SetProperty(ref this.size, value); }
+        }
+
+        private double offsetX = 0.0;
+        public double OffsetX
+        {
+            get { return this.offsetX; }
+            set { this.SetProperty(ref this.offsetX, value); }
+        }
+
+        private double offsetY = 0.0;
+        public double OffsetY
+        {
+            get { return this.offsetY; }
+            set { this.SetProperty(ref this.offsetY, value); }
         }
 
         public override string ToString()

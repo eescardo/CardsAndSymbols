@@ -11,10 +11,13 @@
     </UserControl.Resources>
     <Grid>
         <Image Source="{Binding Path=ImageFile}" RenderTransformOrigin="0.5,0.5" Stretch="Uniform"
-               MouseLeftButtonUp="HandleMouseLeftButtonUp" MouseLeftButtonDown="HandleMouseLeftButtonDown">
+               MouseLeftButtonUp="HandleMouseLeftButtonUp" MouseLeftButtonDown="HandleMouseLeftButtonDown" MouseMove="HandleMouseMove">
             <Image.RenderTransform>
-                <ScaleTransform ScaleX="{Binding Converter={StaticResource ScaleConverter}, Path=Size}"
-                                ScaleY="{Binding Converter={StaticResource ScaleConverter}, Path=Size}"/>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="{Binding Converter={StaticResource ScaleConverter}, Path=Size}"
+                                    ScaleY="{Binding Converter={StaticResource ScaleConverter}, Path=Size}"/>
+                    <TranslateTransform X="{Binding Path=OffsetX}" Y="{Binding Path=OffsetY}"/>
+                </TransformGroup>
             </Image.RenderTransform>
         </Image>
     </Grid>
