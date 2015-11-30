@@ -9,7 +9,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" TextBlock.FontSize="16" TextBlock.FontWeight="Bold">
+            <Label FontSize="14" FontWeight="Normal">Num Cards:</Label>
             <TextBox Height="30" Margin="5" TextAlignment="Right" Text="{Binding NewNumCards}"/>
+            <Label FontSize="14" FontWeight="Normal">Images:</Label>
+            <TextBox Height="30" Margin="5" TextAlignment="Right" Text="{Binding ImageDirectory}"/>
             <Button Height="30" Margin="5" Click="HandleNewClick">New</Button>
             <Button Height="30" Margin="5" Click="HandleSaveClick">Save</Button>
             <Button Height="30" Margin="5" Click="HandleLoadClick">Load</Button>

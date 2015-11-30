@@ -8,9 +8,10 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <local:SymbolSizeToScaleConverter x:Key="ScaleConverter"/>
+        <local:FileNameToImageConverter x:Key="ImageSourceConverter"/>
     </UserControl.Resources>
     <Grid>
-        <Image Source="{Binding Path=ImageFile}" RenderTransformOrigin="0.5,0.5" Stretch="Uniform"
+        <Image Source="{Binding Converter={StaticResource ImageSourceConverter}, Path=ImageFile}" RenderTransformOrigin="0.5,0.5" Stretch="Uniform"
                MouseLeftButtonUp="HandleMouseLeftButtonUp" MouseLeftButtonDown="HandleMouseLeftButtonDown" MouseMove="HandleMouseMove">
             <Image.RenderTransform>
                 <TransformGroup>

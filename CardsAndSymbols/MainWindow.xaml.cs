@@ -23,6 +23,8 @@ namespace CardsAndSymbols
         private const double DefaultCardSize = 256.0;
         private const double DefaultCardMargin = 5.0;
 
+        private const string DefaultImageDirectory = "Images\\Png";
+
         public static DependencyProperty CardsProperty = DependencyProperty.Register(
             "Cards",
             typeof(ICollection<CardData>),
@@ -51,6 +53,12 @@ namespace CardsAndSymbols
             typeof(double),
             typeof(MainWindow),
             new PropertyMetadata(DefaultCardMargin));
+
+        public static DependencyProperty ImageDirectoryProperty = DependencyProperty.Register(
+            "ImageDirectory",
+            typeof(string),
+            typeof(MainWindow),
+            new PropertyMetadata(DefaultImageDirectory));
 
         public MainWindow()
         {
@@ -124,6 +132,19 @@ namespace CardsAndSymbols
             }
         }
 
+        public string ImageDirectory
+        {
+            get
+            {
+                return (string)this.GetValue(ImageDirectoryProperty);
+            }
+
+            set
+            {
+                this.SetValue(ImageDirectoryProperty, value);
+            }
+        }
+
         private void ComputeCards(string symbolDir, int numCards)
         {
             // Construct a projective plane and map points to cards and lines to symbols
@@ -160,7 +181,7 @@ namespace CardsAndSymbols
 
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
-            this.ComputeCards("Images", NewNumCards);
+            this.ComputeCards(this.ImageDirectory, NewNumCards);
         }
 
         private void WindowSizeChanged(object sender, SizeChangedEventArgs e)
@@ -175,7 +196,7 @@ namespace CardsAndSymbols
 
         private void HandleNewClick(object sender, RoutedEventArgs e)
         {
-            this.ComputeCards("Images", NewNumCards);
+            this.ComputeCards(this.ImageDirectory, NewNumCards);
         }
 
         private void HandleSaveClick(object sender, RoutedEventArgs e)
