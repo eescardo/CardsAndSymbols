@@ -15,12 +15,42 @@ namespace CardsAndSymbols
     /// </summary>
     public partial class MainWindow : Window
     {
+        private const int ControlsColumnIndex = 0;
+        private const int CardsColumnIndex = 1;
+
         private const int DefaultNumCards = 13;
+        private const int DefaultNumCardColumns = 3;
+        private const double DefaultCardSize = 256.0;
+        private const double DefaultCardMargin = 5.0;
 
         public static DependencyProperty CardsProperty = DependencyProperty.Register(
             "Cards",
             typeof(ICollection<CardData>),
             typeof(MainWindow));
+
+        public static DependencyProperty NewNumCardsProperty = DependencyProperty.Register(
+            "NewNumCards",
+            typeof(int),
+            typeof(MainWindow),
+            new PropertyMetadata(DefaultNumCards));
+
+        public static DependencyProperty NumCardColumnsProperty = DependencyProperty.Register(
+            "NumCardColumns",
+            typeof(int),
+            typeof(MainWindow),
+            new PropertyMetadata(DefaultNumCardColumns));
+
+        public static DependencyProperty CardSizeProperty = DependencyProperty.Register(
+            "CardSize",
+            typeof(double),
+            typeof(MainWindow),
+            new PropertyMetadata(DefaultCardSize, (o, a) => ((MainWindow)o).CardSizeChangedCallback(a)));
+
+        public static DependencyProperty CardMarginProperty = DependencyProperty.Register(
+            "CardMargin",
+            typeof(double),
+            typeof(MainWindow),
+            new PropertyMetadata(DefaultCardMargin));
 
         public MainWindow()
         {
@@ -42,9 +72,56 @@ namespace CardsAndSymbols
             }
         }
 
-        private void WindowLoaded(object sender, RoutedEventArgs e)
+        public int NewNumCards
         {
-            this.ComputeCards("Images", DefaultNumCards);
+            get
+            {
+                return (int)this.GetValue(NewNumCardsProperty);
+            }
+
+            set
+            {
+                this.SetValue(NewNumCardsProperty, value);
+            }
+        }
+
+        public int NumCardColumns
+        {
+            get
+            {
+                return (int)this.GetValue(NumCardColumnsProperty);
+            }
+
+            set
+            {
+                this.SetValue(NumCardColumnsProperty, value);
+            }
+        }
+
+        public double CardSize
+        {
+            get
+            {
+                return (double)this.GetValue(CardSizeProperty);
+            }
+
+            set
+            {
+                this.SetValue(CardSizeProperty, value);
+            }
+        }
+
+        public double CardMargin
+        {
+            get
+            {
+                return (double)this.GetValue(CardMarginProperty);
+            }
+
+            set
+            {
+                this.SetValue(CardMarginProperty, value);
+            }
         }
 
         private void ComputeCards(string symbolDir, int numCards)
@@ -65,6 +142,40 @@ namespace CardsAndSymbols
             }
 
             return dirInfo.EnumerateFiles().Select(f => new SymbolData { ImageFile = f.FullName }).ToList();
+        }
+
+        private void ComputeColumns(double cardAreaWidth, double cardSize, double cardMargin)
+        {
+            if (cardSize <= 0 || cardAreaWidth <= 0)
+            {
+                return;
+            }
+
+            var idealColumns = cardAreaWidth / (cardSize + (4 * cardMargin));
+            this.NumCardColumns = Math.Max(1, (int)Math.Floor(idealColumns));
+        }
+
+        ////////////////////////////////////////////////////////////////
+        // Event callbacks
+
+        private void WindowLoaded(object sender, RoutedEventArgs e)
+        {
+            this.ComputeCards("Images", NewNumCards);
+        }
+
+        private void WindowSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            this.ComputeColumns(this.CardGrid.ColumnDefinitions[CardsColumnIndex].ActualWidth, this.CardSize, this.CardMargin);
+        }
+
+        private void CardSizeChangedCallback(DependencyPropertyChangedEventArgs e)
+        {
+            this.ComputeColumns(this.CardGrid.ColumnDefinitions[CardsColumnIndex].ActualWidth, (double)e.NewValue, this.CardMargin);
+        }
+
+        private void HandleNewClick(object sender, RoutedEventArgs e)
+        {
+            this.ComputeCards("Images", NewNumCards);
         }
 
         private void HandleSaveClick(object sender, RoutedEventArgs e)

@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              Background="White"
              d:DesignHeight="500" d:DesignWidth="500">
-    <Grid>
+    <Grid Background="Transparent">
         <Ellipse Fill="{x:Null}" StrokeThickness="2" Stroke="Black"/>
         <ItemsControl ItemsSource="{Binding Path=Symbols}" RenderTransformOrigin="0.5,0.5" Background="{x:Null}">
             <ItemsControl.RenderTransform>

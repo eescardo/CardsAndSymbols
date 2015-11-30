@@ -2,27 +2,34 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:CardsAndSymbols"
-        Title="Cards and Symbols" Height="600" Width="1000" Loaded="WindowLoaded">
-    <Grid>
+        Title="Cards and Symbols" Height="600" Width="1000" Loaded="WindowLoaded" SizeChanged="WindowSizeChanged">
+    <Grid x:Name="CardGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" TextBlock.FontSize="16" TextBlock.FontWeight="Bold">
+            <TextBox Height="30" Margin="5" TextAlignment="Right" Text="{Binding NewNumCards}"/>
+            <Button Height="30" Margin="5" Click="HandleNewClick">New</Button>
             <Button Height="30" Margin="5" Click="HandleSaveClick">Save</Button>
             <Button Height="30" Margin="5" Click="HandleLoadClick">Load</Button>
+            <Slider Margin="5" Value="{Binding CardSize}" Minimum="100" Maximum="800"/>
         </StackPanel>
         <ScrollViewer Grid.Column="1">
             <ItemsControl ItemsSource="{Binding Cards}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <UniformGrid Margin="5 5" Columns="3"/>
+                        <UniformGrid Margin="0" Columns="{Binding NumCardColumns}" VerticalAlignment="Top"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <local:CardViewer CardData="{Binding }" Margin="5" Width="256" Height="256"/>
+                        <local:CardViewer CardData="{Binding }"
+                                          Padding="0"
+                                          Margin="{Binding CardMargin, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                                          Width="{Binding CardSize, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                                          Height="{Binding CardSize, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
