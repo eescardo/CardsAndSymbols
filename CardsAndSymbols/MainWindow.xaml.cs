@@ -60,11 +60,18 @@ namespace CardsAndSymbols
             typeof(MainWindow),
             new PropertyMetadata(DefaultImageDirectory));
 
+        public static DependencyProperty ImageCacheProperty = DependencyProperty.Register(
+            "ImageCache",
+            typeof(ImageCache),
+            typeof(MainWindow),
+            new PropertyMetadata(null));
+
         public MainWindow()
         {
             this.InitializeComponent();
 
             this.DataContext = this;
+            this.ImageCache = (ImageCache)this.FindResource("ImageCache");
         }
 
         public ICollection<CardData> Cards
@@ -145,9 +152,23 @@ namespace CardsAndSymbols
             }
         }
 
+        public ImageCache ImageCache
+        {
+            get
+            {
+                return (ImageCache)this.GetValue(ImageCacheProperty);
+            }
+
+            set
+            {
+                this.SetValue(ImageCacheProperty, value);
+            }
+        }
+
         private void ComputeCards(string symbolDir, int numCards)
         {
             // Construct a projective plane and map points to cards and lines to symbols
+            this.ImageCache.Clear(ImageCacheFlags.ClearIds);
             var symbols = this.GetSymbols(symbolDir);
             var planeConstructor = new ProjectivePlaneConstructor<SymbolData>(symbols, numCards);
             var planePoints = planeConstructor.PlanePoints;
@@ -162,7 +183,7 @@ namespace CardsAndSymbols
                 throw new ArgumentException(string.Format("Invalid symbol directory '{0}' specified", symbolDir), "symbolDir");
             }
 
-            return dirInfo.EnumerateFiles().Select(f => new SymbolData { ImageFile = f.FullName }).ToList();
+            return dirInfo.EnumerateFiles().Select(f => new SymbolData { ImageId = this.ImageCache.AssignNewId(f.FullName) }).ToList();
         }
 
         private void ComputeColumns(double cardAreaWidth, double cardSize, double cardMargin)

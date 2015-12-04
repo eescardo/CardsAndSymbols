@@ -15,15 +15,15 @@ namespace CardsAndSymbols
 
         public SymbolData(SymbolData data)
         {
-            this.imageFile = data.imageFile;
+            this.imageId = data.imageId;
             this.size = data.size;
         }
 
-        private string imageFile;
-        public string ImageFile
+        private string imageId;
+        public string ImageId
         {
-            get { return this.imageFile; }
-            set { this.SetProperty(ref this.imageFile, value); }
+            get { return this.imageId; }
+            set { this.SetProperty(ref this.imageId, value); }
         }
 
         private SymbolSize size = SymbolSize.M;
@@ -49,13 +49,13 @@ namespace CardsAndSymbols
 
         public override string ToString()
         {
-            var info = new FileInfo(this.ImageFile);
-            return info.Exists ? info.Name : this.ImageFile;
+            var info = new FileInfo(this.ImageId);
+            return info.Exists ? info.Name : this.ImageId;
         }
 
         public override int GetHashCode()
         {
-            return this.ImageFile != null ? this.ImageFile.GetHashCode() : 0;
+            return this.ImageId != null ? this.ImageId.GetHashCode() : 0;
         }
 
         public override bool Equals(object obj)
@@ -66,7 +66,7 @@ namespace CardsAndSymbols
 
         public bool Equals(SymbolData other)
         {
-            return other != null ? this.ImageFile == other.ImageFile : false;
+            return other != null ? this.ImageId == other.ImageId : false;
         }
 
         public int CompareTo(SymbolData other)
@@ -76,7 +76,7 @@ namespace CardsAndSymbols
                 return 1;
             }
 
-            return string.Compare(this.ImageFile, other.ImageFile);
+            return string.Compare(this.ImageId, other.ImageId);
         }
     }
 }

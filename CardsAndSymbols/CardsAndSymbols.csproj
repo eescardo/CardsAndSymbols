@@ -68,6 +68,8 @@
       <DependentUpon>CardViewer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions.cs" />
+    <Compile Include="ImageCache.cs" />
+    <Compile Include="ImageCacheFlags.cs" />
     <Compile Include="SymbolData.cs" />
     <Compile Include="SymbolSize.cs" />
     <Compile Include="FileNameToImageConverter.cs" />
