@@ -17,9 +17,10 @@
             <Button Height="30" Margin="5" Click="HandleSaveClick">Save</Button>
             <Button Height="30" Margin="5" Click="HandleLoadClick">Load</Button>
             <Slider Margin="5" Value="{Binding CardScaleFactor}" Minimum="0.4" Maximum="3"/>
+            <Button Height="30" Margin="5 15 5 5" Click="HandlePrintClick">Print</Button>
         </StackPanel>
         <ScrollViewer Grid.Column="1">
-            <ItemsControl ItemsSource="{Binding Cards}">
+            <ItemsControl x:Name="CardContainer" ItemsSource="{Binding Cards}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Margin="0" Columns="{Binding NumCardColumns}" VerticalAlignment="Top"/>

@@ -7,6 +7,7 @@ namespace CardsAndSymbols
     using System.IO;
     using System.Linq;
     using System.Windows;
+    using System.Windows.Controls;
 
     using ProjectivePlane;
     
@@ -255,6 +256,15 @@ namespace CardsAndSymbols
                 var json = reader.ReadToEnd();
                 var cards = JsonConvert.DeserializeObject<List<CardData>>(json);
                 this.Cards = cards;
+            }
+        }
+
+        private void HandlePrintClick(object sender, RoutedEventArgs e)
+        {
+            var printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                printDialog.PrintVisual(this.CardContainer, "Card printout");
             }
         }
     }
