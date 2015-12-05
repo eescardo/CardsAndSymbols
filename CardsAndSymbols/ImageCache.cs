@@ -64,6 +64,7 @@ namespace CardsAndSymbols
             if (flags.HasFlag(ImageCacheFlags.ClearIds))
             {
                 this.idToFileName.Clear();
+                this.nextId = 0;
             }
 
             if (flags.HasFlag(ImageCacheFlags.ClearFiles))
