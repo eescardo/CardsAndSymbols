@@ -16,7 +16,7 @@
             <Button Height="30" Margin="5" Click="HandleNewClick">New</Button>
             <Button Height="30" Margin="5" Click="HandleSaveClick">Save</Button>
             <Button Height="30" Margin="5" Click="HandleLoadClick">Load</Button>
-            <Slider Margin="5" Value="{Binding CardSize}" Minimum="100" Maximum="800"/>
+            <Slider Margin="5" Value="{Binding CardScaleFactor}" Minimum="0.4" Maximum="3"/>
         </StackPanel>
         <ScrollViewer Grid.Column="1">
             <ItemsControl ItemsSource="{Binding Cards}">
@@ -31,8 +31,8 @@
                         <local:CardViewer CardData="{Binding }"
                                           Padding="0"
                                           Margin="{Binding CardMargin, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                                          Width="{Binding CardSize, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                                          Height="{Binding CardSize, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"/>
+                                          CardBaseSize="{Binding CardBaseSize, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                                          CardScaleFactor="{Binding CardScaleFactor, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

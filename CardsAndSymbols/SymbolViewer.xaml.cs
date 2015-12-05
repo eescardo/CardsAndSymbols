@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,25 @@ namespace CardsAndSymbols
             "SymbolData",
             typeof(SymbolData),
             typeof(SymbolViewer),
-            new PropertyMetadata());
+            new PropertyMetadata(null, (o,a) => ((SymbolViewer)o).HandleSymbolDataChanged(a)));
+
+        public static DependencyProperty CardScaleFactorProperty = DependencyProperty.Register(
+            "CardScaleFactor",
+            typeof(double),
+            typeof(SymbolViewer),
+            new PropertyMetadata(1.0, (o,a) => ((SymbolViewer)o).HandleCardScaleFactorChanged(a)));
+
+        public static DependencyProperty ScaledOffsetXProperty = DependencyProperty.Register(
+            "ScaledOffsetX",
+            typeof(double),
+            typeof(SymbolViewer),
+            new PropertyMetadata(0.0));
+
+        public static DependencyProperty ScaledOffsetYProperty = DependencyProperty.Register(
+            "ScaledOffsetY",
+            typeof(double),
+            typeof(SymbolViewer),
+            new PropertyMetadata(0.0));
 
         private Point? capturePoint = null;
         private double anchorX = 0.0;
@@ -54,10 +73,81 @@ namespace CardsAndSymbols
             }
         }
 
+        public double CardScaleFactor
+        {
+            get
+            {
+                return (double)this.GetValue(CardScaleFactorProperty);
+            }
+
+            set
+            {
+                this.SetValue(CardScaleFactorProperty, value);
+            }
+        }
+
+        public double ScaledOffsetX
+        {
+            get
+            {
+                return (double)this.GetValue(ScaledOffsetXProperty);
+            }
+
+            set
+            {
+                this.SetValue(ScaledOffsetXProperty, value);
+            }
+        }
+
+        public double ScaledOffsetY
+        {
+            get
+            {
+                return (double)this.GetValue(ScaledOffsetYProperty);
+            }
+
+            set
+            {
+                this.SetValue(ScaledOffsetYProperty, value);
+            }
+        }
+
         private Point? GetPositionFromParent(MouseEventArgs e)
         {
             var parent = this.FindParent<CardViewer>();
             return (parent != null) ? e.GetPosition(parent) : (Point?)null;
+        }
+
+        private void AdjustOffsets()
+        {
+            this.ScaledOffsetX = this.SymbolData.OffsetX * this.CardScaleFactor;
+            this.ScaledOffsetY = this.SymbolData.OffsetY * this.CardScaleFactor;
+        }
+
+        private void HandleSymbolDataChanged(DependencyPropertyChangedEventArgs e)
+        {
+            if (e.OldValue != null)
+            {
+                ((SymbolData)e.OldValue).PropertyChanged -= this.HandleSymbolDataPropertyChanged;
+            }
+
+            if (e.NewValue != null)
+            {
+                ((SymbolData)e.NewValue).PropertyChanged += this.HandleSymbolDataPropertyChanged;
+            }
+        }
+
+        private void HandleSymbolDataPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if ((e.PropertyName == "OffsetX") || (e.PropertyName == "OffsetY"))
+            {
+                this.AdjustOffsets();
+            }
+        }
+
+        private void HandleCardScaleFactorChanged(DependencyPropertyChangedEventArgs e)
+        {
+            this.AdjustOffsets();
         }
 
         private void HandleMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -110,8 +200,11 @@ namespace CardsAndSymbols
             {
                 if (this.SymbolData != null)
                 {
-                    this.SymbolData.OffsetX = this.anchorX + pointDiff.X;
-                    this.SymbolData.OffsetY = this.anchorY + pointDiff.Y;
+                    var parent = this.FindParent<CardViewer>();
+                    var source = PresentationSource.FromVisual(parent);
+                    pointDiff = source.CompositionTarget.TransformToDevice.Transform(pointDiff);
+                    this.SymbolData.OffsetX = this.anchorX + (pointDiff.X / this.CardScaleFactor);
+                    this.SymbolData.OffsetY = this.anchorY + (pointDiff.Y / this.CardScaleFactor);
                 }
             }
             else if (pointDiff.Length >= DragMovementThreshold)

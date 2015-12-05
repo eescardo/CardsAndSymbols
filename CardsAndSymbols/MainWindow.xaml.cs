@@ -42,11 +42,17 @@ namespace CardsAndSymbols
             typeof(MainWindow),
             new PropertyMetadata(DefaultNumCardColumns));
 
-        public static DependencyProperty CardSizeProperty = DependencyProperty.Register(
-            "CardSize",
+        public static DependencyProperty CardBaseSizeProperty = DependencyProperty.Register(
+            "CardBaseSize",
             typeof(double),
             typeof(MainWindow),
-            new PropertyMetadata(DefaultCardSize, (o, a) => ((MainWindow)o).CardSizeChangedCallback(a)));
+            new PropertyMetadata(DefaultCardSize));
+
+        public static DependencyProperty CardScaleFactorProperty = DependencyProperty.Register(
+            "CardScaleFactor",
+            typeof(double),
+            typeof(MainWindow),
+            new PropertyMetadata(1.0, (o, a) => ((MainWindow)o).CardScaleFactorChangedCallback(a)));
 
         public static DependencyProperty CardMarginProperty = DependencyProperty.Register(
             "CardMargin",
@@ -113,16 +119,29 @@ namespace CardsAndSymbols
             }
         }
 
-        public double CardSize
+        public double CardBaseSize
         {
             get
             {
-                return (double)this.GetValue(CardSizeProperty);
+                return (double)this.GetValue(CardBaseSizeProperty);
             }
 
             set
             {
-                this.SetValue(CardSizeProperty, value);
+                this.SetValue(CardBaseSizeProperty, value);
+            }
+        }
+
+        public double CardScaleFactor
+        {
+            get
+            {
+                return (double)this.GetValue(CardScaleFactorProperty);
+            }
+
+            set
+            {
+                this.SetValue(CardScaleFactorProperty, value);
             }
         }
 
@@ -207,12 +226,12 @@ namespace CardsAndSymbols
 
         private void WindowSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            this.ComputeColumns(this.CardGrid.ColumnDefinitions[CardsColumnIndex].ActualWidth, this.CardSize, this.CardMargin);
+            this.ComputeColumns(this.CardGrid.ColumnDefinitions[CardsColumnIndex].ActualWidth, this.CardBaseSize * this.CardScaleFactor, this.CardMargin);
         }
 
-        private void CardSizeChangedCallback(DependencyPropertyChangedEventArgs e)
+        private void CardScaleFactorChangedCallback(DependencyPropertyChangedEventArgs e)
         {
-            this.ComputeColumns(this.CardGrid.ColumnDefinitions[CardsColumnIndex].ActualWidth, (double)e.NewValue, this.CardMargin);
+            this.ComputeColumns(this.CardGrid.ColumnDefinitions[CardsColumnIndex].ActualWidth, this.CardBaseSize * ((double)e.NewValue), this.CardMargin);
         }
 
         private void HandleNewClick(object sender, RoutedEventArgs e)

@@ -21,7 +21,8 @@
         
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <local:SymbolViewer SymbolData="{Binding }"/>
+                    <local:SymbolViewer SymbolData="{Binding }"
+                                        CardScaleFactor="{Binding CardScaleFactor, RelativeSource={RelativeSource AncestorType={x:Type local:CardViewer}}}"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

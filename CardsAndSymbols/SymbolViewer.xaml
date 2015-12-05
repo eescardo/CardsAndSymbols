@@ -15,9 +15,10 @@
                MouseLeftButtonUp="HandleMouseLeftButtonUp" MouseLeftButtonDown="HandleMouseLeftButtonDown" MouseMove="HandleMouseMove">
             <Image.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="{Binding Converter={StaticResource ScaleConverter}, Path=Size}"
-                                    ScaleY="{Binding Converter={StaticResource ScaleConverter}, Path=Size}"/>
-                    <TranslateTransform X="{Binding Path=OffsetX}" Y="{Binding Path=OffsetY}"/>
+                    <ScaleTransform ScaleX="{Binding Path=Size,Converter={StaticResource ScaleConverter}}"
+                                    ScaleY="{Binding Path=Size,Converter={StaticResource ScaleConverter}}"/>
+                    <TranslateTransform X="{Binding Path=ScaledOffsetX, RelativeSource={RelativeSource AncestorType={x:Type local:SymbolViewer}}}"
+                                        Y="{Binding Path=ScaledOffsetY, RelativeSource={RelativeSource AncestorType={x:Type local:SymbolViewer}}}"/>
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
