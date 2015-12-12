@@ -19,12 +19,12 @@ namespace CardsAndSymbols
         private const int ControlsColumnIndex = 0;
         private const int CardsColumnIndex = 1;
 
-        private const int DefaultNumCards = 13;
+        private const int DefaultNumCards = 55;
         private const int DefaultNumCardColumns = 3;
         private const double DefaultCardSize = 256.0;
         private const double DefaultCardMargin = 5.0;
 
-        private const string DefaultImageDirectory = "Images\\Png";
+        private const string DefaultImageDirectory = "Images\\Svg";
 
         public static DependencyProperty CardsProperty = DependencyProperty.Register(
             "Cards",
