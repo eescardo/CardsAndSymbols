@@ -30,7 +30,7 @@ namespace CardsAndSymbols
             "CardBaseSize",
             typeof(double),
             typeof(CardViewer),
-            new PropertyMetadata(100.0));
+            new PropertyMetadata(100.0, (o, a) => ((CardViewer)o).CardBaseSizeChangedCallback(a)));
 
         public static DependencyProperty CardScaleFactorProperty = DependencyProperty.Register(
             "CardScaleFactor",
@@ -41,6 +41,7 @@ namespace CardsAndSymbols
         public CardViewer()
         {
             this.InitializeComponent();
+            this.DataContextChanged += HandleDataContextChanged;
         }
 
         public CardData CardData
@@ -82,9 +83,24 @@ namespace CardsAndSymbols
             }
         }
 
-        private void CardScaleFactorChangedCallback(DependencyPropertyChangedEventArgs e)
+        private void AdjustDimensions()
         {
             this.Width = this.Height = this.CardBaseSize * this.CardScaleFactor;
+        }
+
+        private void CardScaleFactorChangedCallback(DependencyPropertyChangedEventArgs e)
+        {
+            this.AdjustDimensions();
+        }
+
+        private void CardBaseSizeChangedCallback(DependencyPropertyChangedEventArgs e)
+        {
+            this.AdjustDimensions();
+        }
+
+        private void HandleDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            this.AdjustDimensions();
         }
     }
 }

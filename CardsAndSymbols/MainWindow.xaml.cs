@@ -23,6 +23,7 @@ namespace CardsAndSymbols
         private const int DefaultNumCardColumns = 3;
         private const double DefaultCardSize = 256.0;
         private const double DefaultCardMargin = 5.0;
+        private const double DefaultCardScaleFactor = 1.0;
 
         private const string DefaultImageDirectory = "Images\\Svg";
 
@@ -53,7 +54,7 @@ namespace CardsAndSymbols
             "CardScaleFactor",
             typeof(double),
             typeof(MainWindow),
-            new PropertyMetadata(1.0, (o, a) => ((MainWindow)o).CardScaleFactorChangedCallback(a)));
+            new PropertyMetadata(DefaultCardScaleFactor, (o, a) => ((MainWindow)o).CardScaleFactorChangedCallback(a)));
 
         public static DependencyProperty CardMarginProperty = DependencyProperty.Register(
             "CardMargin",

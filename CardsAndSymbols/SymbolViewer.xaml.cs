@@ -58,6 +58,7 @@ namespace CardsAndSymbols
             this.InitializeComponent();
             this.GotMouseCapture += HandleGotMouseCapture;
             this.LostMouseCapture += HandleLostMouseCapture;
+            this.DataContextChanged += HandleDataContextChanged;
         }
 
         public SymbolData SymbolData
@@ -120,8 +121,16 @@ namespace CardsAndSymbols
 
         private void AdjustOffsets()
         {
-            this.ScaledOffsetX = this.SymbolData.OffsetX * this.CardScaleFactor;
-            this.ScaledOffsetY = this.SymbolData.OffsetY * this.CardScaleFactor;
+            if (this.SymbolData != null)
+            {
+                this.ScaledOffsetX = this.SymbolData.OffsetX * this.CardScaleFactor;
+                this.ScaledOffsetY = this.SymbolData.OffsetY * this.CardScaleFactor;
+            }
+            else
+            {
+                this.ScaledOffsetX = 0.0;
+                this.ScaledOffsetY = 0.0;
+            }
         }
 
         private void HandleSymbolDataChanged(DependencyPropertyChangedEventArgs e)
@@ -147,6 +156,16 @@ namespace CardsAndSymbols
 
         private void HandleCardScaleFactorChanged(DependencyPropertyChangedEventArgs e)
         {
+            this.AdjustOffsets();
+        }
+
+        private void HandleDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (this.SymbolData != this.DataContext)
+            {
+                this.SymbolData = (SymbolData)this.DataContext;
+            }
+
             this.AdjustOffsets();
         }
 
