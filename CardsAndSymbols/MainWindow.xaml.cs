@@ -8,6 +8,7 @@ namespace CardsAndSymbols
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Documents;
 
     using ProjectivePlane;
     
@@ -265,8 +266,70 @@ namespace CardsAndSymbols
             var printDialog = new PrintDialog();
             if (printDialog.ShowDialog() == true)
             {
+                //var paginator = new Paginator(this.CardContainer);
+                //printDialog.PrintDocument(paginator, "Card printout");
                 printDialog.PrintVisual(this.CardContainer, "Card printout");
             }
+        }
+
+        private class Paginator : DocumentPaginator
+        {
+            private readonly ItemsControl control;
+
+            public Paginator(ItemsControl control)
+            {
+                this.control = control;
+
+                this._isPageCountValid = true;
+                this._pageCount = 1;
+                this._pageSize = new Size(this.control.ActualWidth, this.control.ActualHeight);
+                this._source = new PaginatorSource(this);
+            }
+
+            private bool _isPageCountValid = false;
+            public override bool IsPageCountValid
+            {
+                get { return this._isPageCountValid; }
+            }
+
+            private int _pageCount = 0;
+            public override int PageCount
+            {
+                get { return this._pageCount;  }
+            }
+
+            private Size _pageSize;
+            public override Size PageSize
+            {
+                get { return this._pageSize; }
+                set { this._pageSize = value; }
+            }
+
+            private IDocumentPaginatorSource _source;
+            public override IDocumentPaginatorSource Source
+            {
+                get { return this._source; }
+            }
+
+            public override DocumentPage GetPage(int pageNumber)
+            {
+                if (pageNumber >= this.PageCount)
+                {
+                    throw new ArgumentException("Invalid page number", "pageNumber");
+                }
+
+                return new DocumentPage(this.control);
+            }
+        }
+
+        private class PaginatorSource : IDocumentPaginatorSource
+        {
+            public PaginatorSource(Paginator paginator)
+            {
+                this.DocumentPaginator = paginator;
+            }
+
+            public DocumentPaginator DocumentPaginator { get; private set; }
         }
     }
 }
