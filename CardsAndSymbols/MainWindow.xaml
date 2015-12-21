@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:CardsAndSymbols"
         Title="Cards and Symbols" Height="600" Width="1000" Loaded="WindowLoaded" SizeChanged="WindowSizeChanged">
-    <Grid x:Name="CardGrid">
+    <Grid x:Name="AppGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
@@ -23,7 +23,7 @@
             <ItemsControl x:Name="CardContainer" ItemsSource="{Binding Cards}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <UniformGrid Margin="0" Columns="{Binding NumCardColumns}" VerticalAlignment="Top"/>
+                        <UniformGrid x:Name="CardGrid" Margin="0" Columns="{Binding NumCardColumns}" VerticalAlignment="Top"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
 

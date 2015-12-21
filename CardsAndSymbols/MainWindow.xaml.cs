@@ -8,7 +8,9 @@ namespace CardsAndSymbols
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Controls.Primitives;
     using System.Windows.Documents;
+    using System.Windows.Media;
 
     using ProjectivePlane;
     
@@ -229,12 +231,12 @@ namespace CardsAndSymbols
 
         private void WindowSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            this.ComputeColumns(this.CardGrid.ColumnDefinitions[CardsColumnIndex].ActualWidth, this.CardBaseSize * this.CardScaleFactor, this.CardMargin);
+            this.ComputeColumns(this.AppGrid.ColumnDefinitions[CardsColumnIndex].ActualWidth, this.CardBaseSize * this.CardScaleFactor, this.CardMargin);
         }
 
         private void CardScaleFactorChangedCallback(DependencyPropertyChangedEventArgs e)
         {
-            this.ComputeColumns(this.CardGrid.ColumnDefinitions[CardsColumnIndex].ActualWidth, this.CardBaseSize * ((double)e.NewValue), this.CardMargin);
+            this.ComputeColumns(this.AppGrid.ColumnDefinitions[CardsColumnIndex].ActualWidth, this.CardBaseSize * ((double)e.NewValue), this.CardMargin);
         }
 
         private void HandleNewClick(object sender, RoutedEventArgs e)
@@ -266,9 +268,10 @@ namespace CardsAndSymbols
             var printDialog = new PrintDialog();
             if (printDialog.ShowDialog() == true)
             {
-                //var paginator = new Paginator(this.CardContainer);
+                var cardGrid = this.CardContainer.FindChild<UniformGrid>("CardGrid");
+                //var paginator = new Paginator(cardGrid);
                 //printDialog.PrintDocument(paginator, "Card printout");
-                printDialog.PrintVisual(this.CardContainer, "Card printout");
+                printDialog.PrintVisual(cardGrid, "Card printout");
             }
         }
 
