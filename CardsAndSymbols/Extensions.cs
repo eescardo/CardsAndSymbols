@@ -7,8 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Xml;
 
 namespace CardsAndSymbols
 {
@@ -159,6 +162,31 @@ namespace CardsAndSymbols
             }
 
             return foundChild;
+        }
+
+        public static System.Windows.Size GetActualSize(this FrameworkElement parent)
+        {
+            var contentPresenter = parent as ContentPresenter;
+            if (contentPresenter != null)
+            {
+                Rect descendantBounds = VisualTreeHelper.GetDescendantBounds(contentPresenter);
+                if (!descendantBounds.Size.IsEmpty)
+                    return descendantBounds.Size;
+            }
+
+            return new System.Windows.Size(parent.ActualWidth, parent.ActualHeight);
+        }
+
+        public static T CloneElement<T>(this T element)
+        {
+            var xaml = XamlWriter.Save(element);
+            using (var stringReader = new StringReader(xaml))
+            {
+                using (var xmlReader = XmlReader.Create(stringReader))
+                {
+                    return (T)XamlReader.Load(xmlReader);
+                }
+            }
         }
 
         public static BitmapImage ToImage(this Bitmap bitmap)

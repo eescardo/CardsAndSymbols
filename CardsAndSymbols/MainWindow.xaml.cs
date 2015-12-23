@@ -269,7 +269,8 @@ namespace CardsAndSymbols
             if (printDialog.ShowDialog() == true)
             {
                 var cardGrid = this.CardContainer.FindChild<UniformGrid>("CardGrid");
-                //var paginator = new Paginator(cardGrid);
+                //var printPageSize = new Size(printDialog.PrintableAreaWidth, printDialog.PrintableAreaHeight);
+                //var paginator = new Paginator(cardGrid, printPageSize);
                 //printDialog.PrintDocument(paginator, "Card printout");
                 printDialog.PrintVisual(cardGrid, "Card printout");
             }
@@ -277,35 +278,36 @@ namespace CardsAndSymbols
 
         private class Paginator : DocumentPaginator
         {
-            private readonly ItemsControl control;
+            private readonly UniformGrid control;
+            private double pageOffset = 0.0;
 
-            public Paginator(ItemsControl control)
+            public Paginator(UniformGrid control, Size pageSize)
             {
                 this.control = control;
 
-                this._isPageCountValid = true;
-                this._pageCount = 1;
-                this._pageSize = new Size(this.control.ActualWidth, this.control.ActualHeight);
                 this._source = new PaginatorSource(this);
+                this.pageSize = pageSize;
+
+                this.ComputePageCount();
             }
 
-            private bool _isPageCountValid = false;
+            private bool isPageCountValid = false;
             public override bool IsPageCountValid
             {
-                get { return this._isPageCountValid; }
+                get { return this.isPageCountValid; }
             }
 
-            private int _pageCount = 0;
+            private int pageCount = 0;
             public override int PageCount
             {
-                get { return this._pageCount;  }
+                get { return this.pageCount;  }
             }
 
-            private Size _pageSize;
+            private Size pageSize;
             public override Size PageSize
             {
-                get { return this._pageSize; }
-                set { this._pageSize = value; }
+                get { return this.pageSize; }
+                set { this.pageSize = value; }
             }
 
             private IDocumentPaginatorSource _source;
@@ -321,7 +323,40 @@ namespace CardsAndSymbols
                     throw new ArgumentException("Invalid page number", "pageNumber");
                 }
 
-                return new DocumentPage(this.control);
+                var rect = new Rect(0.0, pageNumber * this.pageOffset, this.PageSize.Width, this.pageOffset);
+                //var pageContainer = new ContainerVisual();
+                //pageContainer.Children.Add(this.control);
+                //pageContainer.Transform = new TranslateTransform(0, -(pageNumber * this.pageOffset));
+                var documentPage = new DocumentPage(this.control, rect.Size, rect, rect);
+                return documentPage;
+            }
+
+            public override void ComputePageCount()
+            {
+                var elemCount = this.control.Children.Count;
+                if (elemCount <= 0)
+                {
+                    this.pageCount = 1;
+                    this.isPageCountValid = true;
+                    return;
+                }
+
+                var firstChild = this.control.Children[0] as FrameworkElement;
+                if (firstChild == null)
+                {
+                    throw new InvalidOperationException("Can't determine size of control children for pagination");
+                }
+
+                var elemSize = firstChild.GetActualSize();
+                var rows = elemCount / this.control.Columns;
+                var rowRemainder = elemCount % this.control.Columns;
+                var totalRows = rows + (rowRemainder > 0 ? 1 : 0);
+                var rowsPerPage = (int)(this.PageSize.Height / elemSize.Height);
+                this.pageOffset = rowsPerPage * elemSize.Height;
+                var pages = totalRows / rowsPerPage;
+                var pageRemainder = totalRows % rowsPerPage;
+                this.pageCount = pages + (pageRemainder > 0 ? 1 : 0);
+                this.isPageCountValid = true;
             }
         }
 
