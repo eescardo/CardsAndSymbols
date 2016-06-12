@@ -10,6 +10,7 @@ namespace CardsAndSymbols
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
     using System.Windows.Documents;
+    using System.Windows.Markup;
     using System.Windows.Media;
 
     using ProjectivePlane;
@@ -269,17 +270,75 @@ namespace CardsAndSymbols
             if (printDialog.ShowDialog() == true)
             {
                 var cardGrid = this.CardContainer.FindChild<UniformGrid>("CardGrid");
-                //var printPageSize = new Size(printDialog.PrintableAreaWidth, printDialog.PrintableAreaHeight);
-                //var paginator = new Paginator(cardGrid, printPageSize);
-                //printDialog.PrintDocument(paginator, "Card printout");
-                printDialog.PrintVisual(cardGrid, "Card printout");
+                var printPageSize = new Size(printDialog.PrintableAreaWidth, printDialog.PrintableAreaHeight);
+                ///////////////////////////////////////////
+                // With custom paginator
+                var paginator = new Paginator(cardGrid, printPageSize);
+                printDialog.PrintDocument(paginator, "Card printout");
+
+                ///////////////////////////////////////////
+                // With fixed document (throws exception due to multi-parented visual)
+                //var document = this.CreateFixedDocument(cardGrid, printPageSize);
+                // printDialog.PrintDocument(document.DocumentPaginator, "Card printout");
+
+                ///////////////////////////////////////////
+                // With direct visual printing
+                // printDialog.PrintVisual(cardGrid, "Card printout");
             }
+        }
+
+        FixedDocument CreateFixedDocument(UniformGrid control, Size printPageSize)
+        {
+            var document = new FixedDocument();
+            var pageCount = 0;
+            var pageOffset = 0.0;
+
+            var elemCount = control.Children.Count;
+            if (elemCount <= 0)
+            {
+                pageCount = 1;
+            }
+            else
+            {
+                var firstChild = control.Children[0] as FrameworkElement;
+                if (firstChild == null)
+                {
+                    throw new InvalidOperationException("Can't determine size of control children for pagination");
+                }
+
+                var elemSize = firstChild.GetActualSize();
+                var rows = elemCount / control.Columns;
+                var rowRemainder = elemCount % control.Columns;
+                var totalRows = rows + (rowRemainder > 0 ? 1 : 0);
+                var rowsPerPage = (int)(printPageSize.Height / elemSize.Height);
+                pageOffset = rowsPerPage * elemSize.Height;
+                var pages = totalRows / rowsPerPage;
+                var pageRemainder = totalRows % rowsPerPage;
+                pageCount = pages + (pageRemainder > 0 ? 1 : 0);
+            }
+
+            for (int iPage = 0; iPage < pageCount; ++iPage)
+            {
+                FixedPage page = new FixedPage();
+                page.Width = printPageSize.Width;
+                page.Height = printPageSize.Height;
+                var contentBox = new Rect(0.0, iPage * pageOffset, control.ActualWidth, pageOffset);
+                page.Children.Add(control);
+                page.ContentBox = contentBox;
+                page.BleedBox = contentBox;
+                PageContent pageContent = new PageContent();
+                ((IAddChild)pageContent).AddChild(page);
+                document.Pages.Add(pageContent);
+            }
+
+            return document;
         }
 
         private class Paginator : DocumentPaginator
         {
             private readonly UniformGrid control;
             private double pageOffset = 0.0;
+            private Dictionary<int, DocumentPage> pages = new Dictionary<int, DocumentPage>();
 
             public Paginator(UniformGrid control, Size pageSize)
             {
@@ -323,16 +382,34 @@ namespace CardsAndSymbols
                     throw new ArgumentException("Invalid page number", "pageNumber");
                 }
 
-                var rect = new Rect(0.0, pageNumber * this.pageOffset, this.PageSize.Width, this.pageOffset);
+                DocumentPage documentPage;
+                if (this.pages.TryGetValue(pageNumber, out documentPage))
+                {
+                    return documentPage;
+                }
+
+                var rect = new Rect(0.0, pageNumber * this.pageOffset, this.control.ActualWidth, this.pageOffset);
                 //var pageContainer = new ContainerVisual();
                 //pageContainer.Children.Add(this.control);
                 //pageContainer.Transform = new TranslateTransform(0, -(pageNumber * this.pageOffset));
-                var documentPage = new DocumentPage(this.control, rect.Size, rect, rect);
+                documentPage = new DocumentPage(this.control, this.PageSize, rect, rect);
+                this.pages[pageNumber] = documentPage;
                 return documentPage;
+            }
+
+            public override void GetPageAsync(int pageNumber)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override void GetPageAsync(int pageNumber, object userState)
+            {
+                throw new NotImplementedException();
             }
 
             public override void ComputePageCount()
             {
+                this.pages.Clear();
                 var elemCount = this.control.Children.Count;
                 if (elemCount <= 0)
                 {
