@@ -38,18 +38,18 @@ namespace CardsAndSymbols.ConsoleTest
             return this.Name != null ? this.Name.GetHashCode() : 0;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             var other = obj as Symbol;
             return this.Equals(other);
         }
 
-        public bool Equals(Symbol other)
+        public bool Equals(Symbol? other)
         {
             return other != null ? this.Name == other.Name : false;
         }
 
-        public int CompareTo(Symbol other)
+        public int CompareTo(Symbol? other)
         {
             if (other == null)
             {

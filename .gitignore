@@ -1,4 +1,5 @@
 *.suo
+.DS_Store
 
 .vs/
 obj/

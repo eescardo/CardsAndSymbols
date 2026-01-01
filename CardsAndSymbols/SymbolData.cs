@@ -19,8 +19,8 @@ namespace CardsAndSymbols
             this.size = data.size;
         }
 
-        private string imageId;
-        public string ImageId
+        private string? imageId;
+        public string? ImageId
         {
             get { return this.imageId; }
             set { this.SetProperty(ref this.imageId, value); }
@@ -49,6 +49,8 @@ namespace CardsAndSymbols
 
         public override string ToString()
         {
+            if (string.IsNullOrEmpty(this.ImageId))
+                return string.Empty;
             var info = new FileInfo(this.ImageId);
             return info.Exists ? info.Name : this.ImageId;
         }
@@ -58,18 +60,18 @@ namespace CardsAndSymbols
             return this.ImageId != null ? this.ImageId.GetHashCode() : 0;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             var other = obj as SymbolData;
             return this.Equals(other);
         }
 
-        public bool Equals(SymbolData other)
+        public bool Equals(SymbolData? other)
         {
             return other != null ? this.ImageId == other.ImageId : false;
         }
 
-        public int CompareTo(SymbolData other)
+        public int CompareTo(SymbolData? other)
         {
             if (other == null)
             {

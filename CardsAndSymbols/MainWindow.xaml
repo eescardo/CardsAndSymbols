@@ -1,39 +1,55 @@
-﻿<Window x:Class="CardsAndSymbols.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:CardsAndSymbols"
-        Title="Cards and Symbols" Height="600" Width="1000" Loaded="WindowLoaded" SizeChanged="WindowSizeChanged">
+        xmlns:local="using:CardsAndSymbols"
+        x:Class="CardsAndSymbols.MainWindow"
+        x:Name="mainWindow"
+        Title="Cards and Symbols" Height="600" Width="1000">
     <Grid x:Name="AppGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" TextBlock.FontSize="16" TextBlock.FontWeight="Bold">
-            <Label FontSize="14" FontWeight="Normal">Num Cards:</Label>
-            <TextBox Height="30" Margin="5" TextAlignment="Right" Text="{Binding NewNumCards}"/>
-            <Label FontSize="14" FontWeight="Normal">Images:</Label>
-            <TextBox Height="30" Margin="5" TextAlignment="Right" Text="{Binding ImageDirectory}"/>
-            <Button Height="30" Margin="5" Click="HandleNewClick">New</Button>
-            <Button Height="30" Margin="5" Click="HandleSaveClick">Save</Button>
-            <Button Height="30" Margin="5" Click="HandleLoadClick">Load</Button>
-            <Slider Margin="5" Value="{Binding CardScaleFactor}" Minimum="0.4" Maximum="3"/>
-            <Button Height="30" Margin="5 15 5 5" Click="HandlePrintClick">Print</Button>
+        
+        <!-- Left Panel: Controls -->
+        <StackPanel Grid.Column="0" Margin="5">
+            <Label>Num Cards:</Label>
+            <TextBox Height="30" Margin="0,0,0,5" 
+                     Text="{Binding NewNumCards, Mode=TwoWay}"/>
+            
+            <Label>Images:</Label>
+            <TextBox Height="30" Margin="0,0,0,5" 
+                     Text="{Binding ImageDirectory, Mode=TwoWay}"/>
+            
+            <Button Height="30" Margin="0,0,0,5" Click="HandleNewClick">New</Button>
+            <Button Height="30" Margin="0,0,0,5" Click="HandleSaveClick">Save</Button>
+            <Button Height="30" Margin="0,0,0,5" Click="HandleLoadClick">Load</Button>
+            
+            <Label>Scale:</Label>
+            <Slider Margin="0,0,0,5" 
+                    Value="{Binding CardScaleFactor, Mode=TwoWay}" 
+                    Minimum="0.4" Maximum="3"/>
+            
+            <Button Height="30" Margin="0,10,0,0" Click="HandlePrintClick">Print</Button>
         </StackPanel>
+        
+        <!-- Right Panel: Cards -->
         <ScrollViewer Grid.Column="1">
-            <ItemsControl x:Name="CardContainer" ItemsSource="{Binding Cards}">
+            <ItemsControl x:Name="CardContainer" 
+                         ItemsSource="{Binding Cards}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <UniformGrid x:Name="CardGrid" Margin="0" Columns="{Binding NumCardColumns}" VerticalAlignment="Top"/>
+                        <UniformGrid Columns="{Binding NumCardColumns, RelativeSource={RelativeSource AncestorType=Window}}" 
+                                   Margin="0"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
-
+                
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <local:CardViewer CardData="{Binding }"
-                                          Padding="0"
-                                          Margin="{Binding CardMargin, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                                          CardBaseSize="{Binding CardBaseSize, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                                          CardScaleFactor="{Binding CardScaleFactor, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"/>
+                    <DataTemplate DataType="local:CardData">
+                        <local:CardViewer CardData="{Binding}"
+                                        Padding="0"
+                                        Margin="5"
+                                        CardBaseSize="{Binding CardBaseSize, RelativeSource={RelativeSource AncestorType=local:MainWindow}}"
+                                        CardScaleFactor="{Binding CardScaleFactor, RelativeSource={RelativeSource AncestorType=local:MainWindow}}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

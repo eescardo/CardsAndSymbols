@@ -10,7 +10,7 @@ namespace CardsAndSymbols
         /// <summary>
         ///     Multicast event for property change notifications.
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <summary>
         ///     Checks if a property already matches a desired value.  Sets the property and
@@ -28,7 +28,7 @@ namespace CardsAndSymbols
         ///     True if the value was changed, false if the existing value matched the
         ///     desired value.
         /// </returns>
-        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] String propertyName = null)
+        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string? propertyName = null)
         {
             if (Equals(storage, value))
             {
@@ -48,12 +48,12 @@ namespace CardsAndSymbols
         ///     value is optional and can be provided automatically when invoked from compilers
         ///     that support <see cref="CallerMemberNameAttribute" />.
         /// </param>
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
-            PropertyChangedEventHandler eventHandler = this.PropertyChanged;
+            PropertyChangedEventHandler? eventHandler = this.PropertyChanged;
             if (eventHandler != null)
             {
-                eventHandler(this, new PropertyChangedEventArgs(propertyName));
+                eventHandler(this, new PropertyChangedEventArgs(propertyName ?? string.Empty));
             }
         }
     }

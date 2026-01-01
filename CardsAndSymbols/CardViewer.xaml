@@ -1,28 +1,34 @@
-﻿<UserControl x:Class="CardsAndSymbols.CardViewer"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CardsAndSymbols"
-             mc:Ignorable="d" 
-             Background="White"
-             d:DesignHeight="500" d:DesignWidth="500">
-    <Grid Background="Transparent">
-        <Ellipse Fill="{x:Null}" StrokeThickness="2" Stroke="Black"/>
-        <ItemsControl ItemsSource="{Binding Path=Symbols}" RenderTransformOrigin="0.5,0.5" Background="{x:Null}">
-            <ItemsControl.RenderTransform>
-                <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
-            </ItemsControl.RenderTransform>
+             xmlns:local="using:CardsAndSymbols"
+             x:Class="CardsAndSymbols.CardViewer"
+             x:Name="cardViewer"
+             Background="White">
+    <Grid>
+        <!-- Card border circle -->
+        <Ellipse Fill="Transparent" 
+                 StrokeThickness="2" 
+                 Stroke="Black"
+                 Width="{Binding Width, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                 Height="{Binding Height, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+        
+        <!-- Symbols grid inside card -->
+        <ItemsControl x:Name="SymbolsItemsControl"
+                     ItemsSource="{Binding Symbols}"
+                     Background="Transparent"
+                     ClipToBounds="False"
+                     Width="{Binding Width, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                     Height="{Binding Height, RelativeSource={RelativeSource AncestorType=UserControl}}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Columns="{Binding Columns}"/>
+                    <Canvas/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-        
+            
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <local:SymbolViewer SymbolData="{Binding }"
-                                        CardScaleFactor="{Binding CardScaleFactor, RelativeSource={RelativeSource AncestorType={x:Type local:CardViewer}}}"/>
+                    <local:SymbolViewer SymbolData="{Binding}"
+                                      CardScaleFactor="{Binding CardScaleFactor, RelativeSource={RelativeSource AncestorType=local:CardViewer}}"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

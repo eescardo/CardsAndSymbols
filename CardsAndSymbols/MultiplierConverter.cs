@@ -1,31 +1,31 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows.Data;
+using Avalonia.Data.Converters;
 
 namespace CardsAndSymbols
 {
     public class MultiplierConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType,
+            object? parameter, CultureInfo culture)
         {
-            if (value.GetType() != typeof(double) || parameter.GetType() != typeof(double))
+            if (value is not double doubleValue || parameter is not double doubleParameter)
             {
                 throw new ArgumentException("value and parameter must be double");
             }
 
-            return ((double)value) * ((double)parameter);
+            return doubleValue * doubleParameter;
         }
 
-        public object ConvertBack(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType,
+            object? parameter, CultureInfo culture)
         {
-            if (value.GetType() != typeof(double) || parameter.GetType() != typeof(double))
+            if (value is not double doubleValue || parameter is not double doubleParameter)
             {
                 throw new ArgumentException("value and parameter must be double");
             }
 
-            return ((double)value) / ((double)parameter);
+            return doubleValue / doubleParameter;
         }
 
     }

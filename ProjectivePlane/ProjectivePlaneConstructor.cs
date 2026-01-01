@@ -4,8 +4,8 @@ namespace ProjectivePlane
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
+    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// Uses Desarguesian projective plane construction to assign lines to points such that:
@@ -29,11 +29,17 @@ namespace ProjectivePlane
         private readonly List<ProjectivePlanePoint<Line>> fullPointSet;
         private readonly List<Direction> directions;
         private readonly int numRequestedPoints;
+        private readonly ILogger? logger;
 
         private bool hasRun = false;
-        private List<ProjectivePlanePoint<Line>> requestedPoints;
+        private List<ProjectivePlanePoint<Line>>? requestedPoints;
 
         public ProjectivePlaneConstructor(IList<Line> lines, int numPoints)
+            : this(lines, numPoints, null)
+        {
+        }
+
+        public ProjectivePlaneConstructor(IList<Line> lines, int numPoints, ILogger? logger)
         {
             var maxPointsPerOrder = supportedOrders.Select(o => (o * o) + o + 1).ToArray();
             int iOrder = 0;
@@ -59,7 +65,7 @@ namespace ProjectivePlane
 
             if (lines.Count > maxPoints)
             {
-                Trace.TraceWarning("Not all of the line objects will be used. Only {0} line objects are required for the specified number of points.", maxPoints);
+                this.logger?.LogWarning("Not all of the line objects will be used. Only {MaxPoints} line objects are required for the specified number of points.", maxPoints);
             }
 
             this.order = supportedOrders[iOrder];
@@ -71,6 +77,7 @@ namespace ProjectivePlane
 
             this.numRequestedPoints = numPoints;
             this.lines = lines.Take(maxPoints).ToList();
+            this.logger = logger;
 
             this.directions = new List<Direction>(this.order + 1);
             this.directions.Add(new Direction { RowInc = 1, ColInc = 0 }); // Initialize vertical direction

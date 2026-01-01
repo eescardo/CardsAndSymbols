@@ -1,19 +1,17 @@
 ﻿
 namespace CardsAndSymbols
 {
-    using Newtonsoft.Json;
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Controls.Primitives;
-    using System.Windows.Documents;
-    using System.Windows.Markup;
-    using System.Windows.Media;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Interactivity;
+using Avalonia.VisualTree;
 
-    using ProjectivePlane;
+using ProjectivePlane;
     
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -29,171 +27,100 @@ namespace CardsAndSymbols
         private const double DefaultCardMargin = 5.0;
         private const double DefaultCardScaleFactor = 1.0;
 
-        private const string DefaultImageDirectory = "Images\\Svg";
+        private const string DefaultImageDirectory = "Images/SVG";
 
-        public static DependencyProperty CardsProperty = DependencyProperty.Register(
-            "Cards",
-            typeof(ICollection<CardData>),
-            typeof(MainWindow));
+        public static readonly StyledProperty<ICollection<CardData>?> CardsProperty = AvaloniaProperty.Register<MainWindow, ICollection<CardData>?>(
+            "Cards");
 
-        public static DependencyProperty NewNumCardsProperty = DependencyProperty.Register(
-            "NewNumCards",
-            typeof(int),
-            typeof(MainWindow),
-            new PropertyMetadata(DefaultNumCards));
+        public static readonly StyledProperty<int> NewNumCardsProperty = AvaloniaProperty.Register<MainWindow, int>(
+            "NewNumCards", DefaultNumCards);
 
-        public static DependencyProperty NumCardColumnsProperty = DependencyProperty.Register(
-            "NumCardColumns",
-            typeof(int),
-            typeof(MainWindow),
-            new PropertyMetadata(DefaultNumCardColumns));
+        public static readonly StyledProperty<int> NumCardColumnsProperty = AvaloniaProperty.Register<MainWindow, int>(
+            "NumCardColumns", DefaultNumCardColumns);
 
-        public static DependencyProperty CardBaseSizeProperty = DependencyProperty.Register(
-            "CardBaseSize",
-            typeof(double),
-            typeof(MainWindow),
-            new PropertyMetadata(DefaultCardSize));
+        public static readonly StyledProperty<double> CardBaseSizeProperty = AvaloniaProperty.Register<MainWindow, double>(
+            "CardBaseSize", DefaultCardSize);
 
-        public static DependencyProperty CardScaleFactorProperty = DependencyProperty.Register(
-            "CardScaleFactor",
-            typeof(double),
-            typeof(MainWindow),
-            new PropertyMetadata(DefaultCardScaleFactor, (o, a) => ((MainWindow)o).CardScaleFactorChangedCallback(a)));
+        public static readonly StyledProperty<double> CardScaleFactorProperty = AvaloniaProperty.Register<MainWindow, double>(
+            "CardScaleFactor", DefaultCardScaleFactor);
 
-        public static DependencyProperty CardMarginProperty = DependencyProperty.Register(
-            "CardMargin",
-            typeof(double),
-            typeof(MainWindow),
-            new PropertyMetadata(DefaultCardMargin));
+        public static readonly StyledProperty<double> CardMarginProperty = AvaloniaProperty.Register<MainWindow, double>(
+            "CardMargin", DefaultCardMargin);
 
-        public static DependencyProperty ImageDirectoryProperty = DependencyProperty.Register(
-            "ImageDirectory",
-            typeof(string),
-            typeof(MainWindow),
-            new PropertyMetadata(DefaultImageDirectory));
+        public static readonly StyledProperty<string?> ImageDirectoryProperty = AvaloniaProperty.Register<MainWindow, string?>(
+            "ImageDirectory", DefaultImageDirectory);
 
-        public static DependencyProperty ImageCacheProperty = DependencyProperty.Register(
-            "ImageCache",
-            typeof(ImageCache),
-            typeof(MainWindow),
-            new PropertyMetadata(null));
+        public static readonly StyledProperty<ImageCache?> ImageCacheProperty = AvaloniaProperty.Register<MainWindow, ImageCache?>(
+            "ImageCache");
 
         public MainWindow()
         {
             this.InitializeComponent();
-
             this.DataContext = this;
-            this.ImageCache = (ImageCache)this.FindResource("ImageCache");
+            var app = (App)Application.Current!;
+            this.ImageCache = app.Resources["ImageCache"] as ImageCache;
+            this.Opened += WindowLoaded;
+            
+            // Set default image directory if not set
+            if (string.IsNullOrEmpty(this.ImageDirectory))
+            {
+                this.ImageDirectory = DefaultImageDirectory;
+            }
         }
 
-        public ICollection<CardData> Cards
+        public ICollection<CardData>? Cards
         {
-            get
-            {
-                return (ICollection<CardData>)this.GetValue(CardsProperty);
-            }
-
-            set
-            {
-                this.SetValue(CardsProperty, value);
-            }
+            get => this.GetValue(CardsProperty);
+            set => this.SetValue(CardsProperty, value);
         }
 
         public int NewNumCards
         {
-            get
-            {
-                return (int)this.GetValue(NewNumCardsProperty);
-            }
-
-            set
-            {
-                this.SetValue(NewNumCardsProperty, value);
-            }
+            get => this.GetValue(NewNumCardsProperty);
+            set => this.SetValue(NewNumCardsProperty, value);
         }
 
         public int NumCardColumns
         {
-            get
-            {
-                return (int)this.GetValue(NumCardColumnsProperty);
-            }
-
-            set
-            {
-                this.SetValue(NumCardColumnsProperty, value);
-            }
+            get => this.GetValue(NumCardColumnsProperty);
+            set => this.SetValue(NumCardColumnsProperty, value);
         }
 
         public double CardBaseSize
         {
-            get
-            {
-                return (double)this.GetValue(CardBaseSizeProperty);
-            }
-
-            set
-            {
-                this.SetValue(CardBaseSizeProperty, value);
-            }
+            get => this.GetValue(CardBaseSizeProperty);
+            set => this.SetValue(CardBaseSizeProperty, value);
         }
 
         public double CardScaleFactor
         {
-            get
-            {
-                return (double)this.GetValue(CardScaleFactorProperty);
-            }
-
-            set
-            {
-                this.SetValue(CardScaleFactorProperty, value);
-            }
+            get => this.GetValue(CardScaleFactorProperty);
+            set => this.SetValue(CardScaleFactorProperty, value);
         }
 
         public double CardMargin
         {
-            get
-            {
-                return (double)this.GetValue(CardMarginProperty);
-            }
-
-            set
-            {
-                this.SetValue(CardMarginProperty, value);
-            }
+            get => this.GetValue(CardMarginProperty);
+            set => this.SetValue(CardMarginProperty, value);
         }
 
-        public string ImageDirectory
+        public string? ImageDirectory
         {
-            get
-            {
-                return (string)this.GetValue(ImageDirectoryProperty);
-            }
-
-            set
-            {
-                this.SetValue(ImageDirectoryProperty, value);
-            }
+            get => this.GetValue(ImageDirectoryProperty);
+            set => this.SetValue(ImageDirectoryProperty, value);
         }
 
-        public ImageCache ImageCache
+        public ImageCache? ImageCache
         {
-            get
-            {
-                return (ImageCache)this.GetValue(ImageCacheProperty);
-            }
-
-            set
-            {
-                this.SetValue(ImageCacheProperty, value);
-            }
+            get => this.GetValue(ImageCacheProperty);
+            set => this.SetValue(ImageCacheProperty, value);
         }
 
-        private void ComputeCards(string symbolDir, int numCards)
+        private void ComputeCards(string? symbolDir, int numCards)
         {
             // Construct a projective plane and map points to cards and lines to symbols
-            this.ImageCache.Clear(ImageCacheFlags.ClearIds);
+            this.ImageCache?.Clear(ImageCacheFlags.ClearIds);
+            if (symbolDir == null) return;
             var symbols = this.GetSymbols(symbolDir);
             var planeConstructor = new ProjectivePlaneConstructor<SymbolData>(symbols, numCards);
             var planePoints = planeConstructor.PlanePoints;
@@ -208,7 +135,7 @@ namespace CardsAndSymbols
                 throw new ArgumentException(string.Format("Invalid symbol directory '{0}' specified", symbolDir), "symbolDir");
             }
 
-            return dirInfo.EnumerateFiles().Select(f => new SymbolData { ImageId = this.ImageCache.AssignNewId(f.FullName) }).ToList();
+            return dirInfo.EnumerateFiles().Select(f => new SymbolData { ImageId = this.ImageCache?.AssignNewId(f.FullName) ?? f.FullName }).ToList();
         }
 
         private void ComputeColumns(double cardAreaWidth, double cardSize, double cardMargin)
@@ -225,27 +152,131 @@ namespace CardsAndSymbols
         ////////////////////////////////////////////////////////////////
         // Event callbacks
 
-        private void WindowLoaded(object sender, RoutedEventArgs e)
+        private void WindowLoaded(object? sender, EventArgs e)
+        {
+            
+            try
+            {
+                var imageDir = this.ImageDirectory ?? DefaultImageDirectory;
+                
+                // Try multiple path resolution strategies
+                string? resolvedPath = null;
+                
+                // Strategy 1: If already absolute, use it
+                if (Path.IsPathRooted(imageDir) && Directory.Exists(imageDir))
+                {
+                    resolvedPath = imageDir;
+                }
+
+                // Strategy 2: Try relative to executable directory
+                else if (!Path.IsPathRooted(imageDir))
+                {
+                    var baseDir = AppContext.BaseDirectory;
+                    var tryPath1 = Path.Combine(baseDir, imageDir);
+                    if (Directory.Exists(tryPath1))
+                    {
+                        resolvedPath = tryPath1;
+                    }
+                    // Strategy 3: Try relative to current working directory
+                    else
+                    {
+                        var tryPath2 = Path.Combine(Directory.GetCurrentDirectory(), imageDir);
+                        if (Directory.Exists(tryPath2))
+                        {
+                            resolvedPath = tryPath2;
+                        }
+                        // Strategy 4: Try the path as-is (might be relative to project root)
+                        else if (Directory.Exists(imageDir))
+                        {
+                            resolvedPath = Path.GetFullPath(imageDir);
+                        }
+                    }
+                }
+
+                if (resolvedPath == null)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Could not find image directory: {imageDir}");
+                    System.Diagnostics.Debug.WriteLine($"Tried: {Path.Combine(AppContext.BaseDirectory, imageDir)}");
+                    System.Diagnostics.Debug.WriteLine($"Tried: {Path.Combine(Directory.GetCurrentDirectory(), imageDir)}");
+                    // Set empty cards to prevent crash
+                    this.Cards = new List<CardData>();
+                    return;
+                }
+                
+                this.ComputeCards(resolvedPath, NewNumCards);
+            }
+            catch (Exception ex)
+            {
+                // Log error - in a real app you'd use proper logging
+                System.Diagnostics.Debug.WriteLine($"Error loading window: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"Stack trace: {ex.StackTrace}");
+                // Set empty cards to prevent crash
+                this.Cards = new List<CardData>();
+            }
+        }
+
+        protected override void OnSizeChanged(SizeChangedEventArgs e)
+        {
+            base.OnSizeChanged(e);
+            var appGrid = this.FindControl<Grid>("AppGrid");
+            if (appGrid != null)
+            {
+                this.ComputeColumns(appGrid.ColumnDefinitions[CardsColumnIndex].ActualWidth, this.CardBaseSize * this.CardScaleFactor, this.CardMargin);
+                
+                // UniformGrid Columns is now bound, no need to update manually
+                // Update CardViewers to maintain aspect ratio
+                UpdateCardViewers();
+            }
+        }
+
+        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+        {
+            base.OnPropertyChanged(change);
+            if (change.Property == CardScaleFactorProperty || change.Property == CardBaseSizeProperty)
+            {
+                var appGrid = this.FindControl<Grid>("AppGrid");
+                if (appGrid != null)
+                {
+                    this.ComputeColumns(appGrid.ColumnDefinitions[CardsColumnIndex].ActualWidth, this.CardBaseSize * this.CardScaleFactor, this.CardMargin);
+                    
+                    // UniformGrid Columns is now bound, no need to update manually
+                    // Update all CardViewer instances
+                    UpdateCardViewers();
+                }
+            }
+            else if (change.Property == CardsProperty)
+            {
+                // When Cards change, update all CardViewers after UI is updated
+                var dispatcher = Avalonia.Threading.Dispatcher.UIThread;
+                dispatcher.Post(() => 
+                {
+                    UpdateCardViewers();
+                    // Also try again after render to catch any late-loaded controls
+                    dispatcher.Post(() => UpdateCardViewers(), Avalonia.Threading.DispatcherPriority.Render);
+                }, Avalonia.Threading.DispatcherPriority.Loaded);
+            }
+        }
+        
+        private void UpdateCardViewers()
+        {
+            var cardContainer = this.FindControl<ItemsControl>("CardContainer");
+            if (cardContainer != null)
+            {
+                // Find all CardViewers in the visual tree
+                foreach (var child in cardContainer.GetVisualDescendants().OfType<CardViewer>())
+                {
+                    child.CardBaseSize = this.CardBaseSize;
+                    child.CardScaleFactor = this.CardScaleFactor;
+                }
+            }
+        }
+
+        private void HandleNewClick(object? sender, RoutedEventArgs e)
         {
             this.ComputeCards(this.ImageDirectory, NewNumCards);
         }
 
-        private void WindowSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            this.ComputeColumns(this.AppGrid.ColumnDefinitions[CardsColumnIndex].ActualWidth, this.CardBaseSize * this.CardScaleFactor, this.CardMargin);
-        }
-
-        private void CardScaleFactorChangedCallback(DependencyPropertyChangedEventArgs e)
-        {
-            this.ComputeColumns(this.AppGrid.ColumnDefinitions[CardsColumnIndex].ActualWidth, this.CardBaseSize * ((double)e.NewValue), this.CardMargin);
-        }
-
-        private void HandleNewClick(object sender, RoutedEventArgs e)
-        {
-            this.ComputeCards(this.ImageDirectory, NewNumCards);
-        }
-
-        private void HandleSaveClick(object sender, RoutedEventArgs e)
+        private void HandleSaveClick(object? sender, RoutedEventArgs e)
         {
             var json = JsonConvert.SerializeObject(this.Cards, Formatting.Indented);
             using (var writer = new StreamWriter("cards.json"))
@@ -254,197 +285,21 @@ namespace CardsAndSymbols
             }
         }
 
-        private void HandleLoadClick(object sender, RoutedEventArgs e)
+        private void HandleLoadClick(object? sender, RoutedEventArgs e)
         {
             using (var reader = new StreamReader("cards.json"))
             {
                 var json = reader.ReadToEnd();
-                var cards = JsonConvert.DeserializeObject<List<CardData>>(json);
-                this.Cards = cards;
+            var cards = JsonConvert.DeserializeObject<List<CardData>>(json);
+            this.Cards = cards ?? new List<CardData>();
             }
         }
 
-        private void HandlePrintClick(object sender, RoutedEventArgs e)
+        private void HandlePrintClick(object? sender, RoutedEventArgs e)
         {
-            var printDialog = new PrintDialog();
-            if (printDialog.ShowDialog() == true)
-            {
-                var cardGrid = this.CardContainer.FindChild<UniformGrid>("CardGrid");
-                var printPageSize = new Size(printDialog.PrintableAreaWidth, printDialog.PrintableAreaHeight);
-                ///////////////////////////////////////////
-                // With custom paginator
-                var paginator = new Paginator(cardGrid, printPageSize);
-                printDialog.PrintDocument(paginator, "Card printout");
-
-                ///////////////////////////////////////////
-                // With fixed document (throws exception due to multi-parented visual)
-                //var document = this.CreateFixedDocument(cardGrid, printPageSize);
-                // printDialog.PrintDocument(document.DocumentPaginator, "Card printout");
-
-                ///////////////////////////////////////////
-                // With direct visual printing
-                // printDialog.PrintVisual(cardGrid, "Card printout");
-            }
-        }
-
-        FixedDocument CreateFixedDocument(UniformGrid control, Size printPageSize)
-        {
-            var document = new FixedDocument();
-            var pageCount = 0;
-            var pageOffset = 0.0;
-
-            var elemCount = control.Children.Count;
-            if (elemCount <= 0)
-            {
-                pageCount = 1;
-            }
-            else
-            {
-                var firstChild = control.Children[0] as FrameworkElement;
-                if (firstChild == null)
-                {
-                    throw new InvalidOperationException("Can't determine size of control children for pagination");
-                }
-
-                var elemSize = firstChild.GetActualSize();
-                var rows = elemCount / control.Columns;
-                var rowRemainder = elemCount % control.Columns;
-                var totalRows = rows + (rowRemainder > 0 ? 1 : 0);
-                var rowsPerPage = (int)(printPageSize.Height / elemSize.Height);
-                pageOffset = rowsPerPage * elemSize.Height;
-                var pages = totalRows / rowsPerPage;
-                var pageRemainder = totalRows % rowsPerPage;
-                pageCount = pages + (pageRemainder > 0 ? 1 : 0);
-            }
-
-            for (int iPage = 0; iPage < pageCount; ++iPage)
-            {
-                FixedPage page = new FixedPage();
-                page.Width = printPageSize.Width;
-                page.Height = printPageSize.Height;
-                var contentBox = new Rect(0.0, iPage * pageOffset, control.ActualWidth, pageOffset);
-                page.Children.Add(control);
-                page.ContentBox = contentBox;
-                page.BleedBox = contentBox;
-                PageContent pageContent = new PageContent();
-                ((IAddChild)pageContent).AddChild(page);
-                document.Pages.Add(pageContent);
-            }
-
-            return document;
-        }
-
-        private class Paginator : DocumentPaginator
-        {
-            private readonly UniformGrid control;
-            private double pageOffset = 0.0;
-            private Dictionary<int, DocumentPage> pages = new Dictionary<int, DocumentPage>();
-
-            public Paginator(UniformGrid control, Size pageSize)
-            {
-                this.control = control;
-
-                this._source = new PaginatorSource(this);
-                this.pageSize = pageSize;
-
-                this.ComputePageCount();
-            }
-
-            private bool isPageCountValid = false;
-            public override bool IsPageCountValid
-            {
-                get { return this.isPageCountValid; }
-            }
-
-            private int pageCount = 0;
-            public override int PageCount
-            {
-                get { return this.pageCount;  }
-            }
-
-            private Size pageSize;
-            public override Size PageSize
-            {
-                get { return this.pageSize; }
-                set { this.pageSize = value; }
-            }
-
-            private IDocumentPaginatorSource _source;
-            public override IDocumentPaginatorSource Source
-            {
-                get { return this._source; }
-            }
-
-            public override DocumentPage GetPage(int pageNumber)
-            {
-                if (pageNumber >= this.PageCount)
-                {
-                    throw new ArgumentException("Invalid page number", "pageNumber");
-                }
-
-                DocumentPage documentPage;
-                if (this.pages.TryGetValue(pageNumber, out documentPage))
-                {
-                    return documentPage;
-                }
-
-                var rect = new Rect(0.0, pageNumber * this.pageOffset, this.control.ActualWidth, this.pageOffset);
-                //var pageContainer = new ContainerVisual();
-                //pageContainer.Children.Add(this.control);
-                //pageContainer.Transform = new TranslateTransform(0, -(pageNumber * this.pageOffset));
-                documentPage = new DocumentPage(this.control, this.PageSize, rect, rect);
-                this.pages[pageNumber] = documentPage;
-                return documentPage;
-            }
-
-            public override void GetPageAsync(int pageNumber)
-            {
-                throw new NotImplementedException();
-            }
-
-            public override void GetPageAsync(int pageNumber, object userState)
-            {
-                throw new NotImplementedException();
-            }
-
-            public override void ComputePageCount()
-            {
-                this.pages.Clear();
-                var elemCount = this.control.Children.Count;
-                if (elemCount <= 0)
-                {
-                    this.pageCount = 1;
-                    this.isPageCountValid = true;
-                    return;
-                }
-
-                var firstChild = this.control.Children[0] as FrameworkElement;
-                if (firstChild == null)
-                {
-                    throw new InvalidOperationException("Can't determine size of control children for pagination");
-                }
-
-                var elemSize = firstChild.GetActualSize();
-                var rows = elemCount / this.control.Columns;
-                var rowRemainder = elemCount % this.control.Columns;
-                var totalRows = rows + (rowRemainder > 0 ? 1 : 0);
-                var rowsPerPage = (int)(this.PageSize.Height / elemSize.Height);
-                this.pageOffset = rowsPerPage * elemSize.Height;
-                var pages = totalRows / rowsPerPage;
-                var pageRemainder = totalRows % rowsPerPage;
-                this.pageCount = pages + (pageRemainder > 0 ? 1 : 0);
-                this.isPageCountValid = true;
-            }
-        }
-
-        private class PaginatorSource : IDocumentPaginatorSource
-        {
-            public PaginatorSource(Paginator paginator)
-            {
-                this.DocumentPaginator = paginator;
-            }
-
-            public DocumentPaginator DocumentPaginator { get; private set; }
+            // Printing in Avalonia requires platform-specific implementation
+            // For now, we'll skip printing functionality
+            // TODO: Implement cross-platform printing using Avalonia's printing APIs when available
         }
     }
 }

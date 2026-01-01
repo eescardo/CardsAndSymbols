@@ -1,26 +1,22 @@
-﻿<UserControl x:Class="CardsAndSymbols.SymbolViewer"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CardsAndSymbols"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             xmlns:local="using:CardsAndSymbols"
+             x:Class="CardsAndSymbols.SymbolViewer"
+             x:Name="symbolViewer">
     <UserControl.Resources>
         <local:SymbolSizeToScaleConverter x:Key="ScaleConverter"/>
-        <local:FileIdToImageConverter x:Key="ImageSourceConverter" ImageCache="{StaticResource ImageCache}"/>
+        <local:FileIdToImageConverter x:Key="ImageSourceConverter"/>
     </UserControl.Resources>
-    <Grid>
-        <Image Source="{Binding Converter={StaticResource ImageSourceConverter}, Path=ImageId}" RenderTransformOrigin="0.5,0.5" Stretch="Uniform"
-               MouseLeftButtonUp="HandleMouseLeftButtonUp" MouseLeftButtonDown="HandleMouseLeftButtonDown" MouseMove="HandleMouseMove">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="{Binding Path=Size,Converter={StaticResource ScaleConverter}}"
-                                    ScaleY="{Binding Path=Size,Converter={StaticResource ScaleConverter}}"/>
-                    <TranslateTransform X="{Binding Path=ScaledOffsetX, RelativeSource={RelativeSource AncestorType={x:Type local:SymbolViewer}}}"
-                                        Y="{Binding Path=ScaledOffsetY, RelativeSource={RelativeSource AncestorType={x:Type local:SymbolViewer}}}"/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
+    
+    <Grid ClipToBounds="False">
+        <Image x:Name="SymbolImage"
+               Source="{Binding ImageId, Converter={StaticResource ImageSourceConverter}}"
+               RenderTransformOrigin="0.5,0.5" 
+               Stretch="Uniform"
+               Width="64"
+               Height="64"
+               PointerPressed="OnPointerPressed"
+               PointerReleased="OnPointerReleased"
+               PointerMoved="OnPointerMoved"/>
     </Grid>
 </UserControl>

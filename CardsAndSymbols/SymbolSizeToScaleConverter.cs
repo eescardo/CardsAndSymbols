@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows.Data;
+using Avalonia.Data.Converters;
 
 namespace CardsAndSymbols
 {
     public class SymbolSizeToScaleConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType,
+            object? parameter, CultureInfo culture)
         {
             // Do the conversion from size to scale
             var size = value as SymbolSize?;
@@ -19,8 +19,8 @@ namespace CardsAndSymbols
             return size.Value.ToScale();
         }
 
-        public object ConvertBack(object value, Type targetType,
-            object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType,
+            object? parameter, CultureInfo culture)
         {
             // Do the conversion from scale to size
             var scale = value as double?;

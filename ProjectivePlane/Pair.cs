@@ -60,14 +60,18 @@ namespace ProjectivePlane
             return (31 * this.First.GetHashCode()) + this.Second.GetHashCode();
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             var other = obj as Pair<T>;
             return this.Equals(other);
         }
 
-        public bool Equals(Pair<T> other)
+        public bool Equals(Pair<T>? other)
         {
+            if (other == null)
+            {
+                return false;
+            }
             return (this.First.CompareTo(other.First) == 0) && (this.Second.CompareTo(other.Second) == 0);
         }
 
