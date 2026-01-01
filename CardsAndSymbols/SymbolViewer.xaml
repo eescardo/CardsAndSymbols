@@ -2,7 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:CardsAndSymbols"
              x:Class="CardsAndSymbols.SymbolViewer"
-             x:Name="symbolViewer">
+             x:Name="symbolViewer"
+             ClipToBounds="False">
     <UserControl.Resources>
         <local:SymbolSizeToScaleConverter x:Key="ScaleConverter"/>
         <local:FileIdToImageConverter x:Key="ImageSourceConverter"/>
@@ -13,8 +14,8 @@
                Source="{Binding ImageId, Converter={StaticResource ImageSourceConverter}}"
                RenderTransformOrigin="0.5,0.5" 
                Stretch="Uniform"
-               Width="64"
-               Height="64"
+               Width="{Binding Width, RelativeSource={RelativeSource AncestorType=UserControl}}"
+               Height="{Binding Height, RelativeSource={RelativeSource AncestorType=UserControl}}"
                PointerPressed="OnPointerPressed"
                PointerReleased="OnPointerReleased"
                PointerMoved="OnPointerMoved"/>
