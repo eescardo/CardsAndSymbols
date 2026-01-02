@@ -14,7 +14,7 @@ namespace CardsAndSymbols
         /// Scale factor applied to the ItemsControl containing symbols within a card.
         /// This provides visual spacing and prevents symbols from touching the card edges.
         /// </summary>
-        public const double SymbolItemsControlScaleFactor = 0.85;
+        public const double SymbolItemsControlScaleFactor = 0.7;
     }
 }
 

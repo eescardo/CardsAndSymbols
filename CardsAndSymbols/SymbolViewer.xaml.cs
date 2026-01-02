@@ -75,11 +75,11 @@ namespace CardsAndSymbols
         
         private void UpdateSize()
         {
-            // Scale the SymbolViewer itself based on the symbol's size
+            // Scale the SymbolViewer itself based on the symbol's size and card scale factor
             // The SymbolViewer needs to be the full size (before ItemsControl scale)
             // so that when the ItemsControl scales it, there's no clipping
             var symbolScale = this.SymbolData?.Size.ToScale() ?? 1.0;
-            var scaledSize = Constants.BaseSymbolSize * symbolScale;
+            var scaledSize = Constants.BaseSymbolSize * symbolScale * this.CardScaleFactor;
             
             // Scale the SymbolViewer itself, not the Image within it
             this.Width = scaledSize;
@@ -179,6 +179,7 @@ namespace CardsAndSymbols
             }
             else if (change.Property == CardScaleFactorProperty)
             {
+                this.UpdateSize();
                 this.AdjustOffsets();
             }
         }
