@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Avalonia.Controls;
 using Avalonia.VisualTree;
 
@@ -32,22 +33,23 @@ namespace CardsAndSymbols
 
         public static double ToScale(this SymbolSize size)
         {
+            Dictionary<SymbolSize, double> sizeToScale = new Dictionary<SymbolSize, double>
+            {
+                { SymbolSize.XS, 0.5 },
+                { SymbolSize.S, 0.707 },
+                { SymbolSize.M, 1.0 },
+                { SymbolSize.L, 1.414 },
+                { SymbolSize.XL, 2.0 }
+            };
+
             switch (size)
             {
                 case SymbolSize.XS:
-                    return 0.5;
-
                 case SymbolSize.S:
-                    return 0.707;
-
                 case SymbolSize.M:
-                    return 1.0;
-
                 case SymbolSize.L:
-                    return 1.414;
-
                 case SymbolSize.XL:
-                    return 2.0;
+                    return sizeToScale[size] * Constants.SymbolItemsControlScaleFactor;
 
                 default:
                     throw new ArgumentException("Unexpected symbol size", "size");

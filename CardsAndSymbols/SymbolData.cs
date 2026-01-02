@@ -34,17 +34,40 @@ namespace CardsAndSymbols
         }
 
         private double offsetX = 0.0;
+        private bool offsetXInitialized = false;
         public double OffsetX
         {
             get { return this.offsetX; }
-            set { this.SetProperty(ref this.offsetX, value); }
+            set {
+                this.SetProperty(ref this.offsetX, value);
+                this.offsetXInitialized = true;
+            }
         }
 
         private double offsetY = 0.0;
+        private bool offsetYInitialized = false;
         public double OffsetY
         {
             get { return this.offsetY; }
-            set { this.SetProperty(ref this.offsetY, value); }
+            set {
+                this.SetProperty(ref this.offsetY, value);
+                this.offsetYInitialized = true;
+            }
+        }
+
+        public bool OffsetXInitialized
+        {
+            get { return this.offsetXInitialized; }
+        }
+
+        public bool OffsetYInitialized
+        {
+            get { return this.offsetYInitialized; }
+        }
+
+        public bool PositionsInitialized
+        {
+            get { return this.offsetXInitialized && this.offsetYInitialized; }
         }
 
         public override string ToString()

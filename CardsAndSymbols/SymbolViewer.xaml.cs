@@ -121,30 +121,10 @@ namespace CardsAndSymbols
             if (this.SymbolData != null)
             {
                 var cardViewer = this.FindAncestorOfType<CardViewer>();
-                if (cardViewer != null && cardViewer.CardData != null)
+                if (cardViewer != null)
                 {
                     // Account for the scale transform on ItemsControl
-                    var cardSize = cardViewer.CardBaseSize * cardViewer.CardScaleFactor * Constants.SymbolItemsControlScaleFactor;
-                    var columns = cardViewer.CardData.Columns;
-                    var rows = (int)Math.Ceiling((double)cardViewer.CardData.Symbols!.Count / columns);
-                    
-                    var cellWidth = cardSize / columns;
-                    var cellHeight = cardSize / rows;
-                    
-                    // Find index of this symbol
-                    int index = 0;
-                    foreach (var symbol in cardViewer.CardData.Symbols)
-                    {
-                        if (symbol == this.SymbolData) break;
-                        index++;
-                    }
-                    
-                    var row = index / columns;
-                    var col = index % columns;
-                    
-                    // Center position in grid cell, then apply offset
-                    var baseX = (col + 0.5) * cellWidth;
-                    var baseY = (row + 0.5) * cellHeight;
+                    var cardSize = cardViewer.CardBaseSize * cardViewer.CardScaleFactor;
                     
                     // Find the ContentPresenter container that wraps this SymbolViewer
                     var container = this.GetVisualParent() as ContentPresenter;
@@ -154,8 +134,16 @@ namespace CardsAndSymbols
                         var symbolSize = this.Width > 0 && !double.IsNaN(this.Width) 
                             ? this.Width 
                             : Constants.BaseSymbolSize * this.SymbolData.Size.ToScale();
-                        Canvas.SetLeft(container, baseX + this.SymbolData.OffsetX * cardViewer.CardScaleFactor * Constants.SymbolItemsControlScaleFactor - symbolSize / 2);
-                        Canvas.SetTop(container, baseY + this.SymbolData.OffsetY * cardViewer.CardScaleFactor * Constants.SymbolItemsControlScaleFactor - symbolSize / 2);
+                        
+                        // Position based on OffsetX/OffsetY (which are in base units, scaled by CardScaleFactor)
+                        // OffsetX/OffsetY are relative to card center (0,0)
+                        var centerX = cardSize / 2.0;
+                        var centerY = cardSize / 2.0;
+                        var offsetX = this.SymbolData.OffsetX * cardViewer.CardScaleFactor;
+                        var offsetY = this.SymbolData.OffsetY * cardViewer.CardScaleFactor;
+                        
+                        Canvas.SetLeft(container, centerX + offsetX - symbolSize / 2);
+                        Canvas.SetTop(container, centerY + offsetY - symbolSize / 2);
                     }
                 }
             }
@@ -197,8 +185,6 @@ namespace CardsAndSymbols
             }
         }
 
-
-
         private void OnPointerPressed(object? sender, PointerPressedEventArgs e)
         {
             if (!this.IsEnabled) return;
@@ -220,7 +206,7 @@ namespace CardsAndSymbols
             {
                 this.SymbolData.Size = this.SymbolData.Size.NextSize();
             }
-            
+
             this.capturePoint = null;
             this.triggerSizeChange = false;
             this.shouldDrag = false;
@@ -246,8 +232,8 @@ namespace CardsAndSymbols
                 if (this.SymbolData != null)
                 {
                     // Account for the scale transform on ItemsControl
-                    this.SymbolData.OffsetX = this.anchorX + (pointDiff.X / (this.CardScaleFactor * Constants.SymbolItemsControlScaleFactor));
-                    this.SymbolData.OffsetY = this.anchorY + (pointDiff.Y / (this.CardScaleFactor * Constants.SymbolItemsControlScaleFactor));
+                    this.SymbolData.OffsetX = this.anchorX + (pointDiff.X / this.CardScaleFactor);
+                    this.SymbolData.OffsetY = this.anchorY + (pointDiff.Y / this.CardScaleFactor);
                 }
             }
             else if (Math.Sqrt(pointDiff.X * pointDiff.X + pointDiff.Y * pointDiff.Y) >= DragMovementThreshold)
