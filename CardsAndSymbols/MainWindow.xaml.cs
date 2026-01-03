@@ -4,6 +4,8 @@ namespace CardsAndSymbols
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using Avalonia;
@@ -53,6 +55,10 @@ using ProjectivePlane;
         public static readonly StyledProperty<ImageCache?> ImageCacheProperty = AvaloniaProperty.Register<MainWindow, ImageCache?>(
             "ImageCache");
 
+        private const string CardsFileName = "cards.json";
+        private const string SettingsFileName = "settings.json";
+        private System.Threading.Timer? autoSaveTimer;
+
         public MainWindow()
         {
             this.InitializeComponent();
@@ -65,6 +71,59 @@ using ProjectivePlane;
             if (string.IsNullOrEmpty(this.ImageDirectory))
             {
                 this.ImageDirectory = DefaultImageDirectory;
+            }
+
+            // Load settings
+            this.LoadSettings();
+        }
+
+        public static readonly StyledProperty<bool> AutoSaveEnabledProperty = AvaloniaProperty.Register<MainWindow, bool>(
+            "AutoSaveEnabled", false);
+
+        public bool AutoSaveEnabled
+        {
+            get => this.GetValue(AutoSaveEnabledProperty);
+            set
+            {
+                this.SetValue(AutoSaveEnabledProperty, value);
+                this.SaveSettings();
+            }
+        }
+
+        private void LoadSettings()
+        {
+            try
+            {
+                if (File.Exists(SettingsFileName))
+                {
+                    var json = File.ReadAllText(SettingsFileName);
+                    var settings = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+                    if (settings != null && settings.ContainsKey("AutoSaveEnabled"))
+                    {
+                        this.AutoSaveEnabled = Convert.ToBoolean(settings["AutoSaveEnabled"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Failed to load settings: {ex.Message}");
+            }
+        }
+
+        private void SaveSettings()
+        {
+            try
+            {
+                var settings = new Dictionary<string, object>
+                {
+                    { "AutoSaveEnabled", this.AutoSaveEnabled }
+                };
+                var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
+                File.WriteAllText(SettingsFileName, json);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Failed to save settings: {ex.Message}");
             }
         }
 
@@ -125,6 +184,19 @@ using ProjectivePlane;
             var planeConstructor = new ProjectivePlaneConstructor<SymbolData>(symbols, numCards);
             var planePoints = planeConstructor.PlanePoints;
             this.Cards = planePoints.Select(point => new CardData(point.Lines)).ToList();
+
+            // Auto-load cards if auto-save is enabled
+            if (this.AutoSaveEnabled && File.Exists(CardsFileName))
+            {
+                try
+                {
+                    this.LoadCardsFromFile(CardsFileName);
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Failed to auto-load cards: {ex.Message}");
+                }
+            }
         }
 
         private IList<SymbolData> GetSymbols(string symbolDir)
@@ -232,7 +304,11 @@ using ProjectivePlane;
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
         {
             base.OnPropertyChanged(change);
-            if (change.Property == CardScaleFactorProperty || change.Property == CardBaseSizeProperty)
+            if (change.Property == AutoSaveEnabledProperty)
+            {
+                this.SaveSettings();
+            }
+            else if (change.Property == CardScaleFactorProperty || change.Property == CardBaseSizeProperty)
             {
                 var appGrid = this.FindControl<Grid>("AppGrid");
                 if (appGrid != null)
@@ -246,6 +322,34 @@ using ProjectivePlane;
             }
             else if (change.Property == CardsProperty)
             {
+                // Unsubscribe from old collection
+                if (change.OldValue is INotifyCollectionChanged oldCollection)
+                {
+                    oldCollection.CollectionChanged -= this.OnCardsCollectionChanged;
+                }
+                // Unsubscribe from old cards' symbol changes
+                if (change.OldValue is ICollection<CardData> oldCards)
+                {
+                    foreach (var card in oldCards)
+                    {
+                        this.UnsubscribeFromCardChanges(card);
+                    }
+                }
+
+                // Subscribe to new collection
+                if (change.NewValue is INotifyCollectionChanged newCollection)
+                {
+                    newCollection.CollectionChanged += this.OnCardsCollectionChanged;
+                }
+                // Subscribe to new cards' symbol changes
+                if (change.NewValue is ICollection<CardData> newCards)
+                {
+                    foreach (var card in newCards)
+                    {
+                        this.SubscribeToCardChanges(card);
+                    }
+                }
+
                 // When Cards change, update all CardViewers after UI is updated
                 var dispatcher = Avalonia.Threading.Dispatcher.UIThread;
                 dispatcher.Post(() => 
@@ -254,6 +358,85 @@ using ProjectivePlane;
                     // Also try again after render to catch any late-loaded controls
                     dispatcher.Post(() => UpdateCardViewers(), Avalonia.Threading.DispatcherPriority.Render);
                 }, Avalonia.Threading.DispatcherPriority.Loaded);
+            }
+        }
+
+        private void OnCardsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (CardData card in e.NewItems)
+                {
+                    this.SubscribeToCardChanges(card);
+                }
+            }
+            if (e.OldItems != null)
+            {
+                foreach (CardData card in e.OldItems)
+                {
+                    this.UnsubscribeFromCardChanges(card);
+                }
+            }
+            this.ScheduleAutoSave();
+        }
+
+        private void SubscribeToCardChanges(CardData card)
+        {
+            if (card.Symbols is INotifyCollectionChanged symbolCollection)
+            {
+                symbolCollection.CollectionChanged += (s, e) => this.ScheduleAutoSave();
+            }
+            foreach (var symbol in card.Symbols ?? Enumerable.Empty<SymbolData>())
+            {
+                symbol.PropertyChanged += this.OnSymbolPropertyChanged;
+            }
+        }
+
+        private void UnsubscribeFromCardChanges(CardData card)
+        {
+            foreach (var symbol in card.Symbols ?? Enumerable.Empty<SymbolData>())
+            {
+                symbol.PropertyChanged -= this.OnSymbolPropertyChanged;
+            }
+        }
+
+        private void OnSymbolPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            // Auto-save when symbol properties change (OffsetX, OffsetY, Size)
+            if (e.PropertyName == nameof(SymbolData.OffsetX) ||
+                e.PropertyName == nameof(SymbolData.OffsetY) ||
+                e.PropertyName == nameof(SymbolData.Size))
+            {
+                this.ScheduleAutoSave();
+            }
+        }
+
+        private void ScheduleAutoSave()
+        {
+            if (!this.AutoSaveEnabled || this.Cards == null) return;
+
+            // Debounce auto-save - wait 500ms after last change before saving
+            this.autoSaveTimer?.Dispose();
+            this.autoSaveTimer = new System.Threading.Timer(_ =>
+            {
+                Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+                {
+                    this.AutoSaveCards();
+                });
+            }, null, 500, System.Threading.Timeout.Infinite);
+        }
+
+        private void AutoSaveCards()
+        {
+            if (!this.AutoSaveEnabled || this.Cards == null) return;
+
+            try
+            {
+                this.SaveCardsToFile(CardsFileName);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Failed to auto-save cards: {ex.Message}");
             }
         }
         
@@ -278,20 +461,27 @@ using ProjectivePlane;
 
         private void HandleSaveClick(object? sender, RoutedEventArgs e)
         {
+            this.SaveCardsToFile(CardsFileName);
+        }
+
+        private void SaveCardsToFile(string fileName)
+        {
             var json = JsonConvert.SerializeObject(this.Cards, Formatting.Indented);
-            using (var writer = new StreamWriter("cards.json"))
-            {
-                writer.Write(json);
-            }
+            File.WriteAllText(fileName, json);
         }
 
         private void HandleLoadClick(object? sender, RoutedEventArgs e)
         {
-            using (var reader = new StreamReader("cards.json"))
+            this.LoadCardsFromFile(CardsFileName);
+        }
+
+        private void LoadCardsFromFile(string fileName)
+        {
+            if (File.Exists(fileName))
             {
-                var json = reader.ReadToEnd();
-            var cards = JsonConvert.DeserializeObject<List<CardData>>(json);
-            this.Cards = cards ?? new List<CardData>();
+                var json = File.ReadAllText(fileName);
+                var cards = JsonConvert.DeserializeObject<List<CardData>>(json);
+                this.Cards = cards ?? new List<CardData>();
             }
         }
 

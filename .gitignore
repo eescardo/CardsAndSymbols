@@ -1,5 +1,7 @@
 *.suo
 .DS_Store
+cards.json
+settings.json
 
 .vs/
 obj/
