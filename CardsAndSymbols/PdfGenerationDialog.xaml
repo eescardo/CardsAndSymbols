@@ -1,0 +1,48 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CardsAndSymbols.PdfGenerationDialog"
+        x:Name="pdfDialog"
+        Title="Generate PDF" Width="500" Height="400"
+        WindowStartupLocation="CenterOwner">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" Text="PDF Generation Options" FontSize="16" FontWeight="Bold" Margin="0,0,0,15"/>
+        
+        <StackPanel Grid.Row="1" Margin="0,0,0,15">
+            <TextBlock Text="Output Format:" Margin="0,0,0,5"/>
+            <RadioButton x:Name="SinglePdfRadio" Content="Single PDF with page breaks" IsChecked="True" Margin="0,0,0,5"/>
+            <RadioButton x:Name="MultiplePdfsRadio" Content="One PDF per card"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="2" Margin="0,0,0,15">
+            <TextBlock Text="Output Directory:" Margin="0,0,0,5"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="OutputDirectoryTextBox" Grid.Column="0" Margin="0,0,5,0"/>
+                <Button x:Name="BrowseButton" Grid.Column="1" Content="Browse..." Click="HandleBrowseClick" Padding="10,0"/>
+            </Grid>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="3" Margin="0,0,0,15">
+            <TextBlock x:Name="OutputFileLabel" Text="Output File:" Margin="0,0,0,5"/>
+            <TextBox x:Name="OutputFileTextBox" Text="cards.pdf"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Generate" Click="HandleGenerateClick" Margin="0,0,10,0" Padding="20,5"/>
+            <Button Content="Cancel" Click="HandleCancelClick" Padding="20,5"/>
+        </StackPanel>
+    </Grid>
+</Window>
+

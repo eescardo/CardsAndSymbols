@@ -485,11 +485,43 @@ using ProjectivePlane;
             }
         }
 
-        private void HandlePrintClick(object? sender, RoutedEventArgs e)
+        private async void HandlePrintClick(object? sender, RoutedEventArgs e)
         {
-            // Printing in Avalonia requires platform-specific implementation
-            // For now, we'll skip printing functionality
-            // TODO: Implement cross-platform printing using Avalonia's printing APIs when available
+            if (this.Cards == null || !this.Cards.Any())
+            {
+                // Show message that there are no cards to export
+                return;
+            }
+
+            var dialog = new PdfGenerationDialog();
+            dialog.OutputDirectoryTextBox.Text = Directory.GetCurrentDirectory();
+            
+            await dialog.ShowDialog(this);
+            
+            if (dialog.DialogResult && dialog.OutputPath != null)
+            {
+                try
+                {
+                    var generator = new PdfGenerator(this.ImageCache, this.CardBaseSize, this.CardScaleFactor);
+                    
+                    if (dialog.GenerateSinglePdf)
+                    {
+                        generator.GenerateSinglePdf(this.Cards, dialog.OutputPath);
+                        // Show success message
+                        System.Diagnostics.Debug.WriteLine($"PDF generated successfully: {dialog.OutputPath}");
+                    }
+                    else
+                    {
+                        generator.GenerateMultiplePdfs(this.Cards, dialog.OutputPath);
+                        // Show success message
+                        System.Diagnostics.Debug.WriteLine($"PDFs generated successfully in: {dialog.OutputPath}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Error generating PDF: {ex.Message}");
+                }
+            }
         }
     }
 }
