@@ -16,8 +16,6 @@ namespace CardsAndSymbols
         // PDF layout constants
         private static readonly PageSize PdfPageSize = PageSizes.Letter; // US Letter size (8.5" x 11")
         private const float PageMarginMillimeters = 20.0f;
-        private const float MillimetersToPoints = 2.83465f; // 1mm = 2.83465 points
-        private const float PixelsToPoints = 0.75f; // At 96 DPI: 1 pixel = 0.75 points
         private const int DefaultFontSize = 12;
         private const int PngEncodingQuality = 100; // Maximum quality (0-100)
         
@@ -45,12 +43,12 @@ namespace CardsAndSymbols
 
             // Calculate card size in points
             var cardSize = this.cardBaseSize * this.cardScaleFactor;
-            var cardSizePoints = (float)(cardSize * PixelsToPoints);
+            var cardSizePoints = (float)(cardSize * Constants.PixelsToPoints);
             
             // Calculate available page area (with margins)
             var pageWidthPoints = PdfPageSize.Width;
             var pageHeightPoints = PdfPageSize.Height;
-            var marginPoints = PageMarginMillimeters * MillimetersToPoints;
+            var marginPoints = PageMarginMillimeters * (float)Constants.MillimetersToPoints;
             var availableWidth = pageWidthPoints - (marginPoints * 2);
             var availableHeight = pageHeightPoints - (marginPoints * 2);
             
@@ -158,7 +156,7 @@ namespace CardsAndSymbols
         {
             var cardSize = this.cardBaseSize * this.cardScaleFactor;
             // Convert pixels to points
-            var cardSizePoints = (float)(cardSize * PixelsToPoints);
+            var cardSizePoints = (float)(cardSize * Constants.PixelsToPoints);
 
             // Render card to bitmap first, then embed in PDF
             var cardImageBytes = RenderCardToImage(card, (int)cardSize);

@@ -46,6 +46,9 @@ using ProjectivePlane;
         public static readonly StyledProperty<double> CardScaleFactorProperty = AvaloniaProperty.Register<MainWindow, double>(
             "CardScaleFactor", DefaultCardScaleFactor);
 
+        public static readonly StyledProperty<double> CardWidthInchesProperty = AvaloniaProperty.Register<MainWindow, double>(
+            "CardWidthInches", 0.0);
+
         public static readonly StyledProperty<double> CardMarginProperty = AvaloniaProperty.Register<MainWindow, double>(
             "CardMargin", DefaultCardMargin);
 
@@ -73,6 +76,9 @@ using ProjectivePlane;
                 this.ImageDirectory = DefaultImageDirectory;
             }
 
+            // Initialize card width display
+            this.UpdateCardWidthInches();
+
             // Load settings
             this.LoadSettings();
         }
@@ -97,10 +103,11 @@ using ProjectivePlane;
                 if (File.Exists(SettingsFileName))
                 {
                     var json = File.ReadAllText(SettingsFileName);
-                    var settings = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
-                    if (settings != null && settings.ContainsKey("AutoSaveEnabled"))
+                    var settings = JsonConvert.DeserializeObject<Settings>(json);
+                    if (settings != null)
                     {
-                        this.AutoSaveEnabled = Convert.ToBoolean(settings["AutoSaveEnabled"]);
+                        this.AutoSaveEnabled = settings.AutoSaveEnabled;
+                        this.CardScaleFactor = settings.CardScaleFactor;
                     }
                 }
             }
@@ -114,9 +121,10 @@ using ProjectivePlane;
         {
             try
             {
-                var settings = new Dictionary<string, object>
+                var settings = new Settings
                 {
-                    { "AutoSaveEnabled", this.AutoSaveEnabled }
+                    AutoSaveEnabled = this.AutoSaveEnabled,
+                    CardScaleFactor = this.CardScaleFactor
                 };
                 var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
                 File.WriteAllText(SettingsFileName, json);
@@ -155,6 +163,12 @@ using ProjectivePlane;
         {
             get => this.GetValue(CardScaleFactorProperty);
             set => this.SetValue(CardScaleFactorProperty, value);
+        }
+
+        public double CardWidthInches
+        {
+            get => this.GetValue(CardWidthInchesProperty);
+            private set => this.SetValue(CardWidthInchesProperty, value);
         }
 
         public double CardMargin
@@ -290,15 +304,7 @@ using ProjectivePlane;
         protected override void OnSizeChanged(SizeChangedEventArgs e)
         {
             base.OnSizeChanged(e);
-            var appGrid = this.FindControl<Grid>("AppGrid");
-            if (appGrid != null)
-            {
-                this.ComputeColumns(appGrid.ColumnDefinitions[CardsColumnIndex].ActualWidth, this.CardBaseSize * this.CardScaleFactor, this.CardMargin);
-                
-                // UniformGrid Columns is now bound, no need to update manually
-                // Update CardViewers to maintain aspect ratio
-                UpdateCardViewers();
-            }
+            this.UpdateCardLayout();
         }
 
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
@@ -308,17 +314,22 @@ using ProjectivePlane;
             {
                 this.SaveSettings();
             }
-            else if (change.Property == CardScaleFactorProperty || change.Property == CardBaseSizeProperty)
+            else if (change.Property == CardScaleFactorProperty)
             {
-                var appGrid = this.FindControl<Grid>("AppGrid");
-                if (appGrid != null)
-                {
-                    this.ComputeColumns(appGrid.ColumnDefinitions[CardsColumnIndex].ActualWidth, this.CardBaseSize * this.CardScaleFactor, this.CardMargin);
-                    
-                    // UniformGrid Columns is now bound, no need to update manually
-                    // Update all CardViewer instances
-                    UpdateCardViewers();
-                }
+                // Save settings when scale factor changes
+                this.SaveSettings();
+                
+                // Update card width in inches for display
+                this.UpdateCardWidthInches();
+                
+                this.UpdateCardLayout();
+            }
+            else if (change.Property == CardBaseSizeProperty)
+            {
+                // Update card width in inches for display
+                this.UpdateCardWidthInches();
+                
+                this.UpdateCardLayout();
             }
             else if (change.Property == CardsProperty)
             {
@@ -440,6 +451,19 @@ using ProjectivePlane;
             }
         }
         
+        private void UpdateCardLayout()
+        {
+            var appGrid = this.FindControl<Grid>("AppGrid");
+            if (appGrid != null)
+            {
+                this.ComputeColumns(appGrid.ColumnDefinitions[CardsColumnIndex].ActualWidth, this.CardBaseSize * this.CardScaleFactor, this.CardMargin);
+                
+                // UniformGrid Columns is now bound, no need to update manually
+                // Update all CardViewer instances
+                UpdateCardViewers();
+            }
+        }
+
         private void UpdateCardViewers()
         {
             var cardContainer = this.FindControl<ItemsControl>("CardContainer");
@@ -452,6 +476,23 @@ using ProjectivePlane;
                     child.CardScaleFactor = this.CardScaleFactor;
                 }
             }
+        }
+
+        private void UpdateCardWidthInches()
+        {
+            // Calculate card width in inches for printed output
+            // Note: QuestPDF embeds images as bitmaps, and the actual printed size may differ
+            // slightly from the theoretical pixel-to-point conversion due to how QuestPDF
+            // handles embedded image scaling. Based on empirical measurement, we apply a
+            // correction factor to match actual printed output.
+            var cardSizePixels = this.CardBaseSize * this.CardScaleFactor;
+            var cardSizePoints = cardSizePixels * Constants.PixelsToPoints;
+            var cardSizeInches = cardSizePoints / Constants.PointsPerInch;
+            
+            // Apply correction factor to account for how QuestPDF actually renders embedded bitmap images
+            var correctedCardSizeInches = cardSizeInches * Constants.ImageEmbeddingCorrectionFactor;
+            
+            this.CardWidthInches = correctedCardSizeInches;
         }
 
         private void HandleNewClick(object? sender, RoutedEventArgs e)
