@@ -10,14 +10,24 @@
     </UserControl.Resources>
     
     <Grid ClipToBounds="False">
-        <Image x:Name="SymbolImage"
-               Source="{Binding ImageId, Converter={StaticResource ImageSourceConverter}}"
-               RenderTransformOrigin="0.5,0.5" 
-               Stretch="Uniform"
-               Width="{Binding Width, RelativeSource={RelativeSource AncestorType=UserControl}}"
-               Height="{Binding Height, RelativeSource={RelativeSource AncestorType=UserControl}}"
-               PointerPressed="OnPointerPressed"
-               PointerReleased="OnPointerReleased"
-               PointerMoved="OnPointerMoved"/>
+        <Canvas x:Name="SymbolCanvas"
+                ClipToBounds="False"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                PointerPressed="OnPointerPressed"
+                PointerReleased="OnPointerReleased"
+                PointerMoved="OnPointerMoved">
+            <Canvas.RenderTransform>
+                <RotateTransform Angle="{Binding SymbolData.RotationDegrees, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+            </Canvas.RenderTransform>
+            <Image x:Name="SymbolImage"
+                   Source="{Binding ImageId, Converter={StaticResource ImageSourceConverter}}"
+                   Stretch="Uniform"
+                   Width="{Binding Width, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                   Height="{Binding Height, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                   Canvas.Left="0"
+                   Canvas.Top="0"
+                   IsHitTestVisible="True"/>
+        </Canvas>
     </Grid>
 </UserControl>

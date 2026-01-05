@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CardsAndSymbols
 {
     public class SymbolData : BindableBase, IComparable<SymbolData>, IEquatable<SymbolData>
     {
+        /// <summary>
+        /// Number of rotation stations available (0-7, each representing 45 degrees).
+        /// </summary>
+        public const int RotationStationCount = 8;
+
         public SymbolData()
         {
         }
@@ -17,6 +18,7 @@ namespace CardsAndSymbols
         {
             this.imageId = data.imageId;
             this.size = data.size;
+            this.rotationStation = data.rotationStation;
         }
 
         private string? imageId;
@@ -54,6 +56,28 @@ namespace CardsAndSymbols
                 this.offsetYInitialized = true;
             }
         }
+
+        private int rotationStation = 0; // 0 to (RotationStationCount-1) representing rotation stations (0°, 36°, 72°, ..., 324°)
+        public int RotationStation
+        {
+            get { return this.rotationStation; }
+            set
+            {
+                // Clamp to valid range 0 to (RotationStationCount-1)
+                var clampedValue = Math.Max(0, Math.Min(RotationStationCount - 1, value));
+                if (this.SetProperty(ref this.rotationStation, clampedValue))
+                {
+                    // Notify that RotationDegrees also changed, as it's computed from RotationStation
+                    this.OnPropertyChanged(nameof(RotationDegrees));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the rotation angle in degrees for the current rotation station.
+        /// Each station represents 360 / RotationStationCount degrees.
+        /// </summary>
+        public double RotationDegrees => this.RotationStation * (360.0 / RotationStationCount);
 
         public bool OffsetXInitialized
         {

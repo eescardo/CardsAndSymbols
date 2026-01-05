@@ -101,5 +101,13 @@ namespace CardsAndSymbols
         {
             return new Avalonia.Size(parent.Bounds.Width, parent.Bounds.Height);
         }
+
+        /// <summary>
+        /// Cycles to the next rotation station (0 to RotationStationCount-1).
+        /// </summary>
+        public static int NextRotationStation(this int currentStation)
+        {
+            return (currentStation + 1) % SymbolData.RotationStationCount;
+        }
     }
 }

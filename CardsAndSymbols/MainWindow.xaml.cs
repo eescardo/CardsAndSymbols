@@ -413,10 +413,11 @@ using ProjectivePlane;
 
         private void OnSymbolPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
-            // Auto-save when symbol properties change (OffsetX, OffsetY, Size)
+            // Auto-save when symbol properties change (OffsetX, OffsetY, Size, RotationStation)
             if (e.PropertyName == nameof(SymbolData.OffsetX) ||
                 e.PropertyName == nameof(SymbolData.OffsetY) ||
-                e.PropertyName == nameof(SymbolData.Size))
+                e.PropertyName == nameof(SymbolData.Size) ||
+                e.PropertyName == nameof(SymbolData.RotationStation))
             {
                 this.ScheduleAutoSave();
             }

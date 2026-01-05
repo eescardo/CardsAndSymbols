@@ -32,7 +32,9 @@ namespace CardsAndSymbols
         private double anchorX = 0.0;
         private double anchorY = 0.0;
         private bool triggerSizeChange = false;
+        private bool triggerRotationChange = false;
         private bool shouldDrag = false;
+        private bool isRightButtonPressed = false;
 
         public SymbolViewer()
         {
@@ -80,11 +82,23 @@ namespace CardsAndSymbols
             // so that when the ItemsControl scales it, there's no clipping
             var symbolScale = this.SymbolData?.Size.ToScale() ?? 1.0;
             var scaledSize = Constants.BaseSymbolSize * symbolScale * this.CardScaleFactor;
-            
+
             // Scale the SymbolViewer itself, not the Image within it
             this.Width = scaledSize;
             this.Height = scaledSize;
+
+            // Set Canvas size directly in code to avoid binding timing issues
+            // Also set RenderTransformOrigin in code AFTER size is set, so it's calculated correctly
+            var canvas = this.FindControl<Canvas>("SymbolCanvas");
+            if (canvas != null)
+            {
+                canvas.Width = scaledSize;
+                canvas.Height = scaledSize;
+                // Set transform origin AFTER size is set, so it's calculated from correct bounds
+                canvas.RenderTransformOrigin = new RelativePoint(0.5, 0.5, RelativeUnit.Relative);
+            }
         }
+
 
         public SymbolData? SymbolData
         {
@@ -125,7 +139,7 @@ namespace CardsAndSymbols
                 {
                     // Account for the scale transform on ItemsControl
                     var cardSize = cardViewer.CardBaseSize * cardViewer.CardScaleFactor;
-                    
+
                     // Find the ContentPresenter container that wraps this SymbolViewer
                     var container = this.GetVisualParent() as ContentPresenter;
                     if (container != null)
@@ -134,16 +148,19 @@ namespace CardsAndSymbols
                         var symbolSize = this.Width > 0 && !double.IsNaN(this.Width) 
                             ? this.Width 
                             : Constants.BaseSymbolSize * this.SymbolData.Size.ToScale();
-                        
+
                         // Position based on OffsetX/OffsetY (which are in base units, scaled by CardScaleFactor)
                         // OffsetX/OffsetY are relative to card center (0,0)
                         var centerX = cardSize / 2.0;
                         var centerY = cardSize / 2.0;
                         var offsetX = this.SymbolData.OffsetX * cardViewer.CardScaleFactor;
                         var offsetY = this.SymbolData.OffsetY * cardViewer.CardScaleFactor;
-                        
-                        Canvas.SetLeft(container, centerX + offsetX - symbolSize / 2);
-                        Canvas.SetTop(container, centerY + offsetY - symbolSize / 2);
+
+                        var left = centerX + offsetX - symbolSize / 2;
+                        var top = centerY + offsetY - symbolSize / 2;
+
+                        Canvas.SetLeft(container, left);
+                        Canvas.SetTop(container, top);
                     }
                 }
             }
@@ -182,6 +199,14 @@ namespace CardsAndSymbols
             {
                 this.UpdateSize();
                 this.AdjustOffsets();
+                // Force immediate visual update
+                this.InvalidateVisual();
+                this.InvalidateArrange();
+            }
+            else if (e.PropertyName == nameof(SymbolData.RotationDegrees))
+            {
+                // Rotation is handled by XAML binding, just invalidate visual to ensure update
+                this.InvalidateVisual();
             }
         }
 
@@ -189,9 +214,15 @@ namespace CardsAndSymbols
         {
             if (!this.IsEnabled) return;
             e.Handled = true;
+
+            // Track which button was pressed
+            var point = e.GetCurrentPoint(this);
+            this.isRightButtonPressed = point.Properties.IsRightButtonPressed;
+
             // Store initial position for drag/size change detection
             this.capturePoint = this.GetPositionFromParent(e);
-            this.triggerSizeChange = true;
+            this.triggerSizeChange = !this.isRightButtonPressed; // Only trigger size change for left button
+            this.triggerRotationChange = this.isRightButtonPressed; // Only trigger rotation change for right button
             this.shouldDrag = false;
             this.anchorX = this.SymbolData?.OffsetX ?? 0.0;
             this.anchorY = this.SymbolData?.OffsetY ?? 0.0;
@@ -201,15 +232,30 @@ namespace CardsAndSymbols
         {
             if (!this.IsEnabled) return;
             e.Handled = true;
-            
-            if (this.triggerSizeChange && this.SymbolData != null)
+
+            // Check which button was actually released
+            var point = e.GetCurrentPoint(this);
+            var isRightButton = point.Properties.IsRightButtonPressed || 
+                               (e.InitialPressMouseButton == MouseButton.Right);
+
+            if (this.SymbolData != null && !this.shouldDrag)
             {
-                this.SymbolData.Size = this.SymbolData.Size.NextSize();
+                // Only trigger size/rotation change if we didn't drag
+                if (this.triggerRotationChange && (this.isRightButtonPressed || isRightButton))
+                {
+                    this.SymbolData.RotationStation = this.SymbolData.RotationStation.NextRotationStation();
+                }
+                else if (this.triggerSizeChange && !this.isRightButtonPressed && !isRightButton)
+                {
+                    this.SymbolData.Size = this.SymbolData.Size.NextSize();
+                }
             }
 
             this.capturePoint = null;
             this.triggerSizeChange = false;
+            this.triggerRotationChange = false;
             this.shouldDrag = false;
+            this.isRightButtonPressed = false;
         }
 
         private void OnPointerMoved(object? sender, PointerEventArgs e)
@@ -238,7 +284,16 @@ namespace CardsAndSymbols
             }
             else if (Math.Sqrt(pointDiff.X * pointDiff.X + pointDiff.Y * pointDiff.Y) >= DragMovementThreshold)
             {
-                this.triggerSizeChange = false;
+                // Cancel size/rotation change triggers when dragging starts
+                // Only cancel the one that was active based on which button was pressed
+                if (this.isRightButtonPressed)
+                {
+                    this.triggerRotationChange = false;
+                }
+                else
+                {
+                    this.triggerSizeChange = false;
+                }
                 this.shouldDrag = true;
             }
         }

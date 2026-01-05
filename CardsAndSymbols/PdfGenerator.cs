@@ -238,29 +238,33 @@ namespace CardsAndSymbols
                 // Position: centerX + offsetX - symbolSize / 2
                 var offsetX = (float)(symbol.OffsetX * this.cardScaleFactor);
                 var offsetY = (float)(symbol.OffsetY * this.cardScaleFactor);
-                
+
                 // Position the symbol container (matches AdjustOffsets exactly)
                 var x = cardCenterX + offsetX - (symbolSizeRendered / 2.0f);
                 var y = cardCenterY + offsetY - (symbolSizeRendered / 2.0f);
 
-                // Get image - try file path first, then bitmap conversion
-                SKImage? skImage = null;
+                // Get rotation angle in degrees
+                var rotationDegrees = symbol.RotationDegrees;
+
+                // Get image file path
                 var fileName = this.imageCache.GetFileName(symbol.ImageId);
-                
-                if (File.Exists(fileName))
+
+                if (File.Exists(fileName) && fileName.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
                 {
-                    // For PNG files, load directly
-                    if (fileName.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+                    // For SVG files, always render directly to canvas (with optional rotation)
+                    // This avoids artifacts from rotating a rasterized image
+                    RenderSvg(fileName, symbolSizeRendered, canvas, x, y, rotationDegrees);
+                    return; // Already drawn, no need to continue
+                }
+
+                // For PNG files or fallback from Avalonia bitmap, load as image
+                SKImage? skImage = null;
+
+                if (File.Exists(fileName) && fileName.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+                {
+                    using (var data = SKData.Create(fileName))
                     {
-                        using (var data = SKData.Create(fileName))
-                        {
-                            skImage = SKImage.FromEncodedData(data);
-                        }
-                    }
-                    // For SVG files, render directly at target size for high quality
-                    else if (fileName.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
-                    {
-                        skImage = RenderSvgToSkImageAtSize(fileName, (int)symbolSizeRendered);
+                        skImage = SKImage.FromEncodedData(data);
                     }
                 }
 
@@ -276,39 +280,7 @@ namespace CardsAndSymbols
 
                 if (skImage != null)
                 {
-                    // If SVG was rendered at target size, it's already the right size - draw directly
-                    // Otherwise, scale uniformly to match Stretch="Uniform" behavior
-                    var imageWidth = skImage.Width;
-                    var imageHeight = skImage.Height;
-                    
-                    if (imageWidth == (int)symbolSizeRendered && imageHeight == (int)symbolSizeRendered)
-                    {
-                        // Already at target size (e.g., SVG rendered at target size) - draw directly
-                        canvas.DrawImage(skImage, x, y);
-                    }
-                    else
-                    {
-                        // Calculate uniform scale to fill the symbolSizeRendered area (like Stretch="Uniform")
-                        var scaleX = symbolSizeRendered / imageWidth;
-                        var scaleY = symbolSizeRendered / imageHeight;
-                        var uniformScale = Math.Min(scaleX, scaleY); // Uniform scaling
-                        
-                        var scaledWidth = imageWidth * uniformScale;
-                        var scaledHeight = imageHeight * uniformScale;
-                        
-                        // Center the scaled image within the symbolSizeRendered area
-                        var drawX = x + (symbolSizeRendered - scaledWidth) / 2.0f;
-                        var drawY = y + (symbolSizeRendered - scaledHeight) / 2.0f;
-                        
-                        // Draw with uniform scaling, matching Avalonia's Stretch="Uniform" behavior
-                        canvas.Save();
-                        canvas.Translate(drawX, drawY);
-                        canvas.Scale(uniformScale, uniformScale);
-                        canvas.DrawImage(skImage, 0, 0);
-                        canvas.Restore();
-                    }
-                    
-                    skImage.Dispose();
+                    RenderBitmap(canvas, skImage, symbolSizeRendered, x, y, rotationDegrees);
                 }
             }
             catch (Exception ex)
@@ -317,47 +289,104 @@ namespace CardsAndSymbols
             }
         }
 
-        private SKImage? RenderSvgToSkImageAtSize(string svgPath, int targetSize)
+        /// <summary>
+        /// Renders an SVG file directly to the card canvas with optional rotation.
+        /// This closely matches the earlier, working implementation and keeps all
+        /// SVG-specific coordinate math local to this method to avoid subtle layout bugs.
+        /// </summary>
+        private void RenderSvg(string svgPath, float targetSize, SKCanvas canvas, float x, float y, double rotationDegrees = 0)
         {
             try
             {
                 var svg = new SKSvg();
                 svg.Load(svgPath);
-                
-                if (svg.Picture == null)
-                    return null;
 
-                // Render SVG directly at target size for high quality (vector to raster at final size)
-                // This avoids pixelation from scaling up a small raster image
-                var info = new SKImageInfo(targetSize, targetSize);
-                using (var surface = SKSurface.Create(info))
+                if (svg.Picture == null)
+                    return;
+
+                // Scale to fit target size uniformly (matching Stretch="Uniform" behavior)
+                var bounds = svg.Picture.CullRect;
+                var scale = Math.Min(targetSize / bounds.Width, targetSize / bounds.Height);
+
+                // Center of the SVG content in its own coordinate system
+                var svgCenterX = bounds.Left + bounds.Width / 2.0f;
+                var svgCenterY = bounds.Top + bounds.Height / 2.0f;
+
+                // Center of the symbol area on the card
+                var imageCenterX = x + targetSize / 2.0f;
+                var imageCenterY = y + targetSize / 2.0f;
+
+                canvas.Save();
+
+                // Rotate around the center of the symbol area (if rotation is needed)
+                if (rotationDegrees != 0)
                 {
-                    var canvas = surface.Canvas;
-                    canvas.Clear(SKColors.Transparent);
-                    
-                    // Scale to fit target size uniformly (matching Stretch="Uniform" behavior)
-                    var bounds = svg.Picture.CullRect;
-                    var scale = Math.Min((float)targetSize / bounds.Width, (float)targetSize / bounds.Height);
-                    
-                    // Center the SVG within the target size
-                    var centerX = bounds.Left + bounds.Width / 2.0f;
-                    var centerY = bounds.Top + bounds.Height / 2.0f;
-                    
-                    canvas.Save();
-                    canvas.Translate(targetSize / 2.0f, targetSize / 2.0f);
-                    canvas.Scale(scale, scale);
-                    canvas.Translate(-centerX, -centerY);
-                    canvas.DrawPicture(svg.Picture);
-                    canvas.Restore();
-                    
-                    return surface.Snapshot();
+                    canvas.Translate(imageCenterX, imageCenterY);
+                    canvas.RotateDegrees((float)rotationDegrees);
+                    canvas.Translate(-imageCenterX, -imageCenterY);
                 }
+
+                // Scale and center the SVG within the target area
+                canvas.Translate(imageCenterX, imageCenterY);
+                canvas.Scale(scale, scale);
+                canvas.Translate(-svgCenterX, -svgCenterY);
+
+                // Draw the SVG directly (vector rendering, no intermediate rasterization)
+                canvas.DrawPicture(svg.Picture);
+
+                canvas.Restore();
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error rendering SVG {svgPath}: {ex.Message}");
-                return null;
             }
+        }
+
+        /// <summary>
+        /// Renders a bitmap (PNG or converted Avalonia bitmap) to the card canvas with
+        /// uniform scaling and optional rotation around the bitmap's visual center.
+        /// </summary>
+        private void RenderBitmap(SKCanvas canvas, SKImage bitmap, float targetSize, float x, float y, double rotationDegrees)
+        {
+            // Scale uniformly to match Stretch="Uniform" behavior
+            var imageWidth = (float)bitmap.Width;
+            var imageHeight = (float)bitmap.Height;
+
+            var scaleX = targetSize / imageWidth;
+            var scaleY = targetSize / imageHeight;
+            var uniformScale = (float)Math.Min(scaleX, scaleY);
+
+            var scaledWidth = imageWidth * uniformScale;
+            var scaledHeight = imageHeight * uniformScale;
+
+            // Center the scaled image within the target area
+            var drawX = x + (targetSize - scaledWidth) / 2.0f;
+            var drawY = y + (targetSize - scaledHeight) / 2.0f;
+
+            // Center of the scaled image (for rotation)
+            var imageCenterX = drawX + scaledWidth / 2.0f;
+            var imageCenterY = drawY + scaledHeight / 2.0f;
+
+            canvas.Save();
+
+            // Apply rotation around the actual image center (if rotation is needed)
+            if (rotationDegrees != 0)
+            {
+                canvas.Translate(imageCenterX, imageCenterY);
+                canvas.RotateDegrees((float)rotationDegrees);
+                canvas.Translate(-imageCenterX, -imageCenterY);
+            }
+
+            // Now draw the image: translate to draw position, scale, then draw
+            canvas.Translate(drawX, drawY);
+            if (uniformScale != 1.0f)
+            {
+                canvas.Scale(uniformScale, uniformScale);
+            }
+            canvas.DrawImage(bitmap, 0, 0);
+
+            canvas.Restore();
+            bitmap.Dispose();
         }
 
         private SKImage? ConvertAvaloniaBitmapToSkImage(AvaloniaBitmap avaloniaBitmap, int targetSize)
