@@ -13,11 +13,21 @@ namespace CardsAndSymbols
 
         private const string DefaultOutputFileName = "cards.pdf";
 
-        public PdfGenerationDialog()
+        // Parameterless constructor required by Avalonia XAML loader
+        public PdfGenerationDialog() : this(null, null)
+        {
+        }
+
+        public PdfGenerationDialog(string? initialDirectory, string? initialFileName)
         {
             InitializeComponent();
             this.SinglePdfRadio.IsCheckedChanged += (s, e) => UpdateOutputFileVisibility();
             this.MultiplePdfsRadio.IsCheckedChanged += (s, e) => UpdateOutputFileVisibility();
+
+            // Set initial values from parameters or defaults
+            this.OutputDirectoryTextBox.Text = initialDirectory ?? System.IO.Directory.GetCurrentDirectory();
+            this.OutputFileTextBox.Text = initialFileName ?? DefaultOutputFileName;
+
             UpdateOutputFileVisibility();
         }
 

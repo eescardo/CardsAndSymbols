@@ -89,12 +89,11 @@ using ProjectivePlane;
         public bool AutoSaveEnabled
         {
             get => this.GetValue(AutoSaveEnabledProperty);
-            set
-            {
-                this.SetValue(AutoSaveEnabledProperty, value);
-                this.SaveSettings();
-            }
+            set => this.SetValue(AutoSaveEnabledProperty, value);
         }
+
+        private Settings currentSettings = new Settings();
+        private bool isLoadingSettings = false;
 
         private void LoadSettings()
         {
@@ -106,8 +105,24 @@ using ProjectivePlane;
                     var settings = JsonConvert.DeserializeObject<Settings>(json);
                     if (settings != null)
                     {
-                        this.AutoSaveEnabled = settings.AutoSaveEnabled;
-                        this.CardScaleFactor = settings.CardScaleFactor;
+                        this.currentSettings = settings;
+
+                        // Prevent SaveSettings from being called during load
+                        this.isLoadingSettings = true;
+                        try
+                        {
+                            // Set the StyledProperties to mirror currentSettings
+                            this.SetValue(AutoSaveEnabledProperty, settings.AutoSaveEnabled);
+                            this.SetValue(CardScaleFactorProperty, settings.CardScaleFactor);
+                        }
+                        finally
+                        {
+                            this.isLoadingSettings = false;
+                        }
+
+                        // Update UI after loading settings
+                        this.UpdateCardWidthInches();
+                        this.UpdateCardLayout();
                     }
                 }
             }
@@ -119,14 +134,17 @@ using ProjectivePlane;
 
         private void SaveSettings()
         {
+            // Don't save during initial load to avoid overwriting settings
+            if (this.isLoadingSettings)
+                return;
+
             try
             {
-                var settings = new Settings
-                {
-                    AutoSaveEnabled = this.AutoSaveEnabled,
-                    CardScaleFactor = this.CardScaleFactor
-                };
-                var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
+                // Sync currentSettings from StyledProperties
+                this.currentSettings.AutoSaveEnabled = this.AutoSaveEnabled;
+                this.currentSettings.CardScaleFactor = this.CardScaleFactor;
+
+                var json = JsonConvert.SerializeObject(this.currentSettings, Formatting.Indented);
                 File.WriteAllText(SettingsFileName, json);
             }
             catch (Exception ex)
@@ -310,19 +328,17 @@ using ProjectivePlane;
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
         {
             base.OnPropertyChanged(change);
-            if (change.Property == AutoSaveEnabledProperty)
+            if (change.Property == AutoSaveEnabledProperty || change.Property == CardScaleFactorProperty)
             {
-                this.SaveSettings();
-            }
-            else if (change.Property == CardScaleFactorProperty)
-            {
-                // Save settings when scale factor changes
+                // Sync currentSettings from StyledProperty and save
                 this.SaveSettings();
                 
-                // Update card width in inches for display
-                this.UpdateCardWidthInches();
-                
-                this.UpdateCardLayout();
+                if (change.Property == CardScaleFactorProperty)
+                {
+                    // Update card width in inches for display
+                    this.UpdateCardWidthInches();
+                    this.UpdateCardLayout();
+                }
             }
             else if (change.Property == CardBaseSizeProperty)
             {
@@ -535,28 +551,43 @@ using ProjectivePlane;
                 return;
             }
 
-            var dialog = new PdfGenerationDialog();
-            dialog.OutputDirectoryTextBox.Text = Directory.GetCurrentDirectory();
-            
+            // Load last used directory and file name from settings
+            var lastDirectory = this.currentSettings.LastPdfDirectory ?? Directory.GetCurrentDirectory();
+            var lastFileName = this.currentSettings.LastPdfFileName ?? "cards.pdf";
+
+            var dialog = new PdfGenerationDialog(lastDirectory, lastFileName);
+
             await dialog.ShowDialog(this);
             
             if (dialog.DialogResult && dialog.OutputPath != null)
             {
+                var outputPath = dialog.OutputPath;
+
                 try
                 {
                     var generator = new PdfGenerator(this.ImageCache, this.CardBaseSize, this.CardScaleFactor);
                     
                     if (dialog.GenerateSinglePdf)
                     {
-                        generator.GenerateSinglePdf(this.Cards, dialog.OutputPath);
+                        generator.GenerateSinglePdf(this.Cards, outputPath);
+                        // Update settings with the directory and file name used
+                        var outputDir = Path.GetDirectoryName(outputPath) ?? Directory.GetCurrentDirectory();
+                        var outputFile = Path.GetFileName(outputPath);
+                        this.currentSettings.LastPdfDirectory = outputDir;
+                        this.currentSettings.LastPdfFileName = outputFile;
+                        this.SaveSettings();
                         // Show success message
-                        System.Diagnostics.Debug.WriteLine($"PDF generated successfully: {dialog.OutputPath}");
+                        System.Diagnostics.Debug.WriteLine($"PDF generated successfully: {outputPath}");
                     }
                     else
                     {
-                        generator.GenerateMultiplePdfs(this.Cards, dialog.OutputPath);
+                        generator.GenerateMultiplePdfs(this.Cards, outputPath);
+                        // Update settings with the directory used (no file name for multiple PDFs)
+                        this.currentSettings.LastPdfDirectory = outputPath;
+                        this.currentSettings.LastPdfFileName = null;
+                        this.SaveSettings();
                         // Show success message
-                        System.Diagnostics.Debug.WriteLine($"PDFs generated successfully in: {dialog.OutputPath}");
+                        System.Diagnostics.Debug.WriteLine($"PDFs generated successfully in: {outputPath}");
                     }
                 }
                 catch (Exception ex)
