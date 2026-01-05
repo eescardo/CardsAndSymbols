@@ -41,7 +41,7 @@ namespace CardsAndSymbols
         /// handles embedded image scaling. Based on empirical measurement: actual printed size (2.5") / calculated size (2.67") ≈ 0.936
         /// TODO: Figure this out in a less work-aroundy way.
         /// </summary>
-        public const double ImageEmbeddingCorrectionFactor = 0.936;
+        public const double ImageEmbeddingCorrectionFactor = 1.0;
     }
 }
 

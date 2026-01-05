@@ -69,6 +69,12 @@ namespace CardsAndSymbols
                 (result[i], result[j]) = (result[j], result[i]);
             }
             
+            // Randomize rotation stations for all symbols
+            foreach (var symbol in result)
+            {
+                symbol.RotationStation = random.Next(SymbolData.RotationStationCount);
+            }
+
             this.Symbols = result;
         }
 
