@@ -375,11 +375,11 @@ namespace CardsAndSymbols
                     if (rotationDegrees != 0)
                     {
                         var rotationTransform = $"translate({imageCenterX}, {imageCenterY}) rotate({rotationDegrees}) translate({-imageCenterX}, {-imageCenterY})";
-                        return $"  <g transform=\"{rotationTransform}\"><image x=\"{imageX}\" y=\"{imageY}\" width=\"{scaledWidth}\" height=\"{scaledHeight}\" href=\"{dataUri}\"/></g>";
+                        return $"  <g transform=\"{rotationTransform}\"><image x=\"{imageX}\" y=\"{imageY}\" width=\"{scaledWidth}\" height=\"{scaledHeight}\" xlink:href=\"{dataUri}\"/></g>";
                     }
                     else
                     {
-                        return $"  <image x=\"{imageX}\" y=\"{imageY}\" width=\"{scaledWidth}\" height=\"{scaledHeight}\" href=\"{dataUri}\"/>";
+                        return $"  <image x=\"{imageX}\" y=\"{imageY}\" width=\"{scaledWidth}\" height=\"{scaledHeight}\" xlink:href=\"{dataUri}\"/>";
                     }
                 }
             }
