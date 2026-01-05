@@ -16,6 +16,13 @@ namespace CardsAndSymbols
         // PDF layout constants
         private static readonly PageSize PdfPageSize = PageSizes.Letter; // US Letter size (8.5" x 11")
         private const float PageMarginMillimeters = 20.0f;
+        /// <summary>
+        /// Render scale for card bitmaps inside the PDF. Values &gt; 1 render the card
+        /// at higher pixel resolution than the on-screen size (supersampling), which
+        /// improves print/PDF sharpness without changing the physical card size.
+        /// For example, 2.0 = 2x linear resolution (~4x pixels).
+        /// </summary>
+        private const float PdfRenderScale = 2.0f;
         private const int DefaultFontSize = 12;
         private const int PngEncodingQuality = 100; // Maximum quality (0-100)
         
@@ -158,8 +165,8 @@ namespace CardsAndSymbols
             // Convert pixels to points
             var cardSizePoints = (float)(cardSize * Constants.PixelsToPoints);
 
-            // Render card to bitmap first, then embed in PDF
-            var cardImageBytes = RenderCardToImage(card, (int)cardSize);
+            // Render card to a higher-resolution bitmap (supersampling) for sharper print/PDF
+            var cardImageBytes = RenderCardToImage(card, (int)cardSize, PdfRenderScale);
             
             if (cardImageBytes != null)
             {
@@ -172,19 +179,36 @@ namespace CardsAndSymbols
             }
         }
 
-        private byte[]? RenderCardToImage(CardData card, int cardSize)
+        /// <summary>
+        /// Renders a single card to a bitmap. The card is described in logical
+        /// "UI pixels" of size <paramref name="logicalCardSize"/>, and then the
+        /// entire drawing is uniformly scaled by <paramref name="renderScale"/>
+        /// when rasterizing. This preserves layout while increasing pixel density.
+        /// </summary>
+        private byte[]? RenderCardToImage(CardData card, int logicalCardSize, float renderScale)
         {
             try
             {
-                var info = new SKImageInfo(cardSize, cardSize);
+                // Actual pixel size of the bitmap (supersampled)
+                var pixelSize = (int)(logicalCardSize * renderScale);
+                var info = new SKImageInfo(pixelSize, pixelSize);
                 using (var surface = SKSurface.Create(info))
                 {
                     var canvas = surface.Canvas;
                     canvas.Clear(SKColors.White);
+
+                    // Scale the canvas so that all subsequent drawing code can continue
+                    // to use the original logical coordinate system (matching the UI),
+                    // while the underlying bitmap has higher resolution.
+                    if (Math.Abs(renderScale - 1.0f) > float.Epsilon)
+                    {
+                        canvas.Scale(renderScale, renderScale);
+                    }
                     
-                    var centerX = cardSize / 2.0f;
-                    var centerY = cardSize / 2.0f;
-                    var radius = cardSize / 2.0f;
+                    // Work in logical coordinates for layout, independent of renderScale
+                    var centerX = logicalCardSize / 2.0f;
+                    var centerY = logicalCardSize / 2.0f;
+                    var radius = logicalCardSize / 2.0f;
 
                     // Draw card circle border
                     using (var paint = new SKPaint
