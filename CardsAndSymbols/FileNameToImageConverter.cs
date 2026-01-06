@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using Avalonia;
 using Avalonia.Data.Converters;
 
 namespace CardsAndSymbols
@@ -7,33 +8,32 @@ namespace CardsAndSymbols
     public class FileIdToImageConverter : IValueConverter
     {
         private ImageCache? imageCache;
+        private bool isSubscribed = false;
 
-        public ImageCache? ImageCache
+        private ImageCache? GetImageCache()
         {
-            get => this.imageCache;
-            set
+            // Get ImageCache from App resources and subscribe to events if not already subscribed
+            if (this.imageCache == null && Application.Current?.Resources != null)
             {
-                // Unsubscribe from old cache
-                if (this.imageCache != null)
+                if (Application.Current.Resources.TryGetResource("ImageCache", Avalonia.Styling.ThemeVariant.Default, out var cacheObj) && cacheObj is ImageCache cache)
                 {
-                    this.imageCache.CacheInvalidated -= this.OnCacheInvalidated;
-                }
+                    this.imageCache = cache;
 
-                this.imageCache = value;
-
-                // Subscribe to new cache
-                if (this.imageCache != null)
-                {
-                    this.imageCache.CacheInvalidated += this.OnCacheInvalidated;
+                    // Subscribe to cache invalidation event
+                    if (!this.isSubscribed)
+                    {
+                        this.imageCache.CacheInvalidated += this.OnCacheInvalidated;
+                        this.isSubscribed = true;
+                    }
                 }
             }
+            return this.imageCache;
         }
 
         private void OnCacheInvalidated(object? sender, EventArgs e)
         {
             // When cache is invalidated, we don't need to do anything here
             // The ImageCache will return fresh images on next GetImage call
-            // The binding refresh is handled by SymbolViewer.RefreshImageBinding()
         }
 
         public FileIdToImageConverter()
@@ -45,7 +45,8 @@ namespace CardsAndSymbols
         {
             try
             {
-                if (this.ImageCache == null)
+                var imageCache = this.GetImageCache();
+                if (imageCache == null)
                 {
                     return null;
                 }
@@ -58,7 +59,7 @@ namespace CardsAndSymbols
 
                 // Always get fresh image from ImageCache
                 // When cache is cleared, it will return fresh images.
-                var image = this.ImageCache.GetImage(fileId);
+                var image = imageCache.GetImage(fileId);
                 return image;
             }
             catch (Exception ex)

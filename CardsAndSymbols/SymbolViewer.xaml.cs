@@ -41,19 +41,6 @@ namespace CardsAndSymbols
             this.InitializeComponent();
             // Don't set DataContext here - let the DataTemplate set it to the SymbolData item
             // We'll set SymbolData property in OnDataContextChanged
-            
-            // Set ImageCache on the converter from App resources
-            if (this.Resources != null && this.Resources.TryGetResource("ImageSourceConverter", Avalonia.Styling.ThemeVariant.Default, out var converterObj))
-            {
-                if (converterObj is FileIdToImageConverter converter)
-                {
-                    var app = (App)Application.Current!;
-                    if (app?.Resources != null && app.Resources.TryGetResource("ImageCache", Avalonia.Styling.ThemeVariant.Default, out var cacheObj) && cacheObj is ImageCache cache)
-                    {
-                        converter.ImageCache = cache;
-                    }
-                }
-            }
         }
 
         protected override void OnDataContextChanged(EventArgs e)
