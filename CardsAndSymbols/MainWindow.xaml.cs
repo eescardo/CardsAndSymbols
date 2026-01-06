@@ -114,6 +114,10 @@ using ProjectivePlane;
                             // Set the StyledProperties to mirror currentSettings
                             this.SetValue(AutoSaveEnabledProperty, settings.AutoSaveEnabled);
                             this.SetValue(CardScaleFactorProperty, settings.CardScaleFactor);
+                            if (!string.IsNullOrEmpty(settings.ImageDirectory))
+                            {
+                                this.SetValue(ImageDirectoryProperty, settings.ImageDirectory);
+                            }
                         }
                         finally
                         {
@@ -143,6 +147,7 @@ using ProjectivePlane;
                 // Sync currentSettings from StyledProperties
                 this.currentSettings.AutoSaveEnabled = this.AutoSaveEnabled;
                 this.currentSettings.CardScaleFactor = this.CardScaleFactor;
+                this.currentSettings.ImageDirectory = this.ImageDirectory;
 
                 var json = JsonConvert.SerializeObject(this.currentSettings, Formatting.Indented);
                 File.WriteAllText(SettingsFileName, json);
@@ -207,10 +212,14 @@ using ProjectivePlane;
             set => this.SetValue(ImageCacheProperty, value);
         }
 
-        private void ComputeCards(string? symbolDir, int numCards)
+        private void ComputeCards(string? symbolDir, int numCards, bool clearFileCache = false)
         {
             // Construct a projective plane and map points to cards and lines to symbols
-            this.ImageCache?.Clear(ImageCacheFlags.ClearIds);
+            var clearFlags = clearFileCache
+                ? ImageCacheFlags.ClearIds | ImageCacheFlags.ClearFiles
+                : ImageCacheFlags.ClearIds;
+            this.ImageCache?.Clear(clearFlags);
+
             if (symbolDir == null) return;
             var symbols = this.GetSymbols(symbolDir);
             var planeConstructor = new ProjectivePlaneConstructor<SymbolData>(symbols, numCards);
@@ -239,7 +248,26 @@ using ProjectivePlane;
                 throw new ArgumentException(string.Format("Invalid symbol directory '{0}' specified", symbolDir), "symbolDir");
             }
 
-            return dirInfo.EnumerateFiles().Select(f => new SymbolData { ImageId = this.ImageCache?.AssignNewId(f.FullName) ?? f.FullName }).ToList();
+            // Valid image file extensions
+            var imageExtensions = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            {
+                ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg", ".webp"
+            };
+
+            // Sort files deterministically (case-insensitive for cross-platform compatibility)
+            // Sort by Name first, then FullName as tiebreaker to ensure absolute determinism
+            // Use ToList() to materialize the enumeration before sorting to ensure consistency
+            // Filter out non-image files (e.g., .DS_Store, Thumbs.db, etc.)
+            var allFiles = dirInfo.EnumerateFiles()
+                .Where(f => imageExtensions.Contains(f.Extension))
+                .ToList();
+            var files = allFiles
+                .OrderBy(f => f.Name, StringComparer.OrdinalIgnoreCase)
+                .ThenBy(f => f.FullName, StringComparer.OrdinalIgnoreCase)
+                .ToList();
+
+            return files.Select(f => new SymbolData { ImageId = this.ImageCache?.AssignNewId(f.FullName) ?? f.FullName })
+                .ToList();
         }
 
         private void ComputeColumns(double cardAreaWidth, double cardSize, double cardMargin)
@@ -328,7 +356,7 @@ using ProjectivePlane;
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
         {
             base.OnPropertyChanged(change);
-            if (change.Property == AutoSaveEnabledProperty || change.Property == CardScaleFactorProperty)
+            if (change.Property == AutoSaveEnabledProperty || change.Property == CardScaleFactorProperty || change.Property == ImageDirectoryProperty)
             {
                 // Sync currentSettings from StyledProperty and save
                 this.SaveSettings();
@@ -338,6 +366,15 @@ using ProjectivePlane;
                     // Update card width in inches for display
                     this.UpdateCardWidthInches();
                     this.UpdateCardLayout();
+                }
+                else if (change.Property == ImageDirectoryProperty)
+                {
+                    // Don't regenerate during initial load
+                    if (!this.isLoadingSettings)
+                    {
+                        // Regenerate image cache and remap existing cards
+                        this.ComputeCards(this.ImageDirectory, this.NewNumCards, true);
+                    }
                 }
             }
             else if (change.Property == CardBaseSizeProperty)
@@ -594,6 +631,29 @@ using ProjectivePlane;
                 {
                     System.Diagnostics.Debug.WriteLine($"Error generating PDF: {ex.Message}");
                 }
+            }
+        }
+
+        private async void HandleBrowseImageDirectory(object? sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var topLevel = TopLevel.GetTopLevel(this);
+                if (topLevel == null) return;
+
+                var folders = await topLevel.StorageProvider.OpenFolderPickerAsync(new Avalonia.Platform.Storage.FolderPickerOpenOptions
+                {
+                    Title = "Select Image Directory"
+                });
+
+                if (folders.Count > 0 && folders[0] != null)
+                {
+                    this.ImageDirectory = folders[0].Path.LocalPath;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error browsing image directory: {ex.Message}");
             }
         }
     }

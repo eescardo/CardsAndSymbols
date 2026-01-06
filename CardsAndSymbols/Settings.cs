@@ -24,6 +24,11 @@ namespace CardsAndSymbols
         /// The last file name used for single PDF generation.
         /// </summary>
         public string? LastPdfFileName { get; set; }
+
+        /// <summary>
+        /// The image directory path for loading symbols.
+        /// </summary>
+        public string? ImageDirectory { get; set; }
     }
 }
 

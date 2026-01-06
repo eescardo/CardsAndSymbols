@@ -55,7 +55,7 @@ namespace CardsAndSymbols
                 }
             }
         }
-        
+
         protected override void OnDataContextChanged(EventArgs e)
         {
             base.OnDataContextChanged(e);
@@ -207,6 +207,18 @@ namespace CardsAndSymbols
             {
                 // Rotation is handled by XAML binding, just invalidate visual to ensure update
                 this.InvalidateVisual();
+            }
+            else if (e.PropertyName == nameof(SymbolData.ImageId))
+            {
+                // ImageId changed - the binding should automatically update
+                // Force visual invalidation to ensure refresh
+                this.InvalidateVisual();
+                this.InvalidateArrange();
+                var image = this.FindControl<Image>("SymbolImage");
+                if (image != null)
+                {
+                    image.InvalidateVisual();
+                }
             }
         }
 
