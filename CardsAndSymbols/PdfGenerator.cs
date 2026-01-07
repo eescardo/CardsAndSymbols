@@ -306,11 +306,103 @@ namespace CardsAndSymbols
                 var nestedSvgWidth = symbolSizeRendered;
                 var nestedSvgHeight = symbolSizeRendered;
 
-                // Extract inner content
+                // Extract inner content - only include renderable SVG elements
                 var innerContent = new System.Text.StringBuilder();
+
+                // Renderable content elements, Based on SVG 1.1 and 2.0 specifications
+                var renderableSvgElements = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+                {
+                    // Structural/container elements (contain renderable content)
+                    "svg", "g", "defs", "use", "symbol",
+
+                    // Shape elements (directly renderable)
+                    "rect", "circle", "ellipse", "line", "polyline", "polygon", "path",
+
+                    // Text elements
+                    "text", "tspan", "textPath",
+
+                    // Image elements
+                    "image",
+
+                    // Gradient and pattern definitions (referenced by renderable elements)
+                    "linearGradient", "radialGradient", "pattern",
+
+                    // Clipping and masking (referenced by renderable elements)
+                    "clipPath", "mask",
+
+                    // Filter definitions (referenced by renderable elements)
+                    "filter",
+
+                    // Marker definitions (referenced by renderable elements)
+                    "marker",
+
+                    // Animation elements (may not be fully supported in PDF, but included for completeness)
+                    "animate", "animateTransform", "animateMotion", "set"
+                };
+
                 foreach (XmlNode child in svgElement.ChildNodes)
                 {
-                    innerContent.Append(child.OuterXml);
+                    if (child.NodeType == XmlNodeType.Element)
+                    {
+                        var localName = child.LocalName;
+                        var namespaceUri = child.NamespaceURI ?? string.Empty;
+
+                        // Check if it's an SVG element (either no namespace or SVG namespace)
+                        // SVG 1.0, 1.1, and 2.0 all use the same namespace URI: http://www.w3.org/2000/svg
+                        // Elements without a namespace in an SVG document context are treated as SVG elements
+                        bool isSvgNamespace = string.IsNullOrEmpty(namespaceUri) || 
+                                             namespaceUri == "http://www.w3.org/2000/svg";
+
+                        if (isSvgNamespace && renderableSvgElements.Contains(localName))
+                        {
+                            // Special handling for <image> elements: filter out embedded raster images
+                            // Applications may embed rasterized copies as base64 data URIs for editing purposes
+                            // These should not be rendered in PDF output
+                            if (localName.Equals("image", StringComparison.OrdinalIgnoreCase))
+                            {
+                                var imageElement = child as XmlElement;
+                                if (imageElement != null)
+                                {
+                                    // xlink:href is a namespaced attribute, so we need to use the namespace URI
+                                    // Try standard href first, then xlink:href
+                                    var href = imageElement.GetAttribute("href");
+                                    if (string.IsNullOrEmpty(href))
+                                    {
+                                        href = imageElement.GetAttribute("href", "http://www.w3.org/1999/xlink");
+                                    }
+
+                                    // Skip if:
+                                    // 1. It's a data URI (embedded raster image)
+                                    // 2. It has no href at all (likely an empty/embedded raster placeholder)
+                                    bool shouldSkip = false;
+                                    string skipReason = "";
+
+                                    if (!string.IsNullOrEmpty(href) && href.StartsWith("data:", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        shouldSkip = true;
+                                        skipReason = "data URI";
+                                    }
+                                    else if (string.IsNullOrEmpty(href))
+                                    {
+                                        // No href at all - likely an embedded raster placeholder
+                                        shouldSkip = true;
+                                        skipReason = "no href (likely embedded raster)";
+                                    }
+
+                                    if (shouldSkip)
+                                    {
+                                        System.Console.WriteLine($"Image element skipped in {fileName}: {skipReason}");
+                                        continue; // Skip this embedded raster image
+                                    }
+                                }
+                            }
+
+                            innerContent.Append(child.OuterXml);
+                        }
+                        // Explicitly skip non-SVG namespace elements (Application-specific)
+                    }
+                    // Skip text/CDATA nodes that are not part of text elements
+                    // (they're usually whitespace between elements)
                 }
 
                 var nestedSvg = $"<svg x=\"{x}\" y=\"{y}\" width=\"{nestedSvgWidth}\" height=\"{nestedSvgHeight}\" viewBox=\"{viewBoxAttr}\" preserveAspectRatio=\"xMidYMid meet\">{innerContent}</svg>";
