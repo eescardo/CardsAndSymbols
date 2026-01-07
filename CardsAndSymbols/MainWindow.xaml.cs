@@ -220,24 +220,75 @@ using ProjectivePlane;
                 : ImageCacheFlags.ClearIds;
             this.ImageCache?.Clear(clearFlags);
 
-            if (symbolDir == null) return;
-            var symbols = this.GetSymbols(symbolDir);
-            var planeConstructor = new ProjectivePlaneConstructor<SymbolData>(symbols, numCards);
-            var planePoints = planeConstructor.PlanePoints;
-            this.Cards = planePoints.Select(point => new CardData(point.Lines)).ToList();
-
-            // Auto-load cards if auto-save is enabled
-            if (this.AutoSaveEnabled && File.Exists(CardsFileName))
+            if (symbolDir == null)
             {
-                try
+                this.Cards = null;
+                return;
+            }
+
+            try
+            {
+                var symbols = this.GetSymbols(symbolDir);
+                var planeConstructor = new ProjectivePlaneConstructor<SymbolData>(symbols, numCards);
+                var planePoints = planeConstructor.PlanePoints;
+                this.Cards = planePoints.Select(point => new CardData(point.Lines)).ToList();
+
+                // Auto-load cards if auto-save is enabled
+                if (this.AutoSaveEnabled && File.Exists(CardsFileName))
                 {
-                    this.LoadCardsFromFile(CardsFileName);
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine($"Failed to auto-load cards: {ex.Message}");
+                    try
+                    {
+                        this.LoadCardsFromFile(CardsFileName);
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Failed to auto-load cards: {ex.Message}");
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                // Catch any other exceptions
+                this.Cards = null;
+                this.ShowErrorMessage("Error", $"An error occurred while generating cards: {ex.Message}");
+            }
+        }
+
+        private async void ShowErrorMessage(string title, string message)
+        {
+            var dialog = new Window
+            {
+                Title = title,
+                Width = 400,
+                Height = 200,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                CanResize = false
+            };
+
+            var panel = new StackPanel
+            {
+                Margin = new Thickness(20)
+            };
+
+            var textBlock = new TextBlock
+            {
+                Text = message,
+                TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                Margin = new Thickness(0, 0, 0, 20)
+            };
+            panel.Children.Add(textBlock);
+
+            var button = new Button
+            {
+                Content = "OK",
+                HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right,
+                Width = 80
+            };
+            button.Click += (s, e) => dialog.Close();
+            panel.Children.Add(button);
+
+            dialog.Content = panel;
+            await dialog.ShowDialog(this);
         }
 
         private IList<SymbolData> GetSymbols(string symbolDir)
