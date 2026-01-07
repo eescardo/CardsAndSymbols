@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
@@ -198,9 +199,11 @@ namespace CardsAndSymbols
                 svgBuilder.AppendLine($"  <circle cx=\"{cardCenterX}\" cy=\"{cardCenterY}\" r=\"{circleRadius}\" fill=\"none\" stroke=\"black\" stroke-width=\"{strokeWidthPixels}\"/>");
 
                 // Add all symbols (SVG as vectors, PNG as embedded images)
+                int symbolInstanceIndex = 0;
                 foreach (var symbol in card.Symbols)
                 {
-                    var symbolMarkup = BuildSymbolMarkup(symbol, cardCenterX, cardCenterY);
+                    symbolInstanceIndex++;
+                    var symbolMarkup = BuildSymbolMarkup(symbol, cardCenterX, cardCenterY, symbolInstanceIndex);
                     if (symbolMarkup != null)
                     {
                         svgBuilder.AppendLine(symbolMarkup);
@@ -221,7 +224,7 @@ namespace CardsAndSymbols
         /// Builds SVG markup for a single symbol with proper positioning, scaling, and rotation.
         /// Handles both SVG (as nested SVG) and PNG (as embedded image) symbols.
         /// </summary>
-        private string? BuildSymbolMarkup(SymbolData symbol, float cardCenterX, float cardCenterY)
+        private string? BuildSymbolMarkup(SymbolData symbol, float cardCenterX, float cardCenterY, int symbolInstanceIndex)
         {
             if (this.imageCache == null || string.IsNullOrEmpty(symbol.ImageId))
                 return null;
@@ -259,7 +262,11 @@ namespace CardsAndSymbols
                 if (!fileName.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
                     return null;
 
-                return BuildSvgSymbolMarkup(fileName, x, y, symbolSizeRendered, rotationDegrees);
+                // IMPORTANT: SVG IDs are document-global. Since we embed multiple SVGs into one composite SVG,
+                // we must namespace IDs within each embedded SVG to avoid collisions (e.g., clipPath ids).
+                // Collisions can cause symbols to disappear due to mismatched clip-path/mask/filter references.
+                var idPrefix = $"sym{symbolInstanceIndex}_";
+                return BuildSvgSymbolMarkup(fileName, x, y, symbolSizeRendered, rotationDegrees, idPrefix);
             }
             catch (Exception ex)
             {
@@ -271,7 +278,7 @@ namespace CardsAndSymbols
         /// <summary>
         /// Builds SVG markup for an SVG symbol as a nested SVG element with proper positioning, scaling, and rotation.
         /// </summary>
-        private string? BuildSvgSymbolMarkup(string fileName, float x, float y, float symbolSizeRendered, double rotationDegrees)
+        private string? BuildSvgSymbolMarkup(string fileName, float x, float y, float symbolSizeRendered, double rotationDegrees, string idPrefix)
         {
             try
             {
@@ -405,7 +412,12 @@ namespace CardsAndSymbols
                     // (they're usually whitespace between elements)
                 }
 
-                var nestedSvg = $"<svg x=\"{x}\" y=\"{y}\" width=\"{nestedSvgWidth}\" height=\"{nestedSvgHeight}\" viewBox=\"{viewBoxAttr}\" preserveAspectRatio=\"xMidYMid meet\">{innerContent}</svg>";
+                // Namespace SVG IDs to avoid collisions across multiple embedded symbols in the composite SVG.
+                // This is critical for files exported by editor applications which generate many <defs> ids
+                // (clipPath, mask, gradients, filters, etc.) referenced via url(#id) and href="#id".
+                var innerContentWithUniqueIds = PrefixSvgIds(innerContent.ToString(), idPrefix);
+
+                var nestedSvg = $"<svg x=\"{x}\" y=\"{y}\" width=\"{nestedSvgWidth}\" height=\"{nestedSvgHeight}\" viewBox=\"{viewBoxAttr}\" preserveAspectRatio=\"xMidYMid meet\">{innerContentWithUniqueIds}</svg>";
 
                 // Apply rotation if needed by wrapping in a group
                 if (rotationDegrees != 0)
@@ -423,6 +435,44 @@ namespace CardsAndSymbols
                 System.Diagnostics.Debug.WriteLine($"Error building SVG symbol markup {fileName}: {ex.Message}");
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Prefixes all element ids and local references within an embedded SVG fragment so that multiple
+        /// embedded SVGs can safely coexist in a single composite SVG document.
+        ///
+        /// Handles:
+        /// - id="foo" => id="prefixfoo"
+        /// - url(#foo) / url('#foo') / url("#foo") => url(#prefixfoo)
+        /// - href="#foo" and xlink:href="#foo" => href="#prefixfoo"
+        /// </summary>
+        private static string PrefixSvgIds(string svgFragmentXml, string prefix)
+        {
+            if (string.IsNullOrEmpty(svgFragmentXml) || string.IsNullOrEmpty(prefix))
+                return svgFragmentXml;
+
+            // Prefix ids (id="...") first
+            var result = Regex.Replace(
+                svgFragmentXml,
+                "\\bid\\s*=\\s*\"([^\"]+)\"",
+                m => $"id=\"{prefix}{m.Groups[1].Value}\"");
+
+            // Prefix url(#...) references (in attributes and in style strings)
+            // Supports url(#id), url('#id'), url("#id")
+            result = Regex.Replace(
+                result,
+                "url\\(\\s*(['\"]?)#([^\\)'\"]+)\\1\\s*\\)",
+                m => $"url(#{prefix}{m.Groups[2].Value})",
+                RegexOptions.IgnoreCase);
+
+            // Prefix href="#..." and xlink:href="#..." references
+            result = Regex.Replace(
+                result,
+                "\\b(xlink:href|href)\\s*=\\s*\"#([^\"]+)\"",
+                m => $"{m.Groups[1].Value}=\"#{prefix}{m.Groups[2].Value}\"",
+                RegexOptions.IgnoreCase);
+
+            return result;
         }
 
         /// <summary>
