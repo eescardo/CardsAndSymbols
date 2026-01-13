@@ -53,4 +53,8 @@
     <None Include="Properties\Settings.Designer.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\cards.json" />
+  </ItemGroup>
+
 </Project>

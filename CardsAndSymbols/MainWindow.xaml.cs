@@ -8,6 +8,8 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Text;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -234,8 +236,13 @@ using ProjectivePlane;
                 this.Cards = planePoints.Select(point => new CardData(point.Lines)).ToList();
 
                 // Auto-load cards if auto-save is enabled
-                if (this.AutoSaveEnabled && File.Exists(CardsFileName))
+                if (this.AutoSaveEnabled)
                 {
+                    if (!File.Exists(CardsFileName))
+                    {
+                        this.CopyDefaultCardsFromResourceToFile();
+                    }
+
                     try
                     {
                         this.LoadCardsFromFile(CardsFileName);
@@ -629,6 +636,62 @@ using ProjectivePlane;
                 var cards = JsonConvert.DeserializeObject<List<CardData>>(json);
                 this.Cards = cards ?? new List<CardData>();
             }
+        }
+
+        private void CopyDefaultCardsFromResourceToFile(string fileName = CardsFileName)
+        {
+            try
+            {
+                var assembly = Assembly.GetExecutingAssembly();
+                var resourceName = "CardsAndSymbols.Assets.cards.json";
+
+                using (var stream = assembly.GetManifestResourceStream(resourceName))
+                {
+                    if (stream == null)
+                    {
+                        // Try to find the resource by listing all resources (for debugging)
+                        var allResources = assembly.GetManifestResourceNames();
+                        var matchingResource = allResources.FirstOrDefault(r => r.EndsWith("cards.json", StringComparison.OrdinalIgnoreCase));
+
+                        if (matchingResource != null)
+                        {
+                            System.Diagnostics.Debug.WriteLine($"Found resource with different name: {matchingResource}");
+                            using (var fallbackStream = assembly.GetManifestResourceStream(matchingResource))
+                            {
+                                if (fallbackStream != null)
+                                {
+                                    using (var reader = new StreamReader(fallbackStream, Encoding.UTF8))
+                                    {
+                                        var json = reader.ReadToEnd();
+                                        File.WriteAllText(fileName, json);
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+
+                        System.Console.WriteLine($"Could not find embedded resource: {resourceName}");
+                        System.Console.WriteLine($"Available resources: {string.Join(", ", allResources)}");
+                        return;
+                    }
+
+                    using (var reader = new StreamReader(stream, Encoding.UTF8))
+                    {
+                        var json = reader.ReadToEnd();
+                        File.WriteAllText(fileName, json);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Failed to copy default cards from resource to file: {ex.Message}");
+            }
+        }
+
+        private void HandleDefaultClick(object? sender, RoutedEventArgs e)
+        {
+            this.CopyDefaultCardsFromResourceToFile(CardsFileName);
+            this.LoadCardsFromFile(CardsFileName);
         }
 
         private async void HandlePrintClick(object? sender, RoutedEventArgs e)

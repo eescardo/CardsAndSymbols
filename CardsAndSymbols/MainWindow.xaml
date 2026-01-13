@@ -25,6 +25,7 @@
             <Separator Margin="0,0,0,10"/>
 
             <Button Height="30" Margin="0,0,0,5" Click="HandleNewClick">New</Button>
+            <Button Height="30" Margin="0,0,0,5" Click="HandleDefaultClick">Default</Button>
             <Button Height="30" Margin="0,0,0,5" Click="HandleSaveClick">Save</Button>
             <Button Height="30" Margin="0,0,0,10" Click="HandleLoadClick">Load</Button>
             
