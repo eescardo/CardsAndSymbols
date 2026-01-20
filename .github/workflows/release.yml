@@ -1,0 +1,59 @@
+name: Release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  increment-version:
+    runs-on: ubuntu-latest
+    outputs:
+      new_version: ${{ steps.increment.outputs.new_version }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Read current version
+        id: version
+        run: |
+          VERSION=$(grep -oP '<Version>\K[0-9.]+' Directory.Build.props)
+          echo "current_version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Current version: $VERSION"
+      
+      - name: Auto-increment patch version
+        id: increment
+        run: |
+          VERSION="${{ steps.version.outputs.current_version }}"
+          IFS='.' read -ra ADDR <<< "$VERSION"
+          MAJOR=${ADDR[0]}
+          MINOR=${ADDR[1]}
+          PATCH=${ADDR[2]}
+          NEW_PATCH=$((PATCH + 1))
+          NEW_VERSION="$MAJOR.$MINOR.$NEW_PATCH"
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "Incremented version: $VERSION -> $NEW_VERSION"
+      
+      - name: Update version in Directory.Build.props
+        run: |
+          NEW_VERSION="${{ steps.increment.outputs.new_version }}"
+          sed -i "s/<Version>.*<\/Version>/<Version>$NEW_VERSION<\/Version>/" Directory.Build.props
+          echo "Updated Directory.Build.props to version $NEW_VERSION"
+      
+      - name: Commit version update
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add Directory.Build.props
+          git commit -m "Auto-increment version to ${{ steps.increment.outputs.new_version }}"
+          git push
+
+  build:
+    needs: increment-version
+    uses: ./.github/workflows/build.yml
+    with:
+      version: ${{ needs.increment-version.outputs.new_version }}
+      upload_to_release: true
+      artifact_retention_days: 365
+    secrets: inherit

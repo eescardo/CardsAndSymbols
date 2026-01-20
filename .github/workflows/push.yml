@@ -1,0 +1,24 @@
+name: Build on Push
+
+on:
+  push:
+    branches:
+      - master
+
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to build (leave empty to read from Directory.Build.props)'
+        required: false
+        type: string
+      upload_to_release:
+        description: 'Upload artifacts to GitHub release'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+    secrets: inherit
+

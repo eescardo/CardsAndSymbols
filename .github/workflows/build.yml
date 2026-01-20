@@ -1,0 +1,114 @@
+name: Build (Reusable)
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        description: 'Version to build (leave empty to read from Directory.Build.props)'
+        required: false
+        type: string
+      upload_to_release:
+        description: 'Upload artifacts to GitHub release'
+        required: false
+        type: boolean
+        default: false
+      artifact_retention_days:
+        description: 'Number of days to retain artifacts'
+        required: false
+        type: number
+        default: 90
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
+        include:
+          - os: macos-latest
+            runtime: osx-x64
+            name-suffix: macOS-x64
+          - os: macos-latest
+            runtime: osx-arm64
+            name-suffix: macOS-arm64
+          - os: windows-latest
+            runtime: win-x64
+            name-suffix: Windows-x64
+          - os: windows-latest
+            runtime: win-x86
+            name-suffix: Windows-x86
+          - os: windows-latest
+            runtime: win-arm64
+            name-suffix: Windows-arm64
+      fail-fast: false
+    
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      
+      - name: Determine version
+        id: version
+        run: |
+          if [ -n "${{ inputs.version }}" ]; then
+            VERSION="${{ inputs.version }}"
+            echo "Using provided version: $VERSION"
+          else
+            VERSION=$(grep -oP '<Version>\K[0-9.]+' Directory.Build.props)
+            echo "Read version from Directory.Build.props: $VERSION"
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Building version: $VERSION"
+      
+      - name: Restore dependencies
+        run: dotnet restore CardsAndSymbols.sln
+      
+      - name: Build solution
+        run: dotnet build CardsAndSymbols.sln --configuration Release --no-restore
+      
+      - name: Publish application
+        run: |
+          dotnet publish CardsAndSymbols/CardsAndSymbols.csproj \
+            --configuration Release \
+            --runtime ${{ matrix.runtime }} \
+            --self-contained true \
+            --output ./publish/${{ matrix.runtime }} \
+            -p:PublishSingleFile=true \
+            -p:IncludeNativeLibrariesForSelfExtract=true
+      
+      - name: Archive artifacts (macOS)
+        if: matrix.os == 'macos-latest'
+        run: |
+          cd publish/${{ matrix.runtime }}
+          zip -r ../../../CardsAndSymbols-${{ steps.version.outputs.version }}-${{ matrix.name-suffix }}.zip ./*
+          cd ../../..
+      
+      - name: Archive artifacts (Windows)
+        if: matrix.os == 'windows-latest'
+        run: |
+          cd publish/${{ matrix.runtime }}
+          Compress-Archive -Path * -DestinationPath ..\..\..\CardsAndSymbols-${{ steps.version.outputs.version }}-${{ matrix.name-suffix }}.zip
+          cd ..\..\..
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: CardsAndSymbols-${{ steps.version.outputs.version }}-${{ matrix.name-suffix }}
+          path: CardsAndSymbols-${{ steps.version.outputs.version }}-${{ matrix.name-suffix }}.zip
+          retention-days: ${{ inputs.artifact_retention_days }}
+      
+      - name: Upload to release
+        if: ${{ inputs.upload_to_release }}
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            CardsAndSymbols-${{ steps.version.outputs.version }}-${{ matrix.name-suffix }}.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
