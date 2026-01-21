@@ -22,7 +22,6 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [macos-latest, windows-latest]
         include:
           - os: macos-latest
             runtime: osx-x64
@@ -33,9 +32,6 @@ jobs:
           - os: windows-latest
             runtime: win-x64
             name-suffix: Windows-x64
-          - os: windows-latest
-            runtime: win-x86
-            name-suffix: Windows-x86
           - os: windows-latest
             runtime: win-arm64
             name-suffix: Windows-arm64
@@ -85,12 +81,70 @@ jobs:
             -p:PublishSingleFile=true \
             -p:IncludeNativeLibrariesForSelfExtract=true
       
+      - name: Create macOS .app bundle
+        if: matrix.os == 'macos-latest'
+        shell: bash
+        run: |
+          APP_NAME="CardsAndSymbols.app"
+          APP_BUNDLE="$APP_NAME"
+          MACOS_DIR="$APP_BUNDLE/Contents/MacOS"
+          
+          # Create .app bundle structure
+          mkdir -p "$MACOS_DIR"
+          
+          # Move all published files into Contents/MacOS
+          cp -R publish/${{ matrix.runtime }}/* "$MACOS_DIR/"
+          
+          # Find the executable (could be CardsAndSymbols or CardsAndSymbols.dll)
+          EXECUTABLE_NAME="CardsAndSymbols"
+          if [ ! -f "$MACOS_DIR/$EXECUTABLE_NAME" ] && [ -f "$MACOS_DIR/$EXECUTABLE_NAME.dll" ]; then
+            EXECUTABLE_NAME="$EXECUTABLE_NAME.dll"
+          fi
+          
+          # Create Info.plist
+          cat > "$APP_BUNDLE/Contents/Info.plist" <<EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>CFBundleName</key>
+              <string>CardsAndSymbols</string>
+              <key>CFBundleDisplayName</key>
+              <string>CardsAndSymbols</string>
+              <key>CFBundleIdentifier</key>
+              <string>com.eddyescardo.CardsAndSymbols</string>
+              <key>CFBundleVersion</key>
+              <string>${{ steps.version.outputs.version }}</string>
+              <key>CFBundleShortVersionString</key>
+              <string>${{ steps.version.outputs.version }}</string>
+              <key>CFBundlePackageType</key>
+              <string>APPL</string>
+              <key>CFBundleExecutable</key>
+              <string>$EXECUTABLE_NAME</string>
+              <key>CFBundleIconFile</key>
+              <string></string>
+              <key>LSMinimumSystemVersion</key>
+              <string>10.13</string>
+              <key>NSHighResolutionCapable</key>
+              <true/>
+          </dict>
+          </plist>
+          EOF
+          
+          # Make the executable executable
+          if [ -f "$MACOS_DIR/$EXECUTABLE_NAME" ]; then
+            chmod +x "$MACOS_DIR/$EXECUTABLE_NAME"
+          fi
+          
+          echo "Created .app bundle: $APP_BUNDLE"
+          ls -la "$APP_BUNDLE/Contents/"
+      
       - name: Archive artifacts (macOS)
         if: matrix.os == 'macos-latest'
         shell: bash
         run: |
-          cd publish/${{ matrix.runtime }}
-          zip -r ../../CardsAndSymbols-${{ steps.version.outputs.version }}-${{ matrix.name-suffix }}.zip ./*
+          # Zip the .app bundle
+          zip -r CardsAndSymbols-${{ steps.version.outputs.version }}-${{ matrix.name-suffix }}.zip CardsAndSymbols.app
       
       - name: Archive artifacts (Windows)
         if: matrix.os == 'windows-latest'
