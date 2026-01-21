@@ -98,22 +98,6 @@ jobs:
         run: |
           cd publish/${{ matrix.runtime }}
           Compress-Archive -Path * -DestinationPath ..\..\CardsAndSymbols-${{ steps.version.outputs.version }}-${{ matrix.name-suffix }}.zip
-
-      - name: Verify archive exists
-        shell: bash
-        run: |
-          echo "Checking for archive file..."
-          if [ -f "CardsAndSymbols-${{ steps.version.outputs.version }}-${{ matrix.name-suffix }}.zip" ]; then
-            echo "✓ Archive found: CardsAndSymbols-${{ steps.version.outputs.version }}-${{ matrix.name-suffix }}.zip"
-            ls -lh CardsAndSymbols-${{ steps.version.outputs.version }}-${{ matrix.name-suffix }}.zip
-          else
-            echo "✗ Archive not found!"
-            echo "Current directory: $(pwd)"
-            echo "Files in current directory:"
-            ls -la
-            echo "Files in publish directory:"
-            ls -la publish/ || echo "publish directory not found"
-          fi
       
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
