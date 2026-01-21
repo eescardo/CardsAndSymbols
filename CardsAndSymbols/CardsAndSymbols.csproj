@@ -21,8 +21,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <AvaloniaResource Include="Assets/**" Exclude="Assets/cards.json" />
-    <AvaloniaXaml Include="**/*.xaml" />
+    <AvaloniaResource Include="Assets\**" />
+    <AvaloniaXaml Include="**\*.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,7 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Images/**/*">
+    <None Update="Images\**\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -53,7 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Assets/cards.json" />
+    <EmbeddedResource Include="Assets\cards.json" />
   </ItemGroup>
 
 </Project>
