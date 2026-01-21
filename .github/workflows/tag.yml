@@ -1,0 +1,62 @@
+name: Tag Version
+
+on:
+  workflow_dispatch:
+
+jobs:
+  increment-version-and-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      
+      - name: Read current version
+        id: version
+        shell: bash
+        run: |
+          VERSION=$(sed -n 's/.*<Version>\([0-9][0-9.]*\)<\/Version>.*/\1/p' Directory.Build.props | head -1)
+          echo "current_version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Current version: $VERSION"
+      
+      - name: Auto-increment patch version
+        id: increment
+        shell: bash
+        run: |
+          VERSION="${{ steps.version.outputs.current_version }}"
+          IFS='.' read -ra ADDR <<< "$VERSION"
+          MAJOR=${ADDR[0]}
+          MINOR=${ADDR[1]}
+          PATCH=${ADDR[2]}
+          NEW_PATCH=$((PATCH + 1))
+          NEW_VERSION="$MAJOR.$MINOR.$NEW_PATCH"
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "Incremented version: $VERSION -> $NEW_VERSION"
+      
+      - name: Update version in Directory.Build.props
+        shell: bash
+        run: |
+          NEW_VERSION="${{ steps.increment.outputs.new_version }}"
+          sed -i "s/<Version>.*<\/Version>/<Version>$NEW_VERSION<\/Version>/" Directory.Build.props
+          echo "Updated Directory.Build.props to version $NEW_VERSION"
+      
+      - name: Commit version update
+        shell: bash
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add Directory.Build.props
+          git commit -m "Auto-increment version to ${{ steps.increment.outputs.new_version }}"
+          git push
+      
+      - name: Create and push tag
+        shell: bash
+        run: |
+          NEW_VERSION="${{ steps.increment.outputs.new_version }}"
+          TAG_NAME="v$NEW_VERSION"
+          git tag -a "$TAG_NAME" -m "Release $NEW_VERSION"
+          git push origin "$TAG_NAME"
+          echo "Created and pushed tag: $TAG_NAME"
+
