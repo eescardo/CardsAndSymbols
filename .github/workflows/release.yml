@@ -17,13 +17,15 @@ jobs:
       
       - name: Read current version
         id: version
+        shell: bash
         run: |
-          VERSION=$(grep -oP '<Version>\K[0-9.]+' Directory.Build.props)
+          VERSION=$(sed -n 's/.*<Version>\([0-9][0-9.]*\)<\/Version>.*/\1/p' Directory.Build.props | head -1)
           echo "current_version=$VERSION" >> $GITHUB_OUTPUT
           echo "Current version: $VERSION"
       
       - name: Auto-increment patch version
         id: increment
+        shell: bash
         run: |
           VERSION="${{ steps.version.outputs.current_version }}"
           IFS='.' read -ra ADDR <<< "$VERSION"
@@ -36,12 +38,14 @@ jobs:
           echo "Incremented version: $VERSION -> $NEW_VERSION"
       
       - name: Update version in Directory.Build.props
+        shell: bash
         run: |
           NEW_VERSION="${{ steps.increment.outputs.new_version }}"
           sed -i "s/<Version>.*<\/Version>/<Version>$NEW_VERSION<\/Version>/" Directory.Build.props
           echo "Updated Directory.Build.props to version $NEW_VERSION"
       
       - name: Commit version update
+        shell: bash
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
