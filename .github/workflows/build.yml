@@ -52,20 +52,6 @@ jobs:
         with:
           dotnet-version: '10.0.x'
       
-      - name: Verify Assets file exists
-        shell: bash
-        run: |
-          echo "Working directory: $(pwd)"
-          echo "Checking for cards.json..."
-          if [ -f "CardsAndSymbols/Assets/cards.json" ]; then
-            echo "✓ Found: CardsAndSymbols/Assets/cards.json"
-            ls -la CardsAndSymbols/Assets/cards.json
-          else
-            echo "✗ Not found: CardsAndSymbols/Assets/cards.json"
-            echo "Files in CardsAndSymbols:"
-            ls -la CardsAndSymbols/ || echo "CardsAndSymbols directory not found"
-          fi
-      
       - name: Determine version
         id: version
         shell: bash
@@ -89,6 +75,7 @@ jobs:
         run: dotnet build CardsAndSymbols.sln --configuration Release --no-restore
       
       - name: Publish application
+        shell: bash
         run: |
           dotnet publish CardsAndSymbols/CardsAndSymbols.csproj \
             --configuration Release \
