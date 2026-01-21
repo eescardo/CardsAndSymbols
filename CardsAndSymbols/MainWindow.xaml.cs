@@ -644,10 +644,19 @@ using ProjectivePlane;
             {
                 var assembly = Assembly.GetExecutingAssembly();
                 var resourceName = "CardsAndSymbols.Assets.cards.json";
+                string? json = null;
 
+                // Strategy 1: Try embedded resource first
                 using (var stream = assembly.GetManifestResourceStream(resourceName))
                 {
-                    if (stream == null)
+                    if (stream != null)
+                    {
+                        using (var reader = new StreamReader(stream, Encoding.UTF8))
+                        {
+                            json = reader.ReadToEnd();
+                        }
+                    }
+                    else
                     {
                         // Try to find the resource by listing all resources (for debugging)
                         var allResources = assembly.GetManifestResourceNames();
@@ -662,29 +671,66 @@ using ProjectivePlane;
                                 {
                                     using (var reader = new StreamReader(fallbackStream, Encoding.UTF8))
                                     {
-                                        var json = reader.ReadToEnd();
-                                        File.WriteAllText(fileName, json);
-                                        return;
+                                        json = reader.ReadToEnd();
                                     }
                                 }
                             }
                         }
 
-                        System.Console.WriteLine($"Could not find embedded resource: {resourceName}");
-                        System.Console.WriteLine($"Available resources: {string.Join(", ", allResources)}");
-                        return;
+                        if (json == null)
+                        {
+                            System.Console.WriteLine($"WARNING: Could not find embedded resource: {resourceName}");
+                            System.Console.WriteLine($"Available resources: {string.Join(", ", allResources)}");
+                            System.Console.WriteLine("Attempting file-based fallback...");
+                        }
+                    }
+                }
+
+                // Strategy 2: If embedded resource failed, try file-based lookup within app bundle
+                if (json == null)
+                {
+                    var baseDir = AppContext.BaseDirectory;
+                    var possiblePaths = new[]
+                    {
+                        Path.Combine(baseDir, "cards.json"), // Same directory as executable
+                        Path.Combine(baseDir, "Assets", "cards.json"), // Assets subdirectory
+                        Path.Combine(baseDir, "..", "Resources", "Assets", "cards.json"), // macOS bundle Resources
+                        Path.Combine(baseDir, "..", "..", "Resources", "Assets", "cards.json"), // Alternative bundle path
+                    };
+
+                    foreach (var path in possiblePaths)
+                    {
+                        var fullPath = Path.GetFullPath(path);
+                        if (File.Exists(fullPath))
+                        {
+                            System.Console.WriteLine($"Found cards.json at: {fullPath}");
+                            json = File.ReadAllText(fullPath, Encoding.UTF8);
+                            break;
+                        }
                     }
 
-                    using (var reader = new StreamReader(stream, Encoding.UTF8))
+                    if (json == null)
                     {
-                        var json = reader.ReadToEnd();
-                        File.WriteAllText(fileName, json);
+                        System.Console.WriteLine($"ERROR: Could not find cards.json in any expected location:");
+                        foreach (var path in possiblePaths)
+                        {
+                            System.Console.WriteLine($"  - {Path.GetFullPath(path)}");
+                        }
+                        return;
                     }
+                }
+
+                // Write the JSON to the target file
+                if (json != null)
+                {
+                    File.WriteAllText(fileName, json, Encoding.UTF8);
                 }
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Failed to copy default cards from resource to file: {ex.Message}");
+                System.Console.WriteLine($"ERROR: Exception while copying default cards: {ex.Message}");
+                System.Console.WriteLine($"Stack trace: {ex.StackTrace}");
             }
         }
 
