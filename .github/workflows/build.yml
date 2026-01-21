@@ -78,6 +78,7 @@ jobs:
             --runtime ${{ matrix.runtime }} \
             --self-contained true \
             --output ./publish/${{ matrix.runtime }} \
+            -p:UseAppHost=true \
             -p:PublishSingleFile=true \
             -p:IncludeNativeLibrariesForSelfExtract=true
       
@@ -88,17 +89,22 @@ jobs:
           APP_NAME="CardsAndSymbols.app"
           APP_BUNDLE="$APP_NAME"
           MACOS_DIR="$APP_BUNDLE/Contents/MacOS"
+          RESOURCES_DIR="$APP_BUNDLE/Contents/Resources"
           
           # Create .app bundle structure
           mkdir -p "$MACOS_DIR"
+          mkdir -p "$RESOURCES_DIR"
           
           # Move all published files into Contents/MacOS
           cp -R publish/${{ matrix.runtime }}/* "$MACOS_DIR/"
           
-          # Find the executable (could be CardsAndSymbols or CardsAndSymbols.dll)
+          # For a runnable .app, CFBundleExecutable must be a native Mach-O executable (apphost).
           EXECUTABLE_NAME="CardsAndSymbols"
-          if [ ! -f "$MACOS_DIR/$EXECUTABLE_NAME" ] && [ -f "$MACOS_DIR/$EXECUTABLE_NAME.dll" ]; then
-            EXECUTABLE_NAME="$EXECUTABLE_NAME.dll"
+          if [ ! -f "$MACOS_DIR/$EXECUTABLE_NAME" ]; then
+            echo "ERROR: Expected executable not found: $MACOS_DIR/$EXECUTABLE_NAME"
+            echo "Contents of $MACOS_DIR:"
+            ls -la "$MACOS_DIR"
+            exit 1
           fi
           
           # Create Info.plist
@@ -131,10 +137,12 @@ jobs:
           </plist>
           EOF
           
-          # Make the executable executable
-          if [ -f "$MACOS_DIR/$EXECUTABLE_NAME" ]; then
-            chmod +x "$MACOS_DIR/$EXECUTABLE_NAME"
-          fi
+          # Ensure executable bit is set
+          chmod +x "$MACOS_DIR/$EXECUTABLE_NAME"
+
+          # Ad-hoc sign to avoid some "damaged" / Gatekeeper issues when users unzip/download.
+          # Note: for a smooth end-user experience, proper signing + notarization is still recommended.
+          codesign --force --deep --sign - "$APP_BUNDLE" || true
           
           echo "Created .app bundle: $APP_BUNDLE"
           ls -la "$APP_BUNDLE/Contents/"
