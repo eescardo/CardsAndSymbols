@@ -692,10 +692,8 @@ using ProjectivePlane;
                     var baseDir = AppContext.BaseDirectory;
                     var possiblePaths = new[]
                     {
-                        Path.Combine(baseDir, "cards.json"), // Same directory as executable
                         Path.Combine(baseDir, "Assets", "cards.json"), // Assets subdirectory
                         Path.Combine(baseDir, "..", "Resources", "Assets", "cards.json"), // macOS bundle Resources
-                        Path.Combine(baseDir, "..", "..", "Resources", "Assets", "cards.json"), // Alternative bundle path
                     };
 
                     foreach (var path in possiblePaths)

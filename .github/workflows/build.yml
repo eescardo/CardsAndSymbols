@@ -119,7 +119,7 @@ jobs:
             cp -R "$PUBLISH_DIR/runtimes" "$MACOS_DIR/"
           fi
           
-          # Move Images directory to Resources
+          # Move Images directory to Resources (but NOT to MacOS yet)
           if [ -d "$PUBLISH_DIR/Images" ]; then
             cp -R "$PUBLISH_DIR/Images" "$RESOURCES_DIR/"
           fi
@@ -129,23 +129,39 @@ jobs:
             cp -R "$PUBLISH_DIR/LatoFont" "$RESOURCES_DIR/"
           fi
           
-          # Copy cards.json to Resources and MacOS directories
-          # Note: Embedded resources don't work reliably in single-file published apps,
-          # so we provide cards.json as a file that the app can access
-          if [ -f "$PUBLISH_DIR/Assets/cards.json" ]; then
+          # Copy cards.json from source project (it's embedded, so not in publish output)
+          CARDS_JSON_SOURCE="CardsAndSymbols/Assets/cards.json"
+          if [ -f "$CARDS_JSON_SOURCE" ]; then
             mkdir -p "$RESOURCES_DIR/Assets"
-            cp "$PUBLISH_DIR/Assets/cards.json" "$RESOURCES_DIR/Assets/"
+            cp "$CARDS_JSON_SOURCE" "$RESOURCES_DIR/Assets/"
             # Also copy to MacOS so it's accessible from AppContext.BaseDirectory
-            # The app code looks for cards.json in the current directory (which is MacOS/)
-            cp "$PUBLISH_DIR/Assets/cards.json" "$MACOS_DIR/cards.json"
+            cp "$CARDS_JSON_SOURCE" "$MACOS_DIR/cards.json"
+            echo "Copied cards.json to Resources/Assets/ and MacOS/"
+          else
+            echo "WARNING: cards.json not found at $CARDS_JSON_SOURCE"
           fi
-          
-          # Also create a symlink from MacOS/Images to Resources/Images so the app can find it
-          # (since the app looks for Images relative to AppContext.BaseDirectory which is MacOS/)
+
+          # Create symlink from MacOS/Images to Resources/Images
+          # Remove Images if it exists as a directory (from publish output) before creating symlink
+          if [ -d "$MACOS_DIR/Images" ] && [ ! -L "$MACOS_DIR/Images" ]; then
+            echo "Removing existing Images directory from MacOS before creating symlink"
+            rm -rf "$MACOS_DIR/Images"
+          fi
+
           if [ -d "$RESOURCES_DIR/Images" ]; then
-            ln -s ../Resources/Images "$MACOS_DIR/Images"
+            ln -sf ../Resources/Images "$MACOS_DIR/Images"
+            echo "Created symlink: MacOS/Images -> Resources/Images"
+            # Verify symlink was created
+            if [ -L "$MACOS_DIR/Images" ]; then
+              echo "Symlink verified: $(readlink "$MACOS_DIR/Images")"
+            else
+              echo "ERROR: Failed to create symlink"
+              exit 1
+            fi
+          else
+            echo "WARNING: Resources/Images directory not found, cannot create symlink"
           fi
-          
+
           # Copy and process Info.plist from project
           INFO_PLIST_SOURCE="CardsAndSymbols/Assets/macOS/Info.plist"
           if [ ! -f "$INFO_PLIST_SOURCE" ]; then
@@ -158,7 +174,7 @@ jobs:
           # Ad-hoc sign to avoid some "damaged" / Gatekeeper issues when users unzip/download.
           # Note: for a smooth end-user experience, proper signing + notarization is still recommended.
           codesign --force --deep --sign - "$APP_BUNDLE" || true
-          
+
           echo "Created .app bundle: $APP_BUNDLE"
           echo "Contents structure:"
           ls -la "$APP_BUNDLE/Contents/"
@@ -166,7 +182,7 @@ jobs:
           ls -la "$MACOS_DIR/" | head -20
           echo "Resources contents:"
           ls -la "$RESOURCES_DIR/"
-      
+
       - name: Archive artifacts (macOS)
         if: matrix.os == 'macos-latest'
         shell: bash
