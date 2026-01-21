@@ -1,0 +1,5117 @@
+[
+  {
+    "Symbols": [
+      {
+        "ImageId": "14",
+        "Size": 1,
+        "OffsetX": 77.82470615901342,
+        "OffsetY": 46.959189699671185,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "21",
+        "Size": 4,
+        "OffsetX": 41.98948363848659,
+        "OffsetY": -40.99364346938596,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "7",
+        "Size": 2,
+        "OffsetX": -13.715004959602956,
+        "OffsetY": -88.69208899717377,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "0",
+        "Size": 1,
+        "OffsetX": 96.55678728763928,
+        "OffsetY": 6.135369643544173,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "28",
+        "Size": 3,
+        "OffsetX": -57.79077673773733,
+        "OffsetY": 61.535901996172335,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "42",
+        "Size": 1,
+        "OffsetX": -39.811429178591915,
+        "OffsetY": 1.492380786011715,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "49",
+        "Size": 4,
+        "OffsetX": 11.208725993488533,
+        "OffsetY": 52.788334569175646,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "35",
+        "Size": 4,
+        "OffsetX": -61.097927336389354,
+        "OffsetY": -46.051921406482215,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "1",
+        "Size": 2,
+        "OffsetX": 38.4153310328392,
+        "OffsetY": 67.25637242100363,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "50",
+        "Size": 4,
+        "OffsetX": -38.1396851807161,
+        "OffsetY": 45.61638902312627,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "44",
+        "Size": 2,
+        "OffsetX": -70.6139355707083,
+        "OffsetY": -24.515168968841724,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "26",
+        "Size": 3,
+        "OffsetX": 65.05083270918793,
+        "OffsetY": 2.7233333217320776,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "7",
+        "Size": 1,
+        "OffsetX": 24.151028820286353,
+        "OffsetY": -87.98173091734584,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "20",
+        "Size": 1,
+        "OffsetX": -50.576898617303094,
+        "OffsetY": -71.53733578105643,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "38",
+        "Size": 3,
+        "OffsetX": -6.578306460824317,
+        "OffsetY": -34.21670760841147,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "32",
+        "Size": 1,
+        "OffsetX": 70.89883575839006,
+        "OffsetY": -58.845170132698556,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "29",
+        "Size": 2,
+        "OffsetX": 38.23055202296938,
+        "OffsetY": -88.18962289011272,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "2",
+        "Size": 2,
+        "OffsetX": 58.91634851006357,
+        "OffsetY": 50.01242502559495,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "19",
+        "Size": 1,
+        "OffsetX": 2.280610586390311,
+        "OffsetY": 82.13478475729316,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "51",
+        "Size": 3,
+        "OffsetX": -59.946789605184875,
+        "OffsetY": -48.50101497011535,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "41",
+        "Size": 4,
+        "OffsetX": -14.009164465411093,
+        "OffsetY": 17.977314422708112,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "7",
+        "Size": 2,
+        "OffsetX": -83.24631827659586,
+        "OffsetY": 23.043733638618566,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "24",
+        "Size": 3,
+        "OffsetX": 70.57819923202214,
+        "OffsetY": -16.54571629941681,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "46",
+        "Size": 1,
+        "OffsetX": 9.262021117274553,
+        "OffsetY": -49.78164678053927,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "48",
+        "Size": 2,
+        "OffsetX": -10.217760488741618,
+        "OffsetY": -90.35875599669873,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "52",
+        "Size": 4,
+        "OffsetX": -28.358643877606323,
+        "OffsetY": 55.61952151706539,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "7",
+        "Size": 4,
+        "OffsetX": -48.63633918158765,
+        "OffsetY": -44.468182916170875,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "22",
+        "Size": 3,
+        "OffsetX": 50.823842005188354,
+        "OffsetY": -68.72143962203018,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "37",
+        "Size": 3,
+        "OffsetX": 83.88375354779117,
+        "OffsetY": -4.66506906202857,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "3",
+        "Size": 2,
+        "OffsetX": 59.09983360871387,
+        "OffsetY": 51.5893081849889,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "18",
+        "Size": 3,
+        "OffsetX": 20.572401424979716,
+        "OffsetY": -20.436285909480553,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "33",
+        "Size": 1,
+        "OffsetX": -89.6841659085975,
+        "OffsetY": 7.037008531500813,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "40",
+        "Size": 4,
+        "OffsetX": 0.1339389508576403,
+        "OffsetY": -69.80760233441856,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "53",
+        "Size": 2,
+        "OffsetX": 76.3445440082319,
+        "OffsetY": -39.082992388750355,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "30",
+        "Size": 3,
+        "OffsetX": 75.57143195856465,
+        "OffsetY": 31.017702692426266,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "17",
+        "Size": 1,
+        "OffsetX": -25.10833502870892,
+        "OffsetY": 81.36124792441787,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "43",
+        "Size": 4,
+        "OffsetX": -58.57738933296272,
+        "OffsetY": 12.556738094790028,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "4",
+        "Size": 1,
+        "OffsetX": -62.41352396028998,
+        "OffsetY": -52.303413316505136,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "27",
+        "Size": 2,
+        "OffsetX": 22.141860910994417,
+        "OffsetY": 69.19629302925722,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "7",
+        "Size": 3,
+        "OffsetX": 20.78279968322686,
+        "OffsetY": 8.213308535949027,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "45",
+        "Size": 3,
+        "OffsetX": -54.834676456221516,
+        "OffsetY": -41.23429956616782,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "54",
+        "Size": 1,
+        "OffsetX": -17.825345468579005,
+        "OffsetY": 75.71510371793262,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "34",
+        "Size": 2,
+        "OffsetX": 36.050974480832046,
+        "OffsetY": 65.5520356592604,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "16",
+        "Size": 3,
+        "OffsetX": -58.892335810065816,
+        "OffsetY": 33.32600806015701,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "25",
+        "Size": 3,
+        "OffsetX": 23.099845543431698,
+        "OffsetY": -79.3623550485394,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "36",
+        "Size": 3,
+        "OffsetX": 75.99331337388146,
+        "OffsetY": 19.171736709767274,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "5",
+        "Size": 3,
+        "OffsetX": 9.457085470944925,
+        "OffsetY": 1.0038620127554991,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "7",
+        "Size": 1,
+        "OffsetX": 70.64927054497235,
+        "OffsetY": -33.19090860431928,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "31",
+        "Size": 2,
+        "OffsetX": 80.20542454925561,
+        "OffsetY": -4.528603048312458,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "15",
+        "Size": 1,
+        "OffsetX": -37.345757504878556,
+        "OffsetY": -73.87355061327338,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "39",
+        "Size": 2,
+        "OffsetX": 77.71566379943043,
+        "OffsetY": 36.73875288752666,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "23",
+        "Size": 4,
+        "OffsetX": 8.15002821817507,
+        "OffsetY": 59.40102721810776,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "7",
+        "Size": 1,
+        "OffsetX": 20.89046413981448,
+        "OffsetY": -87.73885659233447,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "55",
+        "Size": 4,
+        "OffsetX": 17.030675862122227,
+        "OffsetY": -46.814582419489255,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "47",
+        "Size": 1,
+        "OffsetX": -68.42598757716141,
+        "OffsetY": 50.695635953369525,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "6",
+        "Size": 4,
+        "OffsetX": -68.00733234162966,
+        "OffsetY": -11.739427429560143,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "22",
+        "Size": 4,
+        "OffsetX": -10.361646112179358,
+        "OffsetY": 70.18616121801226,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "36",
+        "Size": 2,
+        "OffsetX": 86.3155964466668,
+        "OffsetY": -20.115751004351516,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "50",
+        "Size": 3,
+        "OffsetX": 45.2008485935618,
+        "OffsetY": -63.846177687904614,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "43",
+        "Size": 1,
+        "OffsetX": -8.412000716494875,
+        "OffsetY": -88.56894348897195,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "15",
+        "Size": 1,
+        "OffsetX": -70.87016117424632,
+        "OffsetY": -47.311654092242065,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "29",
+        "Size": 4,
+        "OffsetX": -1.1467394786384943,
+        "OffsetY": -17.07231308708976,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "0",
+        "Size": 2,
+        "OffsetX": -81.06457977281853,
+        "OffsetY": 19.194128292034485,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "8",
+        "Size": 3,
+        "OffsetX": 62.15945074761059,
+        "OffsetY": 41.818641732603744,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "45",
+        "Size": 1,
+        "OffsetX": 33.28613570229319,
+        "OffsetY": 81.18777948769092,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "8",
+        "Size": 2,
+        "OffsetX": 12.711943226408358,
+        "OffsetY": 19.86843873406308,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "33",
+        "Size": 2,
+        "OffsetX": 71.61068360440326,
+        "OffsetY": 40.96720577043057,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "27",
+        "Size": 3,
+        "OffsetX": 71.68398328882185,
+        "OffsetY": -25.396785236990976,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "39",
+        "Size": 2,
+        "OffsetX": -17.35843640762378,
+        "OffsetY": 91.31758870229751,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "1",
+        "Size": 4,
+        "OffsetX": -71.62789279706891,
+        "OffsetY": 26.738827318498654,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "14",
+        "Size": 1,
+        "OffsetX": -80.87181118796568,
+        "OffsetY": -51.09036638604846,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "51",
+        "Size": 4,
+        "OffsetX": -11.551012016615628,
+        "OffsetY": -62.809708810164416,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "8",
+        "Size": 2,
+        "OffsetX": -44.97346106627908,
+        "OffsetY": 64.70043269497837,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "2",
+        "Size": 2,
+        "OffsetX": -4.636089885272417,
+        "OffsetY": -3.407475401071557,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "20",
+        "Size": 1,
+        "OffsetX": -65.09560596811689,
+        "OffsetY": -52.232616272010645,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "52",
+        "Size": 4,
+        "OffsetX": 57.693683853583735,
+        "OffsetY": -35.786946447393724,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "47",
+        "Size": 1,
+        "OffsetX": 85.02664751313243,
+        "OffsetY": 31.015478747911825,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "35",
+        "Size": 4,
+        "OffsetX": -73.25752917410023,
+        "OffsetY": 3.3559603945951384,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "30",
+        "Size": 2,
+        "OffsetX": -3.14898189686755,
+        "OffsetY": -80.34278522612153,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "25",
+        "Size": 3,
+        "OffsetX": 34.09951706340751,
+        "OffsetY": 65.53484605961496,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "3",
+        "Size": 1,
+        "OffsetX": -40.47569442097293,
+        "OffsetY": 83.13260556617328,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "42",
+        "Size": 1,
+        "OffsetX": -22.911552970478347,
+        "OffsetY": 11.930653960378779,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "53",
+        "Size": 3,
+        "OffsetX": 83.81275015709491,
+        "OffsetY": -0.9882744408026438,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "34",
+        "Size": 1,
+        "OffsetX": 6.906436755699233,
+        "OffsetY": -92.22211774003148,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "23",
+        "Size": 3,
+        "OffsetX": 50.50756720058105,
+        "OffsetY": -62.0458291813932,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "38",
+        "Size": 4,
+        "OffsetX": -45.56832110253472,
+        "OffsetY": -44.04470553326509,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "8",
+        "Size": 4,
+        "OffsetX": 23.811594149376678,
+        "OffsetY": 58.921748782184615,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "19",
+        "Size": 2,
+        "OffsetX": -75.29566768717108,
+        "OffsetY": 27.323394177469766,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "54",
+        "Size": 3,
+        "OffsetX": 12.624603159349277,
+        "OffsetY": 5.202456602356773,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "18",
+        "Size": 4,
+        "OffsetX": -12.449125349992247,
+        "OffsetY": -62.11039529973322,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "44",
+        "Size": 2,
+        "OffsetX": 63.42505852627498,
+        "OffsetY": 70.37209526549428,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "8",
+        "Size": 3,
+        "OffsetX": 80.47914804191721,
+        "OffsetY": -0.5511659026346942,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "41",
+        "Size": 1,
+        "OffsetX": -79.40767379294027,
+        "OffsetY": -40.42082461911073,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "21",
+        "Size": 2,
+        "OffsetX": 66.94885552435454,
+        "OffsetY": -66.99439469345998,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "4",
+        "Size": 3,
+        "OffsetX": -14.401698125777827,
+        "OffsetY": 69.52396563838028,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "31",
+        "Size": 2,
+        "OffsetX": -73.91124608769572,
+        "OffsetY": 25.297828624404175,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "55",
+        "Size": 4,
+        "OffsetX": 77.57804576735754,
+        "OffsetY": 3.3990344413212297,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "28",
+        "Size": 1,
+        "OffsetX": -69.66192614682281,
+        "OffsetY": -32.45215290329621,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "26",
+        "Size": 1,
+        "OffsetX": -2.283092389938176,
+        "OffsetY": -11.697192244756899,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "37",
+        "Size": 3,
+        "OffsetX": -18.225558635207488,
+        "OffsetY": -68.12603601813647,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "46",
+        "Size": 1,
+        "OffsetX": 33.076877981827025,
+        "OffsetY": -94.95912170064844,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "8",
+        "Size": 3,
+        "OffsetX": -73.87735273401613,
+        "OffsetY": 28.38374377083491,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "5",
+        "Size": 4,
+        "OffsetX": -1.9697851789324266,
+        "OffsetY": 63.017286900961366,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "17",
+        "Size": 2,
+        "OffsetX": 54.336433745340365,
+        "OffsetY": -55.08339431206427,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "49",
+        "Size": 2,
+        "OffsetX": 75.38465643378261,
+        "OffsetY": 47.699240442219775,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "48",
+        "Size": 1,
+        "OffsetX": -81.58577399579949,
+        "OffsetY": -8.482406000428824,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "16",
+        "Size": 2,
+        "OffsetX": 12.233733954778938,
+        "OffsetY": 2.1411288771405452,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "32",
+        "Size": 2,
+        "OffsetX": 26.112656064682533,
+        "OffsetY": 73.06692847250048,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "6",
+        "Size": 2,
+        "OffsetX": 41.410028052469386,
+        "OffsetY": -80.30137637432604,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "40",
+        "Size": 3,
+        "OffsetX": 68.63442572715915,
+        "OffsetY": -17.23421315333075,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "24",
+        "Size": 4,
+        "OffsetX": -24.931302806902746,
+        "OffsetY": -53.003978417351334,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "8",
+        "Size": 3,
+        "OffsetX": -47.790418058711296,
+        "OffsetY": 46.426059631858095,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "23",
+        "Size": 3,
+        "OffsetX": -69.82000562585519,
+        "OffsetY": 28.17147770099978,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "30",
+        "Size": 1,
+        "OffsetX": -88.0614558775167,
+        "OffsetY": -28.12908920352312,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "37",
+        "Size": 4,
+        "OffsetX": 67.115350728778,
+        "OffsetY": -9.09999519410307,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "9",
+        "Size": 4,
+        "OffsetX": -30.491834593181057,
+        "OffsetY": -49.935756398807875,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "51",
+        "Size": 3,
+        "OffsetX": 8.757221302493715,
+        "OffsetY": 64.03348917714312,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "0",
+        "Size": 1,
+        "OffsetX": -46.90518182383495,
+        "OffsetY": 78.5720305623759,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "44",
+        "Size": 1,
+        "OffsetX": 67.39398424100963,
+        "OffsetY": 50.12058336194094,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "16",
+        "Size": 1,
+        "OffsetX": 38.54674093208603,
+        "OffsetY": -82.62591374423434,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "34",
+        "Size": 2,
+        "OffsetX": 64.15025242352448,
+        "OffsetY": 56.954429697216696,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "40",
+        "Size": 2,
+        "OffsetX": 2.909311340365292,
+        "OffsetY": -85.20221125941157,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "1",
+        "Size": 2,
+        "OffsetX": -77.82286520220511,
+        "OffsetY": 29.66151677825266,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "9",
+        "Size": 2,
+        "OffsetX": 56.46386742511773,
+        "OffsetY": -61.08721070331861,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "46",
+        "Size": 3,
+        "OffsetX": 83.83537798742596,
+        "OffsetY": 1.805510672949547,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "52",
+        "Size": 3,
+        "OffsetX": -5.573604263107186,
+        "OffsetY": 66.30580789042934,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "15",
+        "Size": 1,
+        "OffsetX": -55.96716290788572,
+        "OffsetY": -72.63664678763924,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "21",
+        "Size": 4,
+        "OffsetX": -16.408357835394764,
+        "OffsetY": -13.072161200581192,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "26",
+        "Size": 4,
+        "OffsetX": 37.30466340298618,
+        "OffsetY": 54.40815308950295,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "53",
+        "Size": 3,
+        "OffsetX": -58.67736133857585,
+        "OffsetY": 18.953389936077695,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "31",
+        "Size": 1,
+        "OffsetX": -60.45097889200619,
+        "OffsetY": -46.08517447498076,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "9",
+        "Size": 3,
+        "OffsetX": 27.96210680369475,
+        "OffsetY": -65.22743971888696,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "14",
+        "Size": 1,
+        "OffsetX": -37.52307394463296,
+        "OffsetY": 79.39771373545634,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "36",
+        "Size": 3,
+        "OffsetX": 76.62796176669501,
+        "OffsetY": -24.418412246699752,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "2",
+        "Size": 1,
+        "OffsetX": -8.200295058603622,
+        "OffsetY": -22.724275358497376,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "48",
+        "Size": 1,
+        "OffsetX": -31.926627323056422,
+        "OffsetY": -89.61157098726162,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "54",
+        "Size": 3,
+        "OffsetX": -70.85936787883134,
+        "OffsetY": 30.271995749794698,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "3",
+        "Size": 1,
+        "OffsetX": 58.03177363644826,
+        "OffsetY": -62.1682864183431,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "43",
+        "Size": 1,
+        "OffsetX": -16.687888948224426,
+        "OffsetY": 18.882095085306055,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "28",
+        "Size": 1,
+        "OffsetX": -79.91531999717587,
+        "OffsetY": -31.47921114216559,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "24",
+        "Size": 4,
+        "OffsetX": 55.944028671589564,
+        "OffsetY": 40.86473089650121,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "39",
+        "Size": 3,
+        "OffsetX": -7.983537407800046,
+        "OffsetY": 76.12964124899477,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "20",
+        "Size": 2,
+        "OffsetX": 81.17609386489401,
+        "OffsetY": -20.062183467316203,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "9",
+        "Size": 4,
+        "OffsetX": -15.899417304334762,
+        "OffsetY": -55.77484374965201,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "45",
+        "Size": 4,
+        "OffsetX": 4.248515911437529,
+        "OffsetY": 0.27984772708841454,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "19",
+        "Size": 1,
+        "OffsetX": -69.26283754232189,
+        "OffsetY": 26.087645762331565,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "55",
+        "Size": 3,
+        "OffsetX": 58.06363307050712,
+        "OffsetY": -70.37281212511733,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "32",
+        "Size": 3,
+        "OffsetX": -35.01391357936248,
+        "OffsetY": 76.8108454376869,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "4",
+        "Size": 2,
+        "OffsetX": 86.62944747181807,
+        "OffsetY": 3.960218450519327,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "9",
+        "Size": 2,
+        "OffsetX": 43.09542367523264,
+        "OffsetY": 72.45701788083926,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "35",
+        "Size": 2,
+        "OffsetX": -4.769299610569789,
+        "OffsetY": -82.07085547127802,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "22",
+        "Size": 3,
+        "OffsetX": -76.4830458512143,
+        "OffsetY": -37.18534980673345,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "29",
+        "Size": 3,
+        "OffsetX": 77.53506613912,
+        "OffsetY": 10.633206276486717,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "38",
+        "Size": 4,
+        "OffsetX": 3.8043100429561543,
+        "OffsetY": 69.78081123019197,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "18",
+        "Size": 1,
+        "OffsetX": -62.564459918748994,
+        "OffsetY": 47.20911365148912,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "47",
+        "Size": 4,
+        "OffsetX": -58.124595886048844,
+        "OffsetY": -20.429380005208806,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "9",
+        "Size": 2,
+        "OffsetX": -4.233422783242355,
+        "OffsetY": -86.18454644262867,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "5",
+        "Size": 1,
+        "OffsetX": 12.890552304115882,
+        "OffsetY": -4.232144502065811,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "49",
+        "Size": 1,
+        "OffsetX": 65.11096743783082,
+        "OffsetY": 60.41852126879674,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "27",
+        "Size": 3,
+        "OffsetX": 52.32380445880717,
+        "OffsetY": -56.067234128818164,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "33",
+        "Size": 1,
+        "OffsetX": -50.580312371269,
+        "OffsetY": -75.4705820488017,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "6",
+        "Size": 1,
+        "OffsetX": 67.66940636449303,
+        "OffsetY": -54.95761838022672,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "42",
+        "Size": 2,
+        "OffsetX": -43.5628651759661,
+        "OffsetY": 65.62249430773132,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "41",
+        "Size": 4,
+        "OffsetX": -56.32480057478771,
+        "OffsetY": -12.06498227172478,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "9",
+        "Size": 3,
+        "OffsetX": 12.920046795074198,
+        "OffsetY": -73.36122796433965,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "50",
+        "Size": 2,
+        "OffsetX": 15.679466954881217,
+        "OffsetY": 85.33522959724036,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "17",
+        "Size": 1,
+        "OffsetX": -1.6797884019680778,
+        "OffsetY": 33.07543527749922,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "25",
+        "Size": 4,
+        "OffsetX": 63.490214159809824,
+        "OffsetY": 14.614444812699741,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "24",
+        "Size": 4,
+        "OffsetX": -49.56659758838719,
+        "OffsetY": 44.53561453129289,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "0",
+        "Size": 2,
+        "OffsetX": -55.58449939090116,
+        "OffsetY": -69.24219859809371,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "10",
+        "Size": 2,
+        "OffsetX": -70.12535561768036,
+        "OffsetY": -1.7709466416716282,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "45",
+        "Size": 1,
+        "OffsetX": 92.91598623839498,
+        "OffsetY": -19.047970488884594,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "52",
+        "Size": 4,
+        "OffsetX": 21.123201857314037,
+        "OffsetY": -60.55369496215513,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "17",
+        "Size": 1,
+        "OffsetX": 71.69115621694843,
+        "OffsetY": 52.485948765480586,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "31",
+        "Size": 2,
+        "OffsetX": 8.395899525541989,
+        "OffsetY": 82.32176625127275,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "38",
+        "Size": 3,
+        "OffsetX": 31.956444807130897,
+        "OffsetY": 22.36923393575187,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "53",
+        "Size": 4,
+        "OffsetX": 9.3756590780059,
+        "OffsetY": -23.43434403042626,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "1",
+        "Size": 2,
+        "OffsetX": 90.02616145187653,
+        "OffsetY": -4.7634095431721875,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "28",
+        "Size": 2,
+        "OffsetX": -74.63646512271829,
+        "OffsetY": -15.70329022679547,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "47",
+        "Size": 1,
+        "OffsetX": -13.835523729973666,
+        "OffsetY": 87.95898392499957,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "16",
+        "Size": 3,
+        "OffsetX": -49.02006622942799,
+        "OffsetY": 46.35240641535337,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "10",
+        "Size": 3,
+        "OffsetX": 47.890529571691346,
+        "OffsetY": 60.96292262612175,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "22",
+        "Size": 1,
+        "OffsetX": 67.49414277075029,
+        "OffsetY": -65.05896553412168,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "41",
+        "Size": 2,
+        "OffsetX": -29.56021426469331,
+        "OffsetY": -82.31314804192175,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "27",
+        "Size": 3,
+        "OffsetX": 60.07281919193459,
+        "OffsetY": -49.06421671348696,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "10",
+        "Size": 3,
+        "OffsetX": 0.10764703190090152,
+        "OffsetY": -77.15363482098316,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "54",
+        "Size": 2,
+        "OffsetX": -73.54296271522793,
+        "OffsetY": 22.4193892175393,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "15",
+        "Size": 4,
+        "OffsetX": -4.940231394223222,
+        "OffsetY": 66.62284834934475,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "2",
+        "Size": 1,
+        "OffsetX": 92.89057523193402,
+        "OffsetY": -6.954301358440126,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "42",
+        "Size": 2,
+        "OffsetX": 16.604968616262525,
+        "OffsetY": -0.1560996423797888,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "32",
+        "Size": 2,
+        "OffsetX": 68.71079689845848,
+        "OffsetY": 42.80158792883949,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "37",
+        "Size": 3,
+        "OffsetX": -62.0060717890698,
+        "OffsetY": -31.14019077885492,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "3",
+        "Size": 1,
+        "OffsetX": -76.31453993005746,
+        "OffsetY": 40.21812727276813,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "40",
+        "Size": 3,
+        "OffsetX": -5.19013145753427,
+        "OffsetY": -85.8057102967958,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "55",
+        "Size": 3,
+        "OffsetX": 13.203799172543023,
+        "OffsetY": 55.38001913166181,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "44",
+        "Size": 1,
+        "OffsetX": 50.32610936915148,
+        "OffsetY": 78.37326321771047,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "25",
+        "Size": 4,
+        "OffsetX": 63.56926629728371,
+        "OffsetY": 5.699863761116225,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "10",
+        "Size": 4,
+        "OffsetX": -54.44688685347482,
+        "OffsetY": -29.52330625950033,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "14",
+        "Size": 1,
+        "OffsetX": 56.865233946202046,
+        "OffsetY": -74.43508511724328,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "29",
+        "Size": 1,
+        "OffsetX": -47.663309881483706,
+        "OffsetY": 71.33551718636268,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "49",
+        "Size": 4,
+        "OffsetX": -16.547402960185686,
+        "OffsetY": 66.03109272195685,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "20",
+        "Size": 1,
+        "OffsetX": -3.5918958990754604,
+        "OffsetY": -85.59054544905496,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "36",
+        "Size": 4,
+        "OffsetX": 72.75171775323304,
+        "OffsetY": 1.6569908915671396,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "46",
+        "Size": 1,
+        "OffsetX": -74.12894707761174,
+        "OffsetY": 33.45985716642949,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "10",
+        "Size": 2,
+        "OffsetX": 45.22339965140771,
+        "OffsetY": 62.50978312027036,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "23",
+        "Size": 4,
+        "OffsetX": -55.16100560175047,
+        "OffsetY": -30.411999120990735,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "33",
+        "Size": 1,
+        "OffsetX": 10.629269693256656,
+        "OffsetY": -15.522750001922075,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "4",
+        "Size": 2,
+        "OffsetX": 47.92604213009133,
+        "OffsetY": -60.97564978709549,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "39",
+        "Size": 4,
+        "OffsetX": -32.02487840783872,
+        "OffsetY": -48.569601590945936,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "30",
+        "Size": 2,
+        "OffsetX": 23.566058753479453,
+        "OffsetY": -74.58280166244086,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "19",
+        "Size": 1,
+        "OffsetX": 23.680225468555257,
+        "OffsetY": -21.50236242118889,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "48",
+        "Size": 2,
+        "OffsetX": -80.62914200286589,
+        "OffsetY": -6.917618432596963,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "5",
+        "Size": 2,
+        "OffsetX": 74.88135282793108,
+        "OffsetY": -24.716101223063667,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "10",
+        "Size": 2,
+        "OffsetX": 9.054162503029152,
+        "OffsetY": 15.91606996626271,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "21",
+        "Size": 4,
+        "OffsetX": -27.850485047447858,
+        "OffsetY": 64.517658329179,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "50",
+        "Size": 3,
+        "OffsetX": 60.9524091177724,
+        "OffsetY": 53.731592585900344,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "6",
+        "Size": 1,
+        "OffsetX": 44.016333634655126,
+        "OffsetY": 76.39250929930247,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "10",
+        "Size": 4,
+        "OffsetX": -55.53216347934839,
+        "OffsetY": -43.68507053725282,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "35",
+        "Size": 4,
+        "OffsetX": -14.294689641522144,
+        "OffsetY": 64.77110155751771,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "34",
+        "Size": 3,
+        "OffsetX": 69.21405951679068,
+        "OffsetY": -24.540499150096185,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "43",
+        "Size": 1,
+        "OffsetX": -78.67424240362989,
+        "OffsetY": 34.32555590881162,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "18",
+        "Size": 2,
+        "OffsetX": 71.18450062334698,
+        "OffsetY": 35.08046764162829,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "51",
+        "Size": 2,
+        "OffsetX": 10.431881846255848,
+        "OffsetY": -0.07884255491727821,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "26",
+        "Size": 2,
+        "OffsetX": 27.172496083167793,
+        "OffsetY": -78.15838317670593,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "39",
+        "Size": 3,
+        "OffsetX": -69.23689716620078,
+        "OffsetY": 44.79641322479125,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "0",
+        "Size": 2,
+        "OffsetX": 84.36285122503719,
+        "OffsetY": -4.11681008428192,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "18",
+        "Size": 4,
+        "OffsetX": 29.549153702320176,
+        "OffsetY": 52.123340733399445,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "53",
+        "Size": 3,
+        "OffsetX": -78.91101362386489,
+        "OffsetY": -27.467513690668273,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "46",
+        "Size": 1,
+        "OffsetX": -32.906261854848225,
+        "OffsetY": 88.31705627255484,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "25",
+        "Size": 3,
+        "OffsetX": 56.30748622423217,
+        "OffsetY": -47.69501924633673,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "11",
+        "Size": 3,
+        "OffsetX": -8.614263876412735,
+        "OffsetY": -78.16710954370495,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "32",
+        "Size": 2,
+        "OffsetX": -3.7408409018917697,
+        "OffsetY": -7.838045717112578,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "54",
+        "Size": 4,
+        "OffsetX": -49.84035998475973,
+        "OffsetY": -25.86715685564782,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "29",
+        "Size": 2,
+        "OffsetX": 31.38622410396547,
+        "OffsetY": -78.54159487168789,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "23",
+        "Size": 3,
+        "OffsetX": -17.686171945429113,
+        "OffsetY": 62.60451429038577,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "11",
+        "Size": 4,
+        "OffsetX": 52.69867157068083,
+        "OffsetY": 43.119531490000305,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "17",
+        "Size": 1,
+        "OffsetX": -29.16789453356438,
+        "OffsetY": -84.01640269405765,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "1",
+        "Size": 2,
+        "OffsetX": 70.76816142221021,
+        "OffsetY": -29.848085245537188,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "48",
+        "Size": 1,
+        "OffsetX": -72.73386377394986,
+        "OffsetY": 48.45770032889369,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "35",
+        "Size": 2,
+        "OffsetX": 12.731221679146,
+        "OffsetY": -12.925654911670193,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "33",
+        "Size": 1,
+        "OffsetX": 32.91155864402025,
+        "OffsetY": -78.26107735152631,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "43",
+        "Size": 2,
+        "OffsetX": 17.177173197833955,
+        "OffsetY": -11.885090360420847,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "38",
+        "Size": 4,
+        "OffsetX": -62.023135810091546,
+        "OffsetY": 19.5605651740546,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "2",
+        "Size": 3,
+        "OffsetX": -16.2431088390145,
+        "OffsetY": -65.5733761203114,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "16",
+        "Size": 2,
+        "OffsetX": 72.18037319539599,
+        "OffsetY": 14.772190691414776,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "21",
+        "Size": 4,
+        "OffsetX": 19.538060294804335,
+        "OffsetY": 70.56694632335142,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "55",
+        "Size": 3,
+        "OffsetX": 72.04999486469109,
+        "OffsetY": -40.317122785855595,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "11",
+        "Size": 1,
+        "OffsetX": -77.44420137969041,
+        "OffsetY": -50.63655607906209,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "15",
+        "Size": 2,
+        "OffsetX": -39.589507042074146,
+        "OffsetY": -72.19750105927056,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "45",
+        "Size": 1,
+        "OffsetX": -36.432814657963846,
+        "OffsetY": 69.48883814087391,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "49",
+        "Size": 3,
+        "OffsetX": 32.17904584460499,
+        "OffsetY": -72.45345844027625,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "11",
+        "Size": 4,
+        "OffsetX": 9.711750261295322,
+        "OffsetY": 6.901824454647869,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "41",
+        "Size": 2,
+        "OffsetX": 83.3254614889675,
+        "OffsetY": -19.252980810020276,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "3",
+        "Size": 1,
+        "OffsetX": 81.68646473352736,
+        "OffsetY": 40.041651765111254,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "30",
+        "Size": 2,
+        "OffsetX": 32.50629739032344,
+        "OffsetY": 76.15296356643518,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "26",
+        "Size": 3,
+        "OffsetX": -77.0119919768418,
+        "OffsetY": 6.4871294580370105,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "24",
+        "Size": 2,
+        "OffsetX": 52.045974640779136,
+        "OffsetY": -77.61185721054174,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "37",
+        "Size": 4,
+        "OffsetX": -24.606457405391552,
+        "OffsetY": -57.89141530672504,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "47",
+        "Size": 1,
+        "OffsetX": 0.9248578834413284,
+        "OffsetY": -5.716334029641761,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "4",
+        "Size": 3,
+        "OffsetX": 3.4433334919165715,
+        "OffsetY": 62.37847193324018,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "11",
+        "Size": 1,
+        "OffsetX": 46.471695070275,
+        "OffsetY": 71.02110915899075,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "14",
+        "Size": 2,
+        "OffsetX": -81.63926206014551,
+        "OffsetY": -26.415295324264896,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "34",
+        "Size": 3,
+        "OffsetX": -57.773937266280456,
+        "OffsetY": 32.92843365356997,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "50",
+        "Size": 4,
+        "OffsetX": 67.80523615663769,
+        "OffsetY": -0.5225087560679853,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "22",
+        "Size": 2,
+        "OffsetX": 75.59795009326447,
+        "OffsetY": -37.35815592089641,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "5",
+        "Size": 1,
+        "OffsetX": 18.103665328054273,
+        "OffsetY": -19.786842388419668,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "20",
+        "Size": 2,
+        "OffsetX": -76.03013626843845,
+        "OffsetY": 6.449954338923408,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "42",
+        "Size": 1,
+        "OffsetX": -25.244078094025596,
+        "OffsetY": 13.223208453388835,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "11",
+        "Size": 3,
+        "OffsetX": -33.28081187191494,
+        "OffsetY": -69.77373706397053,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "40",
+        "Size": 2,
+        "OffsetX": 30.513042105237894,
+        "OffsetY": -76.28856567184172,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "51",
+        "Size": 4,
+        "OffsetX": 45.10274509364522,
+        "OffsetY": 46.85787056000961,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "31",
+        "Size": 2,
+        "OffsetX": -40.59293570734952,
+        "OffsetY": 68.46670281514723,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "44",
+        "Size": 2,
+        "OffsetX": -81.43706016185467,
+        "OffsetY": 28.205621637444324,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "28",
+        "Size": 4,
+        "OffsetX": 43.89716818419742,
+        "OffsetY": 27.946890624548324,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "36",
+        "Size": 4,
+        "OffsetX": -54.395464944914615,
+        "OffsetY": -45.74081388393542,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "19",
+        "Size": 1,
+        "OffsetX": 82.42070735213342,
+        "OffsetY": -30.3931046648606,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "6",
+        "Size": 1,
+        "OffsetX": -22.441169956502673,
+        "OffsetY": -87.03334659933563,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "11",
+        "Size": 2,
+        "OffsetX": -28.292952845851843,
+        "OffsetY": 62.93965322626027,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "52",
+        "Size": 1,
+        "OffsetX": -19.01592038058158,
+        "OffsetY": -0.4452660473113257,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "27",
+        "Size": 3,
+        "OffsetX": 29.984224585005013,
+        "OffsetY": -73.67339038962605,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "54",
+        "Size": 3,
+        "OffsetX": 11.623102895906854,
+        "OffsetY": -69.52440211129972,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "19",
+        "Size": 2,
+        "OffsetX": -57.73432911542514,
+        "OffsetY": -38.173691967718156,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "40",
+        "Size": 1,
+        "OffsetX": -16.541705010398854,
+        "OffsetY": 5.439505173817784,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "12",
+        "Size": 4,
+        "OffsetX": 35.046367405394435,
+        "OffsetY": 17.464759791010103,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "0",
+        "Size": 1,
+        "OffsetX": 64.71747288417086,
+        "OffsetY": -63.18215958006464,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "26",
+        "Size": 3,
+        "OffsetX": -65.4170235556679,
+        "OffsetY": 30.78892669095978,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "47",
+        "Size": 2,
+        "OffsetX": 85.18113878333834,
+        "OffsetY": -10.471503983366343,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "33",
+        "Size": 3,
+        "OffsetX": 2.7272100149253937,
+        "OffsetY": 77.3528954790978,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "42",
+        "Size": 4,
+        "OffsetX": 16.480371196906134,
+        "OffsetY": -71.8539848997844,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "30",
+        "Size": 3,
+        "OffsetX": -72.48644101396822,
+        "OffsetY": -18.543461967719924,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "55",
+        "Size": 2,
+        "OffsetX": 7.938017534285665,
+        "OffsetY": -2.658473807524256,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "36",
+        "Size": 3,
+        "OffsetX": 66.82826677927248,
+        "OffsetY": 43.15965980710535,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "1",
+        "Size": 2,
+        "OffsetX": 13.941681369914665,
+        "OffsetY": 72.53470658823085,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "18",
+        "Size": 1,
+        "OffsetX": -55.23117996382294,
+        "OffsetY": -62.98380168602385,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "24",
+        "Size": 4,
+        "OffsetX": -39.42145069577957,
+        "OffsetY": 37.50449861897558,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "12",
+        "Size": 3,
+        "OffsetX": 67.64298116898368,
+        "OffsetY": -25.602600666574922,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "44",
+        "Size": 1,
+        "OffsetX": 33.86402399468045,
+        "OffsetY": 81.54448585803031,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "17",
+        "Size": 2,
+        "OffsetX": 83.94560497659454,
+        "OffsetY": 26.054056109769554,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "22",
+        "Size": 2,
+        "OffsetX": 42.51871276666906,
+        "OffsetY": -66.8834880932652,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "49",
+        "Size": 4,
+        "OffsetX": 7.1527631313936375,
+        "OffsetY": -18.252379399357846,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "34",
+        "Size": 2,
+        "OffsetX": 82.82204075963381,
+        "OffsetY": -31.598938171134584,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "39",
+        "Size": 4,
+        "OffsetX": -68.11854700873981,
+        "OffsetY": -1.5232428212099904,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "2",
+        "Size": 1,
+        "OffsetX": -16.265958630400196,
+        "OffsetY": -93.82528181562444,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "12",
+        "Size": 4,
+        "OffsetX": -5.651531027118672,
+        "OffsetY": 54.14748452935166,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "50",
+        "Size": 4,
+        "OffsetX": 61.399654185781735,
+        "OffsetY": -18.467180760970844,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "31",
+        "Size": 1,
+        "OffsetX": -32.64055141775522,
+        "OffsetY": 22.10106563961493,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "3",
+        "Size": 1,
+        "OffsetX": -75.78041611549145,
+        "OffsetY": 42.046720624688184,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "27",
+        "Size": 2,
+        "OffsetX": 53.08612359083575,
+        "OffsetY": 62.46925352889778,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "12",
+        "Size": 4,
+        "OffsetX": 12.513043447440417,
+        "OffsetY": -50.26561792834017,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "46",
+        "Size": 2,
+        "OffsetX": -51.65118331823347,
+        "OffsetY": -61.40432672930581,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "16",
+        "Size": 3,
+        "OffsetX": -68.19003852485939,
+        "OffsetY": -9.536776041667935,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "35",
+        "Size": 4,
+        "OffsetX": -2.9661033395078285,
+        "OffsetY": 76.309324420043,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "28",
+        "Size": 2,
+        "OffsetX": -78.10411968377815,
+        "OffsetY": 26.619200451429744,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "48",
+        "Size": 1,
+        "OffsetX": 80.65500524781477,
+        "OffsetY": 46.1121949656783,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "4",
+        "Size": 2,
+        "OffsetX": 44.94441988660549,
+        "OffsetY": 74.3349367227648,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "25",
+        "Size": 4,
+        "OffsetX": -58.84531035655582,
+        "OffsetY": -49.763604977099774,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "38",
+        "Size": 3,
+        "OffsetX": -9.770402042321336,
+        "OffsetY": 27.61782101462693,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "15",
+        "Size": 1,
+        "OffsetX": -32.184794699807114,
+        "OffsetY": 83.58378229583255,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "51",
+        "Size": 4,
+        "OffsetX": 64.51864900987447,
+        "OffsetY": -24.784419093426266,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "12",
+        "Size": 1,
+        "OffsetX": 23.15998601117746,
+        "OffsetY": -82.660794233715,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "52",
+        "Size": 2,
+        "OffsetX": -68.6587483648687,
+        "OffsetY": -40.77854704123828,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "14",
+        "Size": 1,
+        "OffsetX": -29.908795752943,
+        "OffsetY": 81.11004033689642,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "12",
+        "Size": 1,
+        "OffsetX": -28.992236163347798,
+        "OffsetY": -83.67096174761603,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "43",
+        "Size": 2,
+        "OffsetX": 1.7769207923662815,
+        "OffsetY": 2.15442203687396,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "5",
+        "Size": 3,
+        "OffsetX": -57.335947819377644,
+        "OffsetY": 27.77812031182821,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "23",
+        "Size": 4,
+        "OffsetX": 40.68508108688774,
+        "OffsetY": -57.12438458422798,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "32",
+        "Size": 3,
+        "OffsetX": 71.44802323105722,
+        "OffsetY": 12.447930883181805,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "41",
+        "Size": 3,
+        "OffsetX": 30.01146922885054,
+        "OffsetY": 68.37029512746997,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "21",
+        "Size": 2,
+        "OffsetX": -29.8481002972785,
+        "OffsetY": 73.79541780383052,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "20",
+        "Size": 2,
+        "OffsetX": 79.38442161391868,
+        "OffsetY": 19.48632933994465,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "45",
+        "Size": 2,
+        "OffsetX": 31.502813645807972,
+        "OffsetY": 73.59401645221317,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "6",
+        "Size": 1,
+        "OffsetX": 22.657642733151953,
+        "OffsetY": 23.051110987396,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "29",
+        "Size": 1,
+        "OffsetX": -74.96545139878258,
+        "OffsetY": -43.90237596015176,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "12",
+        "Size": 4,
+        "OffsetX": 36.82216467881176,
+        "OffsetY": -53.30257741482354,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "37",
+        "Size": 4,
+        "OffsetX": -23.508695520002256,
+        "OffsetY": -61.52278857447426,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "53",
+        "Size": 3,
+        "OffsetX": -56.88740697562414,
+        "OffsetY": 19.652753192884887,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "55",
+        "Size": 3,
+        "OffsetX": -12.284806953513453,
+        "OffsetY": 20.355098271574374,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "20",
+        "Size": 2,
+        "OffsetX": 78.65582541106863,
+        "OffsetY": -42.62065866419704,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "41",
+        "Size": 2,
+        "OffsetX": 77.81350672279196,
+        "OffsetY": 18.584828268774864,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "13",
+        "Size": 4,
+        "OffsetX": 8.452877757688425,
+        "OffsetY": -60.88368571905603,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "48",
+        "Size": 2,
+        "OffsetX": -59.30933765300125,
+        "OffsetY": -49.826380517675794,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "27",
+        "Size": 2,
+        "OffsetX": -76.85955612375034,
+        "OffsetY": 6.913395211533359,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "34",
+        "Size": 2,
+        "OffsetX": -61.00734384296674,
+        "OffsetY": 60.72904808909509,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "0",
+        "Size": 4,
+        "OffsetX": 21.087845837737007,
+        "OffsetY": 68.54845228315428,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "37",
+        "Size": 1,
+        "OffsetX": -63.06608113526338,
+        "OffsetY": -56.853797779771476,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "25",
+        "Size": 4,
+        "OffsetX": 34.85231425502046,
+        "OffsetY": 45.49681571711114,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "19",
+        "Size": 1,
+        "OffsetX": 75.03709309134005,
+        "OffsetY": -57.6591999499427,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "1",
+        "Size": 2,
+        "OffsetX": -34.374265256359486,
+        "OffsetY": 79.697737291657,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "31",
+        "Size": 2,
+        "OffsetX": 90.96207132096508,
+        "OffsetY": -4.247616044504395,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "13",
+        "Size": 4,
+        "OffsetX": 3.044613727257855,
+        "OffsetY": -64.722644414195,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "49",
+        "Size": 4,
+        "OffsetX": -67.14338991549869,
+        "OffsetY": 7.910001307928782,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "43",
+        "Size": 1,
+        "OffsetX": -13.856367880359198,
+        "OffsetY": 6.686342695815137,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "40",
+        "Size": 3,
+        "OffsetX": -52.85796195860665,
+        "OffsetY": 50.793928687163394,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "50",
+        "Size": 1,
+        "OffsetX": 78.80670916112473,
+        "OffsetY": 31.504463652701155,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "13",
+        "Size": 2,
+        "OffsetX": 41.26006785098183,
+        "OffsetY": 71.45687747862347,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "28",
+        "Size": 3,
+        "OffsetX": 17.195384641259665,
+        "OffsetY": 2.8980396745075083,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "23",
+        "Size": 4,
+        "OffsetX": 66.53841735820345,
+        "OffsetY": -47.85166741092589,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "45",
+        "Size": 4,
+        "OffsetX": -53.95686823458,
+        "OffsetY": -33.82494183539338,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "18",
+        "Size": 1,
+        "OffsetX": -8.343334209762581,
+        "OffsetY": 87.34702842342982,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "2",
+        "Size": 2,
+        "OffsetX": 6.275750804312385,
+        "OffsetY": -89.5943895570417,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "17",
+        "Size": 2,
+        "OffsetX": -72.9703227164662,
+        "OffsetY": 29.91368564200326,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "21",
+        "Size": 2,
+        "OffsetX": -8.964809706993059,
+        "OffsetY": 20.25178087703274,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "13",
+        "Size": 3,
+        "OffsetX": -12.5087706201031,
+        "OffsetY": 76.89202957861805,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "47",
+        "Size": 1,
+        "OffsetX": 84.2743292646576,
+        "OffsetY": -13.13644441597017,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "32",
+        "Size": 3,
+        "OffsetX": 54.60569451817979,
+        "OffsetY": -55.92452409295508,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "36",
+        "Size": 2,
+        "OffsetX": -78.19216937435888,
+        "OffsetY": -17.708112906688086,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "3",
+        "Size": 3,
+        "OffsetX": 58.49120105701361,
+        "OffsetY": 35.9002419359298,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "51",
+        "Size": 4,
+        "OffsetX": -26.434000076840118,
+        "OffsetY": -52.80533186499938,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "4",
+        "Size": 2,
+        "OffsetX": 74.69956361030705,
+        "OffsetY": 23.67903669116525,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "16",
+        "Size": 1,
+        "OffsetX": -21.107392626237655,
+        "OffsetY": 86.60841901366629,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "42",
+        "Size": 1,
+        "OffsetX": -3.394058905604343,
+        "OffsetY": -25.01976680633268,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "29",
+        "Size": 4,
+        "OffsetX": -53.170757125332,
+        "OffsetY": 28.52895710426987,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "52",
+        "Size": 3,
+        "OffsetX": 34.70034355913795,
+        "OffsetY": 68.49425485284515,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "13",
+        "Size": 2,
+        "OffsetX": -17.337526679581995,
+        "OffsetY": -88.85993515475847,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "39",
+        "Size": 2,
+        "OffsetX": -50.93763482270535,
+        "OffsetY": -43.592131029602974,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "26",
+        "Size": 4,
+        "OffsetX": 62.26905225745939,
+        "OffsetY": -47.88084844515996,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "5",
+        "Size": 2,
+        "OffsetX": -27.45705159495033,
+        "OffsetY": -77.52977304344101,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "35",
+        "Size": 4,
+        "OffsetX": 37.73291648436094,
+        "OffsetY": -71.90653742149419,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "53",
+        "Size": 3,
+        "OffsetX": -70.83727127153999,
+        "OffsetY": -17.927498544958894,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "15",
+        "Size": 2,
+        "OffsetX": -63.911321659030776,
+        "OffsetY": 46.04451545501215,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "44",
+        "Size": 1,
+        "OffsetX": 81.256322061605,
+        "OffsetY": 39.20720069322692,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "33",
+        "Size": 2,
+        "OffsetX": -6.782027360560849,
+        "OffsetY": -19.459190197305727,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "13",
+        "Size": 4,
+        "OffsetX": 17.60260460131439,
+        "OffsetY": 60.01005202601365,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "24",
+        "Size": 3,
+        "OffsetX": 73.66340355500726,
+        "OffsetY": -9.566189361115292,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "46",
+        "Size": 1,
+        "OffsetX": 79.50550633056274,
+        "OffsetY": -1.4340040036661112,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "30",
+        "Size": 2,
+        "OffsetX": 4.929299129244939,
+        "OffsetY": -25.38038541137667,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "54",
+        "Size": 4,
+        "OffsetX": 44.22477665624226,
+        "OffsetY": 45.851025844162066,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "14",
+        "Size": 1,
+        "OffsetX": 10.191742833638099,
+        "OffsetY": -81.91759582331142,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "22",
+        "Size": 3,
+        "OffsetX": -17.294151355504745,
+        "OffsetY": 82.65550445396042,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "38",
+        "Size": 3,
+        "OffsetX": 62.91127812966919,
+        "OffsetY": -47.79093982353937,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "13",
+        "Size": 4,
+        "OffsetX": -62.36634341656357,
+        "OffsetY": 6.361825789630263,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "6",
+        "Size": 1,
+        "OffsetX": -37.93579564398435,
+        "OffsetY": -65.53286372769547,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "6",
+        "Size": 1,
+        "OffsetX": -23.29574866139933,
+        "OffsetY": 79.27754963716143,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "0",
+        "Size": 1,
+        "OffsetX": 92.53124673047077,
+        "OffsetY": -22.653699541730532,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "5",
+        "Size": 4,
+        "OffsetX": 38.66614023413698,
+        "OffsetY": 31.13287220143581,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "3",
+        "Size": 2,
+        "OffsetX": -50.319188630619806,
+        "OffsetY": -61.698157098371055,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "1",
+        "Size": 4,
+        "OffsetX": -53.43652537811216,
+        "OffsetY": 13.177776051193424,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "4",
+        "Size": 1,
+        "OffsetX": -3.248353661860744,
+        "OffsetY": -87.18250329438811,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "2",
+        "Size": 1,
+        "OffsetX": 61.02564776366963,
+        "OffsetY": 74.4471919164432,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "56",
+        "Size": 4,
+        "OffsetX": 59.44836903073212,
+        "OffsetY": -60.035885665017524,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "7",
+        "Size": 2,
+        "OffsetX": -45.80105955547923,
+        "OffsetY": 62.305858763282004,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "9",
+        "Size": 2,
+        "OffsetX": 83.45585707759514,
+        "OffsetY": -39.69541443112974,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "13",
+        "Size": 2,
+        "OffsetX": 26.65988531417133,
+        "OffsetY": -75.09694375437637,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "8",
+        "Size": 4,
+        "OffsetX": -59.261529629745766,
+        "OffsetY": -0.4353661360208365,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "12",
+        "Size": 3,
+        "OffsetX": 5.40739106936485,
+        "OffsetY": 61.70894734397511,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "10",
+        "Size": 2,
+        "OffsetX": 69.76910807800519,
+        "OffsetY": 47.723639112914924,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "56",
+        "Size": 3,
+        "OffsetX": 22.008468142944132,
+        "OffsetY": -6.425831166887101,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "11",
+        "Size": 2,
+        "OffsetX": -35.281977283605755,
+        "OffsetY": -75.0652031330745,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "15",
+        "Size": 3,
+        "OffsetX": 76.34730174084231,
+        "OffsetY": -24.589036426618943,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "16",
+        "Size": 1,
+        "OffsetX": 20.93616275427373,
+        "OffsetY": 76.22721632715378,
+        "RotationStation": 6,
+        "RotationDegrees": 270.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "19",
+        "Size": 3,
+        "OffsetX": -39.70760577191998,
+        "OffsetY": 47.611929940135504,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "17",
+        "Size": 4,
+        "OffsetX": -40.55797711003423,
+        "OffsetY": -48.01105878634259,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "56",
+        "Size": 3,
+        "OffsetX": 58.702030394922375,
+        "OffsetY": 45.381055610405795,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "18",
+        "Size": 1,
+        "OffsetX": -79.03332743447511,
+        "OffsetY": 9.395659067053183,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "20",
+        "Size": 1,
+        "OffsetX": 15.71126243939625,
+        "OffsetY": 2.9376249655062736,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "14",
+        "Size": 1,
+        "OffsetX": 32.81339979575645,
+        "OffsetY": -79.55388940739164,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "22",
+        "Size": 3,
+        "OffsetX": 59.639776418455874,
+        "OffsetY": 54.80452720093849,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "21",
+        "Size": 1,
+        "OffsetX": 20.688775885324958,
+        "OffsetY": -17.65185030784128,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "24",
+        "Size": 4,
+        "OffsetX": -58.42245889896843,
+        "OffsetY": 3.9733040246106412,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "23",
+        "Size": 3,
+        "OffsetX": -19.867193115026108,
+        "OffsetY": 72.4927579358748,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "26",
+        "Size": 3,
+        "OffsetX": -25.82424120297951,
+        "OffsetY": -75.23099151857181,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "56",
+        "Size": 4,
+        "OffsetX": 50.35116520200915,
+        "OffsetY": -64.19771101644072,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "25",
+        "Size": 1,
+        "OffsetX": 5.137166510649798,
+        "OffsetY": 27.740594322346876,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "27",
+        "Size": 2,
+        "OffsetX": 72.57813202176396,
+        "OffsetY": -9.249434187464576,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "56",
+        "Size": 4,
+        "OffsetX": -4.592805176844186,
+        "OffsetY": 79.96463440744601,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "33",
+        "Size": 3,
+        "OffsetX": -5.228161228629974,
+        "OffsetY": -72.09418109992971,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "32",
+        "Size": 3,
+        "OffsetX": 11.7827883257106,
+        "OffsetY": -5.753415792992401,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "34",
+        "Size": 2,
+        "OffsetX": 77.58706874024881,
+        "OffsetY": -6.329161628095468,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "30",
+        "Size": 1,
+        "OffsetX": -61.669883457133814,
+        "OffsetY": 50.13258064137342,
+        "RotationStation": 2,
+        "RotationDegrees": 90.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "31",
+        "Size": 4,
+        "OffsetX": -70.38497104580573,
+        "OffsetY": -14.133856743236556,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "28",
+        "Size": 2,
+        "OffsetX": 63.740377748499355,
+        "OffsetY": 46.606881325445414,
+        "RotationStation": 1,
+        "RotationDegrees": 45.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "29",
+        "Size": 2,
+        "OffsetX": 58.452294630694404,
+        "OffsetY": -64.21044120404889,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  },
+  {
+    "Symbols": [
+      {
+        "ImageId": "56",
+        "Size": 1,
+        "OffsetX": 19.66979697259199,
+        "OffsetY": 11.388851893673467,
+        "RotationStation": 7,
+        "RotationDegrees": 315.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "38",
+        "Size": 3,
+        "OffsetX": 58.43790354588219,
+        "OffsetY": 57.174429067234286,
+        "RotationStation": 4,
+        "RotationDegrees": 180.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "39",
+        "Size": 3,
+        "OffsetX": -20.1186246864898,
+        "OffsetY": -72.37070919273631,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "40",
+        "Size": 4,
+        "OffsetX": -28.941589586911633,
+        "OffsetY": 54.94787315215271,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "36",
+        "Size": 4,
+        "OffsetX": -75.15595871899535,
+        "OffsetY": -12.917028089825237,
+        "RotationStation": 0,
+        "RotationDegrees": 0.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "41",
+        "Size": 1,
+        "OffsetX": 86.17698919370775,
+        "OffsetY": 6.25388232822806,
+        "RotationStation": 3,
+        "RotationDegrees": 135.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "37",
+        "Size": 4,
+        "OffsetX": 49.92034318001126,
+        "OffsetY": -47.96482798845709,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      },
+      {
+        "ImageId": "35",
+        "Size": 1,
+        "OffsetX": -18.756899442418966,
+        "OffsetY": -13.497630593950314,
+        "RotationStation": 5,
+        "RotationDegrees": 225.0,
+        "OffsetXInitialized": true,
+        "OffsetYInitialized": true,
+        "PositionsInitialized": true
+      }
+    ],
+    "Columns": 3
+  }
+]

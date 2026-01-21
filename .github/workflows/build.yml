@@ -54,12 +54,15 @@ jobs:
       
       - name: Determine version
         id: version
+        shell: bash
         run: |
-          if [ -n "${{ inputs.version }}" ]; then
-            VERSION="${{ inputs.version }}"
+          INPUT_VERSION="${{ inputs.version }}"
+          if [ -n "$INPUT_VERSION" ]; then
+            VERSION="$INPUT_VERSION"
             echo "Using provided version: $VERSION"
           else
-            VERSION=$(grep -oP '<Version>\K[0-9.]+' Directory.Build.props)
+            # Cross-platform version extraction using sed (works on macOS, Linux, and Windows via git bash)
+            VERSION=$(sed -n 's/.*<Version>\([0-9][0-9.]*\)<\/Version>.*/\1/p' Directory.Build.props | head -1)
             echo "Read version from Directory.Build.props: $VERSION"
           fi
           echo "version=$VERSION" >> $GITHUB_OUTPUT
@@ -72,6 +75,7 @@ jobs:
         run: dotnet build CardsAndSymbols.sln --configuration Release --no-restore
       
       - name: Publish application
+        shell: bash
         run: |
           dotnet publish CardsAndSymbols/CardsAndSymbols.csproj \
             --configuration Release \
@@ -83,17 +87,17 @@ jobs:
       
       - name: Archive artifacts (macOS)
         if: matrix.os == 'macos-latest'
+        shell: bash
         run: |
           cd publish/${{ matrix.runtime }}
-          zip -r ../../../CardsAndSymbols-${{ steps.version.outputs.version }}-${{ matrix.name-suffix }}.zip ./*
-          cd ../../..
+          zip -r ../../CardsAndSymbols-${{ steps.version.outputs.version }}-${{ matrix.name-suffix }}.zip ./*
       
       - name: Archive artifacts (Windows)
         if: matrix.os == 'windows-latest'
+        shell: pwsh
         run: |
           cd publish/${{ matrix.runtime }}
-          Compress-Archive -Path * -DestinationPath ..\..\..\CardsAndSymbols-${{ steps.version.outputs.version }}-${{ matrix.name-suffix }}.zip
-          cd ..\..\..
+          Compress-Archive -Path * -DestinationPath ..\..\CardsAndSymbols-${{ steps.version.outputs.version }}-${{ matrix.name-suffix }}.zip
       
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

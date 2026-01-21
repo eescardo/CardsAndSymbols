@@ -20,5 +20,8 @@ on:
 jobs:
   build:
     uses: ./.github/workflows/build.yml
+    with:
+      version: ${{ inputs.version }}
+      upload_to_release: ${{ inputs.upload_to_release }}
     secrets: inherit
 

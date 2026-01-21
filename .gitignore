@@ -1,7 +1,9 @@
 *.suo
 .DS_Store
-cards.json
-settings.json
+
+# Ignore user-generated auto-save files
+/CardsAndSymbols/cards.json
+/CardsAndSymbols/settings.json
 
 .vs/
 obj/
