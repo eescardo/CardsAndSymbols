@@ -21,7 +21,7 @@ jobs:
   build:
     uses: ./.github/workflows/build.yml
     with:
-      version: ${{ inputs.version }}
-      upload_to_release: ${{ inputs.upload_to_release }}
+      version: ${{ github.event_name == 'workflow_dispatch' && inputs.version || '' }}
+      upload_to_release: ${{ github.event_name == 'workflow_dispatch' && inputs.upload_to_release || false }}
     secrets: inherit
 
