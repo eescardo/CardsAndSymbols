@@ -5,59 +5,26 @@ on:
     types: [created]
 
 jobs:
-  increment-version:
+  get-version:
     runs-on: ubuntu-latest
     outputs:
-      new_version: ${{ steps.increment.outputs.new_version }}
+      version: ${{ steps.version.outputs.version }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Read current version
+      - name: Extract version from tag
         id: version
         shell: bash
         run: |
-          VERSION=$(sed -n 's/.*<Version>\([0-9][0-9.]*\)<\/Version>.*/\1/p' Directory.Build.props | head -1)
-          echo "current_version=$VERSION" >> $GITHUB_OUTPUT
-          echo "Current version: $VERSION"
-      
-      - name: Auto-increment patch version
-        id: increment
-        shell: bash
-        run: |
-          VERSION="${{ steps.version.outputs.current_version }}"
-          IFS='.' read -ra ADDR <<< "$VERSION"
-          MAJOR=${ADDR[0]}
-          MINOR=${ADDR[1]}
-          PATCH=${ADDR[2]}
-          NEW_PATCH=$((PATCH + 1))
-          NEW_VERSION="$MAJOR.$MINOR.$NEW_PATCH"
-          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
-          echo "Incremented version: $VERSION -> $NEW_VERSION"
-      
-      - name: Update version in Directory.Build.props
-        shell: bash
-        run: |
-          NEW_VERSION="${{ steps.increment.outputs.new_version }}"
-          sed -i "s/<Version>.*<\/Version>/<Version>$NEW_VERSION<\/Version>/" Directory.Build.props
-          echo "Updated Directory.Build.props to version $NEW_VERSION"
-      
-      - name: Commit version update
-        shell: bash
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add Directory.Build.props
-          git commit -m "Auto-increment version to ${{ steps.increment.outputs.new_version }}"
-          git push
+          TAG_NAME="${{ github.event.release.tag_name }}"
+          # Remove 'v' prefix if present
+          VERSION=${TAG_NAME#v}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Extracted version from tag $TAG_NAME: $VERSION"
 
   build:
-    needs: increment-version
+    needs: get-version
     uses: ./.github/workflows/build.yml
     with:
-      version: ${{ needs.increment-version.outputs.new_version }}
+      version: ${{ needs.get-version.outputs.version }}
       upload_to_release: true
       artifact_retention_days: 365
     secrets: inherit
