@@ -90,63 +90,99 @@ jobs:
           APP_BUNDLE="$APP_NAME"
           MACOS_DIR="$APP_BUNDLE/Contents/MacOS"
           RESOURCES_DIR="$APP_BUNDLE/Contents/Resources"
+          PUBLISH_DIR="publish/${{ matrix.runtime }}"
           
           # Create .app bundle structure
           mkdir -p "$MACOS_DIR"
           mkdir -p "$RESOURCES_DIR"
           
-          # Move all published files into Contents/MacOS
-          cp -R publish/${{ matrix.runtime }}/* "$MACOS_DIR/"
-          
-          # For a runnable .app, CFBundleExecutable must be a native Mach-O executable (apphost).
+          # Move executable and DLLs to Contents/MacOS
+          # Keep only the executable and .dll files in MacOS, move everything else to Resources
           EXECUTABLE_NAME="CardsAndSymbols"
-          if [ ! -f "$MACOS_DIR/$EXECUTABLE_NAME" ]; then
-            echo "ERROR: Expected executable not found: $MACOS_DIR/$EXECUTABLE_NAME"
-            echo "Contents of $MACOS_DIR:"
-            ls -la "$MACOS_DIR"
+          
+          # Copy executable first
+          if [ -f "$PUBLISH_DIR/$EXECUTABLE_NAME" ]; then
+            cp "$PUBLISH_DIR/$EXECUTABLE_NAME" "$MACOS_DIR/"
+            chmod +x "$MACOS_DIR/$EXECUTABLE_NAME"
+          else
+            echo "ERROR: Expected executable not found: $PUBLISH_DIR/$EXECUTABLE_NAME"
+            echo "Contents of $PUBLISH_DIR:"
+            ls -la "$PUBLISH_DIR"
             exit 1
           fi
           
-          # Create Info.plist
-          cat > "$APP_BUNDLE/Contents/Info.plist" <<EOF
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-              <key>CFBundleName</key>
-              <string>CardsAndSymbols</string>
-              <key>CFBundleDisplayName</key>
-              <string>CardsAndSymbols</string>
-              <key>CFBundleIdentifier</key>
-              <string>com.eddyescardo.CardsAndSymbols</string>
-              <key>CFBundleVersion</key>
-              <string>${{ steps.version.outputs.version }}</string>
-              <key>CFBundleShortVersionString</key>
-              <string>${{ steps.version.outputs.version }}</string>
-              <key>CFBundlePackageType</key>
-              <string>APPL</string>
-              <key>CFBundleExecutable</key>
-              <string>$EXECUTABLE_NAME</string>
-              <key>CFBundleIconFile</key>
-              <string></string>
-              <key>LSMinimumSystemVersion</key>
-              <string>10.13</string>
-              <key>NSHighResolutionCapable</key>
-              <true/>
-          </dict>
-          </plist>
-          EOF
+          # Copy DLLs and runtime config files to MacOS
+          find "$PUBLISH_DIR" -maxdepth 1 -type f \( -name "*.dll" -o -name "*.deps.json" -o -name "*.runtimeconfig.json" -o -name "*.pdb" \) -exec cp {} "$MACOS_DIR/" \;
           
-          # Ensure executable bit is set
-          chmod +x "$MACOS_DIR/$EXECUTABLE_NAME"
+          # Copy native libraries (runtimes folder) to MacOS if present
+          if [ -d "$PUBLISH_DIR/runtimes" ]; then
+            cp -R "$PUBLISH_DIR/runtimes" "$MACOS_DIR/"
+          fi
+          
+          # Move Images directory to Resources (but NOT to MacOS yet)
+          if [ -d "$PUBLISH_DIR/Images" ]; then
+            cp -R "$PUBLISH_DIR/Images" "$RESOURCES_DIR/"
+          fi
+          
+          # Move font files to Resources (if any)
+          if [ -d "$PUBLISH_DIR/LatoFont" ]; then
+            cp -R "$PUBLISH_DIR/LatoFont" "$RESOURCES_DIR/"
+          fi
+          
+          # Copy cards.json from source project (it's embedded, so not in publish output)
+          CARDS_JSON_SOURCE="CardsAndSymbols/Assets/cards.json"
+          if [ -f "$CARDS_JSON_SOURCE" ]; then
+            mkdir -p "$RESOURCES_DIR/Assets"
+            cp "$CARDS_JSON_SOURCE" "$RESOURCES_DIR/Assets/"
+            # Also copy to MacOS so it's accessible from AppContext.BaseDirectory
+            cp "$CARDS_JSON_SOURCE" "$MACOS_DIR/cards.json"
+            echo "Copied cards.json to Resources/Assets/ and MacOS/"
+          else
+            echo "WARNING: cards.json not found at $CARDS_JSON_SOURCE"
+          fi
+
+          # Create symlink from MacOS/Images to Resources/Images
+          # Remove Images if it exists as a directory (from publish output) before creating symlink
+          if [ -d "$MACOS_DIR/Images" ] && [ ! -L "$MACOS_DIR/Images" ]; then
+            echo "Removing existing Images directory from MacOS before creating symlink"
+            rm -rf "$MACOS_DIR/Images"
+          fi
+
+          if [ -d "$RESOURCES_DIR/Images" ]; then
+            ln -sf ../Resources/Images "$MACOS_DIR/Images"
+            echo "Created symlink: MacOS/Images -> Resources/Images"
+            # Verify symlink was created
+            if [ -L "$MACOS_DIR/Images" ]; then
+              echo "Symlink verified: $(readlink "$MACOS_DIR/Images")"
+            else
+              echo "ERROR: Failed to create symlink"
+              exit 1
+            fi
+          else
+            echo "WARNING: Resources/Images directory not found, cannot create symlink"
+          fi
+
+          # Copy and process Info.plist from project
+          INFO_PLIST_SOURCE="CardsAndSymbols/Assets/macOS/Info.plist"
+          if [ ! -f "$INFO_PLIST_SOURCE" ]; then
+            echo "ERROR: Info.plist template not found at $INFO_PLIST_SOURCE"
+            exit 1
+          fi
+          # Replace $(VERSION) placeholder with actual version
+          sed "s/\$(VERSION)/${{ steps.version.outputs.version }}/g" "$INFO_PLIST_SOURCE" > "$APP_BUNDLE/Contents/Info.plist"
 
           # Ad-hoc sign to avoid some "damaged" / Gatekeeper issues when users unzip/download.
           # Note: for a smooth end-user experience, proper signing + notarization is still recommended.
           codesign --force --deep --sign - "$APP_BUNDLE" || true
-          
+
           echo "Created .app bundle: $APP_BUNDLE"
+          echo "Contents structure:"
           ls -la "$APP_BUNDLE/Contents/"
-      
+          echo "MacOS contents:"
+          ls -la "$MACOS_DIR/" | head -20
+          echo "Resources contents:"
+          ls -la "$RESOURCES_DIR/"
+
       - name: Archive artifacts (macOS)
         if: matrix.os == 'macos-latest'
         shell: bash

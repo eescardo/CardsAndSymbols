@@ -56,4 +56,10 @@
     <EmbeddedResource Include="Assets\cards.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Assets\macOS\Info.plist">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

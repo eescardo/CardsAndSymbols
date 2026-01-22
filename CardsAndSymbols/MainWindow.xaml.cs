@@ -64,6 +64,20 @@ using ProjectivePlane;
         private const string SettingsFileName = "settings.json";
         private System.Threading.Timer? autoSaveTimer;
 
+        private static string GetUserDataDirectory()
+        {
+            var appSupportDir = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "CardsAndSymbols");
+            Directory.CreateDirectory(appSupportDir);
+            return appSupportDir;
+        }
+
+        private static string GetUserDataFilePath(string fileName)
+        {
+            return Path.Combine(GetUserDataDirectory(), fileName);
+        }
+
         public MainWindow()
         {
             this.InitializeComponent();
@@ -101,9 +115,10 @@ using ProjectivePlane;
         {
             try
             {
-                if (File.Exists(SettingsFileName))
+                var settingsPath = GetUserDataFilePath(SettingsFileName);
+                if (File.Exists(settingsPath))
                 {
-                    var json = File.ReadAllText(SettingsFileName);
+                    var json = File.ReadAllText(settingsPath);
                     var settings = JsonConvert.DeserializeObject<Settings>(json);
                     if (settings != null)
                     {
@@ -152,7 +167,7 @@ using ProjectivePlane;
                 this.currentSettings.ImageDirectory = this.ImageDirectory;
 
                 var json = JsonConvert.SerializeObject(this.currentSettings, Formatting.Indented);
-                File.WriteAllText(SettingsFileName, json);
+                File.WriteAllText(GetUserDataFilePath(SettingsFileName), json);
             }
             catch (Exception ex)
             {
@@ -238,7 +253,7 @@ using ProjectivePlane;
                 // Auto-load cards if auto-save is enabled
                 if (this.AutoSaveEnabled)
                 {
-                    if (!File.Exists(CardsFileName))
+                    if (!File.Exists(GetUserDataFilePath(CardsFileName)))
                     {
                         this.CopyDefaultCardsFromResourceToFile();
                     }
@@ -620,7 +635,8 @@ using ProjectivePlane;
         private void SaveCardsToFile(string fileName)
         {
             var json = JsonConvert.SerializeObject(this.Cards, Formatting.Indented);
-            File.WriteAllText(fileName, json);
+            var filePath = Path.IsPathRooted(fileName) ? fileName : GetUserDataFilePath(fileName);
+            File.WriteAllText(filePath, json);
         }
 
         private void HandleLoadClick(object? sender, RoutedEventArgs e)
@@ -630,11 +646,25 @@ using ProjectivePlane;
 
         private void LoadCardsFromFile(string fileName)
         {
-            if (File.Exists(fileName))
+            var filePath = Path.IsPathRooted(fileName) ? fileName : GetUserDataFilePath(fileName);
+            if (File.Exists(filePath))
             {
-                var json = File.ReadAllText(fileName);
+                var json = File.ReadAllText(filePath);
                 var cards = JsonConvert.DeserializeObject<List<CardData>>(json);
                 this.Cards = cards ?? new List<CardData>();
+            }
+        }
+
+        private void LogToFile(string message)
+        {
+            try
+            {
+                var logPath = Path.Combine(GetUserDataDirectory(), "CardsAndSymbols.log");
+                File.AppendAllText(logPath, $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {message}\n", Encoding.UTF8);
+            }
+            catch
+            {
+                // Ignore logging errors
             }
         }
 
@@ -644,10 +674,24 @@ using ProjectivePlane;
             {
                 var assembly = Assembly.GetExecutingAssembly();
                 var resourceName = "CardsAndSymbols.Assets.cards.json";
+                string? json = null;
 
+                LogToFile($"CopyDefaultCardsFromResourceToFile called, fileName={fileName}");
+                LogToFile($"AppContext.BaseDirectory = {AppContext.BaseDirectory}");
+                LogToFile($"CurrentDirectory = {Directory.GetCurrentDirectory()}");
+
+                // Strategy 1: Try embedded resource first
                 using (var stream = assembly.GetManifestResourceStream(resourceName))
                 {
-                    if (stream == null)
+                    if (stream != null)
+                    {
+                        LogToFile($"Found embedded resource: {resourceName}");
+                        using (var reader = new StreamReader(stream, Encoding.UTF8))
+                        {
+                            json = reader.ReadToEnd();
+                        }
+                    }
+                    else
                     {
                         // Try to find the resource by listing all resources (for debugging)
                         var allResources = assembly.GetManifestResourceNames();
@@ -655,36 +699,84 @@ using ProjectivePlane;
 
                         if (matchingResource != null)
                         {
-                            System.Diagnostics.Debug.WriteLine($"Found resource with different name: {matchingResource}");
+                            LogToFile($"Found resource with different name: {matchingResource}");
                             using (var fallbackStream = assembly.GetManifestResourceStream(matchingResource))
                             {
                                 if (fallbackStream != null)
                                 {
                                     using (var reader = new StreamReader(fallbackStream, Encoding.UTF8))
                                     {
-                                        var json = reader.ReadToEnd();
-                                        File.WriteAllText(fileName, json);
-                                        return;
+                                        json = reader.ReadToEnd();
                                     }
                                 }
                             }
                         }
 
-                        System.Console.WriteLine($"Could not find embedded resource: {resourceName}");
-                        System.Console.WriteLine($"Available resources: {string.Join(", ", allResources)}");
-                        return;
+                        if (json == null)
+                        {
+                            var message = $"WARNING: Could not find embedded resource: {resourceName}\nAvailable resources: {string.Join(", ", allResources)}\nAttempting file-based fallback...";
+                            LogToFile(message);
+                            System.Diagnostics.Debug.WriteLine(message);
+                            System.Console.WriteLine(message);
+                        }
+                    }
+                }
+
+                // Strategy 2: If embedded resource failed, try file-based lookup within app bundle
+                if (json == null)
+                {
+                    var baseDir = AppContext.BaseDirectory;
+                    var possiblePaths = new[]
+                    {
+                        Path.Combine(baseDir, "cards.json"), // Same directory as executable
+                        Path.Combine(baseDir, "Assets", "cards.json"), // Assets subdirectory
+                        Path.Combine(baseDir, "..", "Resources", "Assets", "cards.json"), // macOS bundle Resources
+                    };
+
+                    LogToFile($"File-based fallback: baseDir = {baseDir}");
+                    foreach (var path in possiblePaths)
+                    {
+                        var fullPath = Path.GetFullPath(path);
+                        var exists = File.Exists(fullPath);
+                        LogToFile($"  Checking: {fullPath} (exists: {exists})");
+                        System.Diagnostics.Debug.WriteLine($"  Checking: {fullPath} (exists: {exists})");
+                        if (exists)
+                        {
+                            var message = $"Found cards.json at: {fullPath}";
+                            LogToFile(message);
+                            System.Diagnostics.Debug.WriteLine(message);
+                            System.Console.WriteLine(message);
+                            json = File.ReadAllText(fullPath, Encoding.UTF8);
+                            break;
+                        }
                     }
 
-                    using (var reader = new StreamReader(stream, Encoding.UTF8))
+                    if (json == null)
                     {
-                        var json = reader.ReadToEnd();
-                        File.WriteAllText(fileName, json);
+                        var errorMsg = $"ERROR: Could not find cards.json in any expected location:\n" + 
+                                      string.Join("\n", possiblePaths.Select(p => $"  - {Path.GetFullPath(p)}"));
+                        LogToFile(errorMsg);
+                        System.Diagnostics.Debug.WriteLine(errorMsg);
+                        System.Console.WriteLine(errorMsg);
+                        return;
                     }
+                }
+
+                // Write the JSON to the target file in user data directory (not app bundle)
+                if (json != null)
+                {
+                    var targetPath = Path.IsPathRooted(fileName) ? fileName : GetUserDataFilePath(fileName);
+                    LogToFile($"Writing cards.json to: {targetPath}");
+                    File.WriteAllText(targetPath, json, Encoding.UTF8);
+                    LogToFile("Successfully wrote cards.json");
                 }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Failed to copy default cards from resource to file: {ex.Message}");
+                var errorMsg = $"ERROR: Exception while copying default cards: {ex.Message}\nStack trace: {ex.StackTrace}";
+                LogToFile(errorMsg);
+                System.Diagnostics.Debug.WriteLine(errorMsg);
+                System.Console.WriteLine(errorMsg);
             }
         }
 
