@@ -679,9 +679,9 @@ using ProjectivePlane;
 
                         if (json == null)
                         {
-                            System.Console.WriteLine($"WARNING: Could not find embedded resource: {resourceName}");
-                            System.Console.WriteLine($"Available resources: {string.Join(", ", allResources)}");
-                            System.Console.WriteLine("Attempting file-based fallback...");
+                            var message = $"WARNING: Could not find embedded resource: {resourceName}\nAvailable resources: {string.Join(", ", allResources)}\nAttempting file-based fallback...";
+                            System.Diagnostics.Debug.WriteLine(message);
+                            System.Console.WriteLine(message);
                         }
                     }
                 }
@@ -696,12 +696,16 @@ using ProjectivePlane;
                         Path.Combine(baseDir, "..", "Resources", "Assets", "cards.json"), // macOS bundle Resources
                     };
 
+                    System.Diagnostics.Debug.WriteLine($"File-based fallback: baseDir = {baseDir}");
                     foreach (var path in possiblePaths)
                     {
                         var fullPath = Path.GetFullPath(path);
+                        System.Diagnostics.Debug.WriteLine($"  Checking: {fullPath} (exists: {File.Exists(fullPath)})");
                         if (File.Exists(fullPath))
                         {
-                            System.Console.WriteLine($"Found cards.json at: {fullPath}");
+                            var message = $"Found cards.json at: {fullPath}";
+                            System.Diagnostics.Debug.WriteLine(message);
+                            System.Console.WriteLine(message);
                             json = File.ReadAllText(fullPath, Encoding.UTF8);
                             break;
                         }
@@ -709,11 +713,10 @@ using ProjectivePlane;
 
                     if (json == null)
                     {
-                        System.Console.WriteLine($"ERROR: Could not find cards.json in any expected location:");
-                        foreach (var path in possiblePaths)
-                        {
-                            System.Console.WriteLine($"  - {Path.GetFullPath(path)}");
-                        }
+                        var errorMsg = $"ERROR: Could not find cards.json in any expected location:\n" + 
+                                      string.Join("\n", possiblePaths.Select(p => $"  - {Path.GetFullPath(p)}"));
+                        System.Diagnostics.Debug.WriteLine(errorMsg);
+                        System.Console.WriteLine(errorMsg);
                         return;
                     }
                 }
@@ -726,9 +729,9 @@ using ProjectivePlane;
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Failed to copy default cards from resource to file: {ex.Message}");
-                System.Console.WriteLine($"ERROR: Exception while copying default cards: {ex.Message}");
-                System.Console.WriteLine($"Stack trace: {ex.StackTrace}");
+                var errorMsg = $"ERROR: Exception while copying default cards: {ex.Message}\nStack trace: {ex.StackTrace}";
+                System.Diagnostics.Debug.WriteLine(errorMsg);
+                System.Console.WriteLine(errorMsg);
             }
         }
 
