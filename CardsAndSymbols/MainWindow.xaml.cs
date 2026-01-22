@@ -64,6 +64,20 @@ using ProjectivePlane;
         private const string SettingsFileName = "settings.json";
         private System.Threading.Timer? autoSaveTimer;
 
+        private static string GetUserDataDirectory()
+        {
+            var appSupportDir = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "CardsAndSymbols");
+            Directory.CreateDirectory(appSupportDir);
+            return appSupportDir;
+        }
+
+        private static string GetUserDataFilePath(string fileName)
+        {
+            return Path.Combine(GetUserDataDirectory(), fileName);
+        }
+
         public MainWindow()
         {
             this.InitializeComponent();
@@ -101,9 +115,10 @@ using ProjectivePlane;
         {
             try
             {
-                if (File.Exists(SettingsFileName))
+                var settingsPath = GetUserDataFilePath(SettingsFileName);
+                if (File.Exists(settingsPath))
                 {
-                    var json = File.ReadAllText(SettingsFileName);
+                    var json = File.ReadAllText(settingsPath);
                     var settings = JsonConvert.DeserializeObject<Settings>(json);
                     if (settings != null)
                     {
@@ -152,7 +167,7 @@ using ProjectivePlane;
                 this.currentSettings.ImageDirectory = this.ImageDirectory;
 
                 var json = JsonConvert.SerializeObject(this.currentSettings, Formatting.Indented);
-                File.WriteAllText(SettingsFileName, json);
+                File.WriteAllText(GetUserDataFilePath(SettingsFileName), json);
             }
             catch (Exception ex)
             {
@@ -238,7 +253,7 @@ using ProjectivePlane;
                 // Auto-load cards if auto-save is enabled
                 if (this.AutoSaveEnabled)
                 {
-                    if (!File.Exists(CardsFileName))
+                    if (!File.Exists(GetUserDataFilePath(CardsFileName)))
                     {
                         this.CopyDefaultCardsFromResourceToFile();
                     }
@@ -620,7 +635,8 @@ using ProjectivePlane;
         private void SaveCardsToFile(string fileName)
         {
             var json = JsonConvert.SerializeObject(this.Cards, Formatting.Indented);
-            File.WriteAllText(fileName, json);
+            var filePath = Path.IsPathRooted(fileName) ? fileName : GetUserDataFilePath(fileName);
+            File.WriteAllText(filePath, json);
         }
 
         private void HandleLoadClick(object? sender, RoutedEventArgs e)
@@ -630,9 +646,10 @@ using ProjectivePlane;
 
         private void LoadCardsFromFile(string fileName)
         {
-            if (File.Exists(fileName))
+            var filePath = Path.IsPathRooted(fileName) ? fileName : GetUserDataFilePath(fileName);
+            if (File.Exists(filePath))
             {
-                var json = File.ReadAllText(fileName);
+                var json = File.ReadAllText(filePath);
                 var cards = JsonConvert.DeserializeObject<List<CardData>>(json);
                 this.Cards = cards ?? new List<CardData>();
             }
@@ -642,11 +659,7 @@ using ProjectivePlane;
         {
             try
             {
-                var appSupportDir = Path.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                    "CardsAndSymbols");
-                Directory.CreateDirectory(appSupportDir);
-                var logPath = Path.Combine(appSupportDir, "CardsAndSymbols.log");
+                var logPath = Path.Combine(GetUserDataDirectory(), "CardsAndSymbols.log");
                 File.AppendAllText(logPath, $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {message}\n", Encoding.UTF8);
             }
             catch
@@ -749,10 +762,10 @@ using ProjectivePlane;
                     }
                 }
 
-                // Write the JSON to the target file
+                // Write the JSON to the target file in user data directory (not app bundle)
                 if (json != null)
                 {
-                    var targetPath = Path.IsPathRooted(fileName) ? fileName : Path.Combine(AppContext.BaseDirectory, fileName);
+                    var targetPath = Path.IsPathRooted(fileName) ? fileName : GetUserDataFilePath(fileName);
                     LogToFile($"Writing cards.json to: {targetPath}");
                     File.WriteAllText(targetPath, json, Encoding.UTF8);
                     LogToFile("Successfully wrote cards.json");
